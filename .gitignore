@@ -216,3 +216,63 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# =========================
+# Ophthalmic FM Benchmark
+# =========================
+
+# Model weights / checkpoints
+weights/
+checkpoints/
+pretrained/
+model_weights/
+*.pth
+*.pt
+*.ckpt
+*.bin
+*.safetensors
+*.onnx
+*.h5
+*.pkl
+
+# Datasets / private data
+data/
+datasets/
+raw_data/
+private_data/
+ukb/
+UKB/
+hospital_data/
+clinical_data/
+external_cohorts/
+
+# Extracted features / embeddings
+features/
+embeddings/
+feature_cache/
+*.npy
+*.npz
+
+# Benchmark outputs
+outputs/
+results/raw/
+results/intermediate/
+runs/
+logs/
+wandb/
+mlruns/
+
+# Large image files
+*.svs
+*.ndpi
+*.tiff
+*.tif
+*.dcm
+
+# Local config / secrets
+*.local.yaml
+*.local.yml
+*.local.json
+secrets/
+credentials/
+tokens/
