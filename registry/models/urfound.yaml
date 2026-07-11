@@ -8,7 +8,6 @@ model_category: 视觉-语言眼科基础模型
 modalities:
 - CFP
 - OCT
-- CT
 - text
 architecture: 共享ViT-B编码器 + 8层图像解码器 + 6层条件语言解码器
 pretraining_data_summary: 103,786张CFP，来自25个公开数据集；83,484张OCT，来自OCTCELL
@@ -34,6 +33,6 @@ provenance:
   source_file: ophthalmic_models_seed_v0.xlsx
   source_sheet: 眼科大模型
   source_row: 15
-  imported_at: '2026-07-11T09:08:31Z'
+  imported_at: '2026-07-11T09:10:56Z'
 notes:
 - 'Original modality text: CFP、OCT、由专家标签扩展的医学描述文本'

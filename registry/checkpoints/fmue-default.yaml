@@ -4,7 +4,6 @@ model_id: fmue
 checkpoint_name: Default
 modalities:
 - OCT
-- CT
 weight_url: https://drive.google.com/file/d/1-rdx6VPJNWVwkjamkplEoyUOHNGweUho/view?usp=sharing
 provider: google_drive
 access_type: open
@@ -23,6 +22,6 @@ provenance:
   source_file: ophthalmic_models_seed_v0.xlsx
   source_sheet: 眼科大模型
   source_row: 10
-  imported_at: '2026-07-11T09:08:31Z'
+  imported_at: '2026-07-11T09:10:56Z'
 notes:
 - Seed metadata only; URL and redistribution terms have not been verified.

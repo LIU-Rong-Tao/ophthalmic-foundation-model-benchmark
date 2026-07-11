@@ -8,7 +8,6 @@ model_category: 视觉-语言眼科基础模型
 modalities:
 - CFP
 - OCT
-- CT
 - text
 architecture: ResNet-50图像编码器 + BioClinicalBERT文本编码器 + 视觉文本投影头 + 多头交叉注意力知识修订模块
 pretraining_data_summary: FLAIR汇集的37个公开数据集共278,348张CFP及类别标签，加上MM-Retinal中的2,169组CFP专家文本对
@@ -36,6 +35,6 @@ provenance:
   source_file: ophthalmic_models_seed_v0.xlsx
   source_sheet: 眼科大模型
   source_row: 11
-  imported_at: '2026-07-11T09:08:31Z'
+  imported_at: '2026-07-11T09:10:56Z'
 notes:
 - 'Original modality text: CFP、OCT、眼科专家描述文本'

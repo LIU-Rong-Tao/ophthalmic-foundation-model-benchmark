@@ -7,7 +7,6 @@ venue: Cell Reports Medicine
 model_category: 眼科视觉基础模型
 modalities:
 - OCT
-- CT
 architecture: RETFound ViT-Large/16编码器 + LoRA + 基于证据学习的Dirichlet不确定性分类器
 pretraining_data_summary: 使用 102,468张有标签OCT图像，来源于汕头国际眼科中心
 pretraining_strategy: 冻结RETFound-OCT主干，通过LoRA进行参数高效监督微调，并使用显式疾病标签训练Dirichlet证据分类器；在验证集上确定不确定性阈值，将高不确定性样本转交医生复核。
@@ -33,6 +32,6 @@ provenance:
   source_file: ophthalmic_models_seed_v0.xlsx
   source_sheet: 眼科大模型
   source_row: 10
-  imported_at: '2026-07-11T09:08:31Z'
+  imported_at: '2026-07-11T09:10:56Z'
 notes:
 - 'Original modality text: OCT'

@@ -38,7 +38,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 16,
-        "imported_at": "2026-07-11T09:08:31Z"
+        "imported_at": "2026-07-11T09:10:56Z"
       },
       "notes": [
         "Original modality text: CFP"
@@ -91,7 +91,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 4,
-        "imported_at": "2026-07-11T09:08:31Z"
+        "imported_at": "2026-07-11T09:10:56Z"
       },
       "notes": [
         "Original modality text: 11种眼科影像（CFP、FFA、SLP、ICGA、OUS、OCT、SM、FAF、EEP、CT、RetCam) + 结构化临床报告"
@@ -137,7 +137,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 5,
-        "imported_at": "2026-07-11T09:08:31Z"
+        "imported_at": "2026-07-11T09:10:56Z"
       },
       "notes": [
         "Original modality text: CFP、专家文本描述"
@@ -152,8 +152,7 @@
       "venue": "Cell Reports Medicine",
       "model_category": "眼科视觉基础模型",
       "modalities": [
-        "OCT",
-        "CT"
+        "OCT"
       ],
       "architecture": "RETFound ViT-Large/16编码器 + LoRA + 基于证据学习的Dirichlet不确定性分类器",
       "pretraining_data_summary": "使用 102,468张有标签OCT图像，来源于汕头国际眼科中心",
@@ -182,7 +181,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 10,
-        "imported_at": "2026-07-11T09:08:31Z"
+        "imported_at": "2026-07-11T09:10:56Z"
       },
       "notes": [
         "Original modality text: OCT"
@@ -199,7 +198,6 @@
       "modalities": [
         "CFP",
         "OCT",
-        "CT",
         "text"
       ],
       "architecture": "ResNet-50图像编码器 + BioClinicalBERT文本编码器 + 视觉文本投影头 + 多头交叉注意力知识修订模块",
@@ -230,7 +228,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 11,
-        "imported_at": "2026-07-11T09:08:31Z"
+        "imported_at": "2026-07-11T09:10:56Z"
       },
       "notes": [
         "Original modality text: CFP、OCT、眼科专家描述文本"
@@ -247,7 +245,6 @@
       "modalities": [
         "OCT",
         "SLO",
-        "CT",
         "retinal_layer_pseudolabels"
       ],
       "architecture": "MultiMAE式多模态掩码自编码器：共享ViT编码器 + 模态特异性线性投影层 + 模态特异性Transformer解码器",
@@ -277,7 +274,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 7,
-        "imported_at": "2026-07-11T09:08:31Z"
+        "imported_at": "2026-07-11T09:10:56Z"
       },
       "notes": [
         "Original modality text: OCT、SLO、Retinal Layer Pseudo-labels"
@@ -320,7 +317,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 14,
-        "imported_at": "2026-07-11T09:08:31Z"
+        "imported_at": "2026-07-11T09:10:56Z"
       },
       "notes": [
         "Original modality text: CFP"
@@ -363,7 +360,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 12,
-        "imported_at": "2026-07-11T09:08:31Z"
+        "imported_at": "2026-07-11T09:10:56Z"
       },
       "notes": [
         "Original modality text: CFP、中文临床自由文本报告"
@@ -379,8 +376,7 @@
       "model_category": "眼科视觉基础模型",
       "modalities": [
         "CFP",
-        "OCT",
-        "CT"
+        "OCT"
       ],
       "architecture": "MAE 自监督框架：ViT-Large/16 编码器 + ViT-Small 解码器；下游任务使用 ViT-Large 编码器 + MLP 分类头",
       "pretraining_data_summary": "自然图像 ImageNet-1k、约90.4万CFP、73.6万OCT；主要来自 MEH-MIDAS，另含 EyePACS 和 Kermany 等公开数据",
@@ -410,7 +406,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 2,
-        "imported_at": "2026-07-11T09:08:31Z"
+        "imported_at": "2026-07-11T09:10:56Z"
       },
       "notes": [
         "Original modality text: CFP、OCT"
@@ -453,7 +449,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 8,
-        "imported_at": "2026-07-11T09:08:31Z"
+        "imported_at": "2026-07-11T09:10:56Z"
       },
       "notes": [
         "Original modality text: CFP"
@@ -499,7 +495,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 6,
-        "imported_at": "2026-07-11T09:08:31Z"
+        "imported_at": "2026-07-11T09:10:56Z"
       },
       "notes": [
         "Original modality text: CFP 、模板化疾病文本描述"
@@ -516,7 +512,6 @@
       "modalities": [
         "CFP",
         "OCT",
-        "CT",
         "text"
       ],
       "architecture": "共享ViT-B编码器 + 8层图像解码器 + 6层条件语言解码器",
@@ -545,7 +540,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 15,
-        "imported_at": "2026-07-11T09:08:31Z"
+        "imported_at": "2026-07-11T09:10:56Z"
       },
       "notes": [
         "Original modality text: CFP、OCT、由专家标签扩展的医学描述文本"
@@ -590,7 +585,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 13,
-        "imported_at": "2026-07-11T09:08:31Z"
+        "imported_at": "2026-07-11T09:10:56Z"
       },
       "notes": [
         "Original modality text: CFP、中文视网膜诊断报告"
@@ -612,8 +607,7 @@
         "external_eye",
         "slit_lamp",
         "MRI",
-        "UBM",
-        "CT"
+        "UBM"
       ],
       "architecture": "8个独立ViT-B/16编码器，每个模态一个编码器",
       "pretraining_data_summary": "约340万眼科图像，覆盖8种眼科影像模态",
@@ -643,7 +637,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 3,
-        "imported_at": "2026-07-11T09:08:31Z"
+        "imported_at": "2026-07-11T09:10:56Z"
       },
       "notes": [
         "Original modality text: CFP、OCT、FFA、B超、外眼照、裂隙灯、MRI、UBM"
@@ -690,7 +684,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 9,
-        "imported_at": "2026-07-11T09:08:31Z"
+        "imported_at": "2026-07-11T09:10:56Z"
       },
       "notes": [
         "Original modality text: 自然图像与多类医学影像（CT、FA、CFP、MRI、OCT、PET、X-ray）、临床描述, 医患对话文本"

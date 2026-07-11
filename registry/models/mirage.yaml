@@ -8,7 +8,6 @@ model_category: 多模态眼科视觉基础模型
 modalities:
 - OCT
 - SLO
-- CT
 - retinal_layer_pseudolabels
 architecture: MultiMAE式多模态掩码自编码器：共享ViT编码器 + 模态特异性线性投影层 + 模态特异性Transformer解码器
 pretraining_data_summary: 约26.1万组配对的 OCT–SLO–视网膜层伪标签样本
@@ -35,6 +34,6 @@ provenance:
   source_file: ophthalmic_models_seed_v0.xlsx
   source_sheet: 眼科大模型
   source_row: 7
-  imported_at: '2026-07-11T09:08:31Z'
+  imported_at: '2026-07-11T09:10:56Z'
 notes:
 - 'Original modality text: OCT、SLO、Retinal Layer Pseudo-labels'

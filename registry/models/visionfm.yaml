@@ -14,7 +14,6 @@ modalities:
 - slit_lamp
 - MRI
 - UBM
-- CT
 architecture: 8个独立ViT-B/16编码器，每个模态一个编码器
 pretraining_data_summary: 约340万眼科图像，覆盖8种眼科影像模态
 pretraining_strategy: iBOT；masked image modeling + self-distillation
@@ -41,6 +40,6 @@ provenance:
   source_file: ophthalmic_models_seed_v0.xlsx
   source_sheet: 眼科大模型
   source_row: 3
-  imported_at: '2026-07-11T09:08:31Z'
+  imported_at: '2026-07-11T09:10:56Z'
 notes:
 - 'Original modality text: CFP、OCT、FFA、B超、外眼照、裂隙灯、MRI、UBM'

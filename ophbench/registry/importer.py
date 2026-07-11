@@ -116,7 +116,13 @@ def _modalities(text):
     ]
     values = []
     for needle, canonical in aliases:
-        if needle.lower() in raw.lower() and canonical not in values:
+        if needle.isascii() and needle.isupper():
+            matched = re.search(
+                rf"(?<![A-Za-z]){re.escape(needle)}(?![A-Za-z])", raw, re.IGNORECASE
+            )
+        else:
+            matched = needle.lower() in raw.lower()
+        if matched and canonical not in values:
             values.append(canonical)
     return values or ["other"]
 

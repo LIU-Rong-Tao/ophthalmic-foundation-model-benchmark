@@ -1,6 +1,16 @@
 from pathlib import Path
 
-from ophbench.registry.importer import EXPECTED_CHECKPOINT_IDS, MODEL_ID_MAP, import_seed
+from ophbench.registry.importer import (
+    EXPECTED_CHECKPOINT_IDS,
+    MODEL_ID_MAP,
+    _modalities,
+    import_seed,
+)
+
+
+def test_oct_does_not_imply_ct_modality():
+    assert _modalities("CFP、OCT") == ["CFP", "OCT"]
+    assert _modalities("OCTA") == ["OCTA"]
 
 
 def test_seed_import_creates_expected_records(tmp_path: Path):
