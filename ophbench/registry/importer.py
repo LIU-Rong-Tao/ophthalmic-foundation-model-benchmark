@@ -4,7 +4,7 @@ import hashlib
 import json
 import re
 from dataclasses import dataclass
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 import yaml
@@ -229,8 +229,11 @@ def _yaml(path, data):
 
 
 def import_seed(input_path: Path, output_root: Path = Path("."), imported_at: str | None = None):
-    imported_at = imported_at or datetime.now(UTC).replace(microsecond=0).isoformat().replace(
-        "+00:00", "Z"
+    imported_at = imported_at or (
+        datetime.now(timezone.utc)
+        .replace(microsecond=0)
+        .isoformat()
+        .replace("+00:00", "Z")
     )
     workbook = load_workbook(input_path, data_only=True, read_only=True)
     main = workbook["眼科大模型"]

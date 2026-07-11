@@ -1,0 +1,36 @@
+schema_version: '1.0'
+model_id: deretfound
+model_name: DERETFound
+year: 2025
+publication_type: journal
+venue: Nature Biomedical Engineering
+model_category: 眼科视觉基础模型
+modalities:
+- CFP
+architecture: ViT-L/16 MAE编码器 + ViT-S解码器
+pretraining_data_summary: 约100万张合成CFP + 150,786张公开真实CFP；来源于AIROGS、EyePACS、DDR和ODIR-2019
+pretraining_strategy: 两阶段MAE：合成CFP MAE预训练 + 真实CFP MAE领域适配
+reported_summary: 仅使用RETFound 16.7%的真实预训练数据，在9个数据集上达到相当或更优表现，并显著降低下游标注需求。
+paper_url: https://www.nature.com/articles/s41551-025-01365-0
+code_url: https://github.com/Jonlysun/DERETFound
+code_available: true
+capabilities:
+- feature_extraction
+- classification
+benchmark_tracks: []
+runtime_phase: phase1_image_encoder
+license: null
+license_verified: false
+verification_status: seed_unverified
+implementation:
+  adapter_status: not_started
+  smoke_test_status: not_run
+  benchmark_status: not_run
+reported_tasks_text: CFP糖尿病视网膜病变分级；青光眼、AMD及多病种分类；特征提取；低标注下游微调与迁移
+provenance:
+  source_file: ophthalmic_models_seed_v0.xlsx
+  source_sheet: 眼科大模型
+  source_row: 16
+  imported_at: '2026-07-11T09:30:27Z'
+notes:
+- 'Original modality text: CFP'

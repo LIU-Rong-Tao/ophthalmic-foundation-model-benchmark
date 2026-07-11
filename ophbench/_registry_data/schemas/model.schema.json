@@ -1,0 +1,317 @@
+{
+  "$defs": {
+    "ImplementationStatus": {
+      "additionalProperties": false,
+      "properties": {
+        "adapter_status": {
+          "enum": [
+            "not_started",
+            "scaffolded",
+            "implemented",
+            "failed"
+          ],
+          "title": "Adapter Status",
+          "type": "string"
+        },
+        "smoke_test_status": {
+          "enum": [
+            "not_run",
+            "passed",
+            "failed",
+            "blocked"
+          ],
+          "title": "Smoke Test Status",
+          "type": "string"
+        },
+        "benchmark_status": {
+          "enum": [
+            "not_run",
+            "passed",
+            "failed",
+            "blocked"
+          ],
+          "title": "Benchmark Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "adapter_status",
+        "smoke_test_status",
+        "benchmark_status"
+      ],
+      "title": "ImplementationStatus",
+      "type": "object"
+    },
+    "Provenance": {
+      "additionalProperties": false,
+      "properties": {
+        "source_file": {
+          "minLength": 1,
+          "title": "Source File",
+          "type": "string"
+        },
+        "source_sheet": {
+          "minLength": 1,
+          "title": "Source Sheet",
+          "type": "string"
+        },
+        "source_row": {
+          "title": "Source Row",
+          "type": "integer"
+        },
+        "imported_at": {
+          "title": "Imported At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_file",
+        "source_sheet",
+        "source_row",
+        "imported_at"
+      ],
+      "title": "Provenance",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "model_id": {
+      "minLength": 1,
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "title": "Model Id",
+      "type": "string"
+    },
+    "model_name": {
+      "minLength": 1,
+      "title": "Model Name",
+      "type": "string"
+    },
+    "year": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Year"
+    },
+    "publication_type": {
+      "enum": [
+        "journal",
+        "conference",
+        "preprint",
+        "unknown"
+      ],
+      "title": "Publication Type",
+      "type": "string"
+    },
+    "venue": {
+      "minLength": 1,
+      "title": "Venue",
+      "type": "string"
+    },
+    "model_category": {
+      "minLength": 1,
+      "title": "Model Category",
+      "type": "string"
+    },
+    "modalities": {
+      "items": {
+        "enum": [
+          "CFP",
+          "OCT",
+          "OCTA",
+          "FFA",
+          "SLO",
+          "ICGA",
+          "FAF",
+          "ultrasound",
+          "external_eye",
+          "slit_lamp",
+          "specular_microscopy",
+          "MRI",
+          "UBM",
+          "CT",
+          "RetCam",
+          "PET",
+          "X_ray",
+          "text",
+          "retinal_layer_pseudolabels",
+          "other"
+        ],
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Modalities",
+      "type": "array"
+    },
+    "architecture": {
+      "minLength": 1,
+      "title": "Architecture",
+      "type": "string"
+    },
+    "pretraining_data_summary": {
+      "minLength": 1,
+      "title": "Pretraining Data Summary",
+      "type": "string"
+    },
+    "pretraining_strategy": {
+      "minLength": 1,
+      "title": "Pretraining Strategy",
+      "type": "string"
+    },
+    "reported_summary": {
+      "minLength": 1,
+      "title": "Reported Summary",
+      "type": "string"
+    },
+    "paper_url": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Paper Url"
+    },
+    "code_url": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Code Url"
+    },
+    "code_available": {
+      "title": "Code Available",
+      "type": "boolean"
+    },
+    "capabilities": {
+      "items": {
+        "enum": [
+          "image_encoding",
+          "feature_extraction",
+          "classification",
+          "risk_prediction",
+          "prognosis",
+          "segmentation",
+          "detection",
+          "keypoint_localization",
+          "zero_shot_classification",
+          "few_shot_classification",
+          "retrieval",
+          "multimodal_alignment",
+          "vqa",
+          "report_generation",
+          "uncertainty_estimation",
+          "ood_detection"
+        ],
+        "type": "string"
+      },
+      "title": "Capabilities",
+      "type": "array"
+    },
+    "benchmark_tracks": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Benchmark Tracks",
+      "type": "array"
+    },
+    "runtime_phase": {
+      "enum": [
+        "phase1_image_encoder",
+        "phase1_specialized",
+        "phase2_vision_language",
+        "catalog_only"
+      ],
+      "title": "Runtime Phase",
+      "type": "string"
+    },
+    "license": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "License"
+    },
+    "license_verified": {
+      "title": "License Verified",
+      "type": "boolean"
+    },
+    "verification_status": {
+      "enum": [
+        "seed_unverified",
+        "partially_verified",
+        "verified",
+        "blocked"
+      ],
+      "title": "Verification Status",
+      "type": "string"
+    },
+    "implementation": {
+      "$ref": "#/$defs/ImplementationStatus"
+    },
+    "reported_tasks_text": {
+      "minLength": 1,
+      "title": "Reported Tasks Text",
+      "type": "string"
+    },
+    "provenance": {
+      "$ref": "#/$defs/Provenance"
+    },
+    "notes": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Notes",
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "model_id",
+    "model_name",
+    "year",
+    "publication_type",
+    "venue",
+    "model_category",
+    "modalities",
+    "architecture",
+    "pretraining_data_summary",
+    "pretraining_strategy",
+    "reported_summary",
+    "paper_url",
+    "code_url",
+    "code_available",
+    "capabilities",
+    "benchmark_tracks",
+    "runtime_phase",
+    "license",
+    "license_verified",
+    "verification_status",
+    "implementation",
+    "reported_tasks_text",
+    "provenance",
+    "notes"
+  ],
+  "title": "ModelRecord",
+  "type": "object"
+}

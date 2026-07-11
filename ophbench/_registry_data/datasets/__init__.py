@@ -1,0 +1,1 @@
+"""Generated registry resource directory."""

@@ -4,26 +4,32 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ophthalmic-foundation-model-benchmark"
-version = "0.1.0"
+version = "0.1.1"
 description = "Registry infrastructure for ophthalmic foundation models"
-requires-python = ">=3.11"
+requires-python = ">=3.10"
 dependencies = ["pydantic>=2", "PyYAML>=6", "openpyxl>=3.1", "typer>=0.12", "rich>=13"]
 
 [project.optional-dependencies]
-dev = ["pytest>=8", "ruff>=0.5"]
+dev = ["build>=1", "pytest>=8", "ruff>=0.5"]
 
 [project.scripts]
 ophbench = "ophbench.cli:app"
 
 [tool.setuptools.packages.find]
 include = ["ophbench*"]
+namespaces = false
+
+[tool.setuptools.package-data]
+"ophbench._registry_data.models" = ["*.yaml"]
+"ophbench._registry_data.checkpoints" = ["*.yaml"]
+"ophbench._registry_data.schemas" = ["*.json"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 
 [tool.ruff]
 line-length = 100
-target-version = "py311"
+target-version = "py310"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]

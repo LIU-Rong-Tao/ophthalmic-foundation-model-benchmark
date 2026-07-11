@@ -1,0 +1,37 @@
+schema_version: '1.0'
+model_id: preti
+model_name: PRETI
+year: 2025
+publication_type: conference
+venue: MICCAI
+model_category: 眼科视觉基础模型
+modalities:
+- CFP
+architecture: ViT-S或ViT-B编码器 + ViT-S解码器 + Learnable Metadata Embedding（LME）+ Retina-Aware
+  Adaptive Masking
+pretraining_data_summary: 共 1,017,549张CFP，来自UK Biobank
+pretraining_strategy: 患者级图像对重建 + 视网膜区域自适应掩码 + 元数据引导联合学习
+reported_summary: 无需临床报告，利用年龄和性别学习患者特异性表征；在眼病及全身生物标志物预测中表现领先。
+paper_url: https://link.springer.com/chapter/10.1007/978-3-032-04927-8_50
+code_url: https://github.com/MICV-yonsei/PRETI
+code_available: true
+capabilities:
+- feature_extraction
+- classification
+benchmark_tracks: []
+runtime_phase: phase1_image_encoder
+license: null
+license_verified: false
+verification_status: seed_unverified
+implementation:
+  adapter_status: not_started
+  smoke_test_status: not_run
+  benchmark_status: not_run
+reported_tasks_text: CFP眼科疾病分类；冠状动脉钙化及eGFR等全身生物标志物预测；特征提取；低标注下游微调与迁移
+provenance:
+  source_file: ophthalmic_models_seed_v0.xlsx
+  source_sheet: 眼科大模型
+  source_row: 14
+  imported_at: '2026-07-11T09:30:27Z'
+notes:
+- 'Original modality text: CFP'
