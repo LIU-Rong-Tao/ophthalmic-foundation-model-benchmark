@@ -1,0 +1,890 @@
+{
+  "notice": "AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "records": [
+    {
+      "schema_version": "1.0",
+      "checkpoint_id": "deretfound-pretraining",
+      "model_id": "deretfound",
+      "checkpoint_name": "Pretraining",
+      "modalities": [
+        "CFP"
+      ],
+      "weight_url": "https://zenodo.org/records/13340936/files/PreTraining.zip?download=1",
+      "provider": "zenodo",
+      "access_type": "open",
+      "requires_auth": false,
+      "redistribution_allowed": "unknown",
+      "license": null,
+      "framework": null,
+      "input_size": null,
+      "normalization": null,
+      "embedding_dim": null,
+      "sha256": null,
+      "source_commit": null,
+      "verification_status": "seed_unverified",
+      "last_verified": null,
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "有多个权重的模型",
+        "source_row": 5,
+        "imported_at": "2026-07-11T09:08:31Z"
+      },
+      "notes": [
+        "Seed metadata only; URL and redistribution terms have not been verified."
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "checkpoint_id": "deretfound-sd-retina",
+      "model_id": "deretfound",
+      "checkpoint_name": "Stable Diffusion Retina",
+      "modalities": [
+        "CFP"
+      ],
+      "weight_url": "https://zenodo.org/records/13340936/files/sd-retina-model.zip?download=1",
+      "provider": "zenodo",
+      "access_type": "open",
+      "requires_auth": false,
+      "redistribution_allowed": "unknown",
+      "license": null,
+      "framework": null,
+      "input_size": null,
+      "normalization": null,
+      "embedding_dim": null,
+      "sha256": null,
+      "source_commit": null,
+      "verification_status": "seed_unverified",
+      "last_verified": null,
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "有多个权重的模型",
+        "source_row": 5,
+        "imported_at": "2026-07-11T09:08:31Z"
+      },
+      "notes": [
+        "Seed metadata only; URL and redistribution terms have not been verified."
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "checkpoint_id": "eyeclip-default",
+      "model_id": "eyeclip",
+      "checkpoint_name": "Default",
+      "modalities": [
+        "CFP",
+        "OCT",
+        "FFA",
+        "ICGA",
+        "FAF",
+        "CT",
+        "RetCam",
+        "text"
+      ],
+      "weight_url": "https://drive.google.com/file/d/1kWpbDqFCFt4j8RkYqacV4nl-aCKZfqZr/view?usp=sharing",
+      "provider": "google_drive",
+      "access_type": "open",
+      "requires_auth": false,
+      "redistribution_allowed": "unknown",
+      "license": null,
+      "framework": null,
+      "input_size": null,
+      "normalization": null,
+      "embedding_dim": null,
+      "sha256": null,
+      "source_commit": null,
+      "verification_status": "seed_unverified",
+      "last_verified": null,
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "眼科大模型",
+        "source_row": 4,
+        "imported_at": "2026-07-11T09:08:31Z"
+      },
+      "notes": [
+        "Seed metadata only; URL and redistribution terms have not been verified."
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "checkpoint_id": "flair-default",
+      "model_id": "flair",
+      "checkpoint_name": "Default",
+      "modalities": [
+        "CFP",
+        "text"
+      ],
+      "weight_url": "https://huggingface.co/jusiro2/FLAIR",
+      "provider": "huggingface",
+      "access_type": "open",
+      "requires_auth": false,
+      "redistribution_allowed": "unknown",
+      "license": null,
+      "framework": null,
+      "input_size": null,
+      "normalization": null,
+      "embedding_dim": null,
+      "sha256": null,
+      "source_commit": null,
+      "verification_status": "seed_unverified",
+      "last_verified": null,
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "眼科大模型",
+        "source_row": 5,
+        "imported_at": "2026-07-11T09:08:31Z"
+      },
+      "notes": [
+        "Seed metadata only; URL and redistribution terms have not been verified."
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "checkpoint_id": "fmue-default",
+      "model_id": "fmue",
+      "checkpoint_name": "Default",
+      "modalities": [
+        "OCT",
+        "CT"
+      ],
+      "weight_url": "https://drive.google.com/file/d/1-rdx6VPJNWVwkjamkplEoyUOHNGweUho/view?usp=sharing",
+      "provider": "google_drive",
+      "access_type": "open",
+      "requires_auth": false,
+      "redistribution_allowed": "unknown",
+      "license": null,
+      "framework": null,
+      "input_size": null,
+      "normalization": null,
+      "embedding_dim": null,
+      "sha256": null,
+      "source_commit": null,
+      "verification_status": "seed_unverified",
+      "last_verified": null,
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "眼科大模型",
+        "source_row": 10,
+        "imported_at": "2026-07-11T09:08:31Z"
+      },
+      "notes": [
+        "Seed metadata only; URL and redistribution terms have not been verified."
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "checkpoint_id": "keepfit-ffa-ir-mmretinal-ffa",
+      "model_id": "keepfit",
+      "checkpoint_name": "FFA-IR + MM-Retinal FFA",
+      "modalities": [
+        "FFA"
+      ],
+      "weight_url": "https://drive.google.com/file/d/1fdCRDbKJKZcqBlmdEdETygZ8EsBu5QlV/view",
+      "provider": "google_drive",
+      "access_type": "open",
+      "requires_auth": false,
+      "redistribution_allowed": "unknown",
+      "license": null,
+      "framework": null,
+      "input_size": null,
+      "normalization": null,
+      "embedding_dim": null,
+      "sha256": null,
+      "source_commit": null,
+      "verification_status": "seed_unverified",
+      "last_verified": null,
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "有多个权重的模型",
+        "source_row": 4,
+        "imported_at": "2026-07-11T09:08:31Z"
+      },
+      "notes": [
+        "Seed metadata only; URL and redistribution terms have not been verified."
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "checkpoint_id": "keepfit-flair-mmretinal-cfp",
+      "model_id": "keepfit",
+      "checkpoint_name": "FLAIR + MM-Retinal CFP",
+      "modalities": [
+        "CFP"
+      ],
+      "weight_url": "https://drive.google.com/file/d/1w6poCkZeqSTHsLYz1R9-z5Ttc0Vw0qSw/view",
+      "provider": "google_drive",
+      "access_type": "open",
+      "requires_auth": false,
+      "redistribution_allowed": "unknown",
+      "license": null,
+      "framework": null,
+      "input_size": null,
+      "normalization": null,
+      "embedding_dim": null,
+      "sha256": null,
+      "source_commit": null,
+      "verification_status": "seed_unverified",
+      "last_verified": null,
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "有多个权重的模型",
+        "source_row": 4,
+        "imported_at": "2026-07-11T09:08:31Z"
+      },
+      "notes": [
+        "Seed metadata only; URL and redistribution terms have not been verified."
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "checkpoint_id": "keepfit-half-flair-mmretinal-cfp",
+      "model_id": "keepfit",
+      "checkpoint_name": "Half FLAIR + MM-Retinal CFP",
+      "modalities": [
+        "CFP"
+      ],
+      "weight_url": "https://drive.google.com/file/d/1o4EDSifmcN7cKDP5w5qvS_wWiyfEZ6UN/view",
+      "provider": "google_drive",
+      "access_type": "open",
+      "requires_auth": false,
+      "redistribution_allowed": "unknown",
+      "license": null,
+      "framework": null,
+      "input_size": null,
+      "normalization": null,
+      "embedding_dim": null,
+      "sha256": null,
+      "source_commit": null,
+      "verification_status": "seed_unverified",
+      "last_verified": null,
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "有多个权重的模型",
+        "source_row": 4,
+        "imported_at": "2026-07-11T09:08:31Z"
+      },
+      "notes": [
+        "Seed metadata only; URL and redistribution terms have not been verified."
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "checkpoint_id": "mirage-base",
+      "model_id": "mirage",
+      "checkpoint_name": "Base",
+      "modalities": [
+        "OCT",
+        "SLO"
+      ],
+      "weight_url": "https://huggingface.co/j-morano/MIRAGE-Base",
+      "provider": "huggingface",
+      "access_type": "open",
+      "requires_auth": false,
+      "redistribution_allowed": "unknown",
+      "license": null,
+      "framework": null,
+      "input_size": null,
+      "normalization": null,
+      "embedding_dim": null,
+      "sha256": null,
+      "source_commit": null,
+      "verification_status": "seed_unverified",
+      "last_verified": null,
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "有多个权重的模型",
+        "source_row": 3,
+        "imported_at": "2026-07-11T09:08:31Z"
+      },
+      "notes": [
+        "Seed metadata only; URL and redistribution terms have not been verified."
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "checkpoint_id": "mirage-large",
+      "model_id": "mirage",
+      "checkpoint_name": "Large",
+      "modalities": [
+        "OCT",
+        "SLO"
+      ],
+      "weight_url": "https://huggingface.co/j-morano/MIRAGE-Large",
+      "provider": "huggingface",
+      "access_type": "open",
+      "requires_auth": false,
+      "redistribution_allowed": "unknown",
+      "license": null,
+      "framework": null,
+      "input_size": null,
+      "normalization": null,
+      "embedding_dim": null,
+      "sha256": null,
+      "source_commit": null,
+      "verification_status": "seed_unverified",
+      "last_verified": null,
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "有多个权重的模型",
+        "source_row": 3,
+        "imported_at": "2026-07-11T09:08:31Z"
+      },
+      "notes": [
+        "Seed metadata only; URL and redistribution terms have not been verified."
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "checkpoint_id": "preti-default",
+      "model_id": "preti",
+      "checkpoint_name": "Default",
+      "modalities": [
+        "CFP"
+      ],
+      "weight_url": "https://drive.google.com/file/d/1mEFm3bxSPPOm4bLPC9Ey64oeq-6F0S0G/view?usp=drive_link",
+      "provider": "google_drive",
+      "access_type": "open",
+      "requires_auth": false,
+      "redistribution_allowed": "unknown",
+      "license": null,
+      "framework": null,
+      "input_size": null,
+      "normalization": null,
+      "embedding_dim": null,
+      "sha256": null,
+      "source_commit": null,
+      "verification_status": "seed_unverified",
+      "last_verified": null,
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "眼科大模型",
+        "source_row": 14,
+        "imported_at": "2026-07-11T09:08:31Z"
+      },
+      "notes": [
+        "Seed metadata only; URL and redistribution terms have not been verified."
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "checkpoint_id": "ret-clip-default",
+      "model_id": "ret-clip",
+      "checkpoint_name": "Default",
+      "modalities": [
+        "CFP",
+        "text"
+      ],
+      "weight_url": "https://drive.google.com/file/d/1lYrAg5qzFbNghEW-3UB36v9WL-mo5eN9/view?usp=sharing",
+      "provider": "google_drive",
+      "access_type": "open",
+      "requires_auth": false,
+      "redistribution_allowed": "unknown",
+      "license": null,
+      "framework": null,
+      "input_size": null,
+      "normalization": null,
+      "embedding_dim": null,
+      "sha256": null,
+      "source_commit": null,
+      "verification_status": "seed_unverified",
+      "last_verified": null,
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "眼科大模型",
+        "source_row": 12,
+        "imported_at": "2026-07-11T09:08:31Z"
+      },
+      "notes": [
+        "Seed metadata only; URL and redistribution terms have not been verified."
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "checkpoint_id": "retfound-cfp",
+      "model_id": "retfound",
+      "checkpoint_name": "CFP",
+      "modalities": [
+        "CFP"
+      ],
+      "weight_url": "https://huggingface.co/YukunZhou/RETFound_mae_natureCFP",
+      "provider": "huggingface",
+      "access_type": "auth_required",
+      "requires_auth": true,
+      "redistribution_allowed": "unknown",
+      "license": null,
+      "framework": null,
+      "input_size": null,
+      "normalization": null,
+      "embedding_dim": null,
+      "sha256": null,
+      "source_commit": null,
+      "verification_status": "seed_unverified",
+      "last_verified": null,
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "有多个权重的模型",
+        "source_row": 1,
+        "imported_at": "2026-07-11T09:08:31Z"
+      },
+      "notes": [
+        "Seed metadata only; URL and redistribution terms have not been verified."
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "checkpoint_id": "retfound-green-v0.1",
+      "model_id": "retfound-green",
+      "checkpoint_name": "v0.1",
+      "modalities": [
+        "CFP"
+      ],
+      "weight_url": "https://github.com/justinengelmann/RETFound_Green/releases/tag/v0.1",
+      "provider": "github_release",
+      "access_type": "open",
+      "requires_auth": false,
+      "redistribution_allowed": "unknown",
+      "license": null,
+      "framework": null,
+      "input_size": null,
+      "normalization": null,
+      "embedding_dim": null,
+      "sha256": null,
+      "source_commit": null,
+      "verification_status": "seed_unverified",
+      "last_verified": null,
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "眼科大模型",
+        "source_row": 8,
+        "imported_at": "2026-07-11T09:08:31Z"
+      },
+      "notes": [
+        "Seed metadata only; URL and redistribution terms have not been verified."
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "checkpoint_id": "retfound-oct",
+      "model_id": "retfound",
+      "checkpoint_name": "OCT",
+      "modalities": [
+        "OCT"
+      ],
+      "weight_url": "https://huggingface.co/YukunZhou/RETFound_mae_natureOCT",
+      "provider": "huggingface",
+      "access_type": "auth_required",
+      "requires_auth": true,
+      "redistribution_allowed": "unknown",
+      "license": null,
+      "framework": null,
+      "input_size": null,
+      "normalization": null,
+      "embedding_dim": null,
+      "sha256": null,
+      "source_commit": null,
+      "verification_status": "seed_unverified",
+      "last_verified": null,
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "有多个权重的模型",
+        "source_row": 1,
+        "imported_at": "2026-07-11T09:08:31Z"
+      },
+      "notes": [
+        "Seed metadata only; URL and redistribution terms have not been verified."
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "checkpoint_id": "retizero-default",
+      "model_id": "retizero",
+      "checkpoint_name": "Default",
+      "modalities": [
+        "CFP",
+        "text"
+      ],
+      "weight_url": "https://drive.google.com/file/d/14bMmnefO73_NL1Xc4x0A5qFNbuI7GqKM/view?usp=sharing",
+      "provider": "google_drive",
+      "access_type": "open",
+      "requires_auth": false,
+      "redistribution_allowed": "unknown",
+      "license": null,
+      "framework": null,
+      "input_size": null,
+      "normalization": null,
+      "embedding_dim": null,
+      "sha256": null,
+      "source_commit": null,
+      "verification_status": "seed_unverified",
+      "last_verified": null,
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "眼科大模型",
+        "source_row": 6,
+        "imported_at": "2026-07-11T09:08:31Z"
+      },
+      "notes": [
+        "Seed metadata only; URL and redistribution terms have not been verified."
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "checkpoint_id": "urfound-default",
+      "model_id": "urfound",
+      "checkpoint_name": "Default",
+      "modalities": [
+        "CFP",
+        "OCT",
+        "CT",
+        "text"
+      ],
+      "weight_url": "https://huggingface.co/yyyyk/UrFound",
+      "provider": "huggingface",
+      "access_type": "open",
+      "requires_auth": false,
+      "redistribution_allowed": "unknown",
+      "license": null,
+      "framework": null,
+      "input_size": null,
+      "normalization": null,
+      "embedding_dim": null,
+      "sha256": null,
+      "source_commit": null,
+      "verification_status": "seed_unverified",
+      "last_verified": null,
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "眼科大模型",
+        "source_row": 15,
+        "imported_at": "2026-07-11T09:08:31Z"
+      },
+      "notes": [
+        "Seed metadata only; URL and redistribution terms have not been verified."
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "checkpoint_id": "vilref-default",
+      "model_id": "vilref",
+      "checkpoint_name": "Default",
+      "modalities": [
+        "CFP",
+        "text"
+      ],
+      "weight_url": "https://drive.google.com/file/d/13YY2Qto4Xzx-gcOJB1kLdp1pqfjZEnxA/view?usp=drive_link",
+      "provider": "google_drive",
+      "access_type": "open",
+      "requires_auth": false,
+      "redistribution_allowed": "unknown",
+      "license": null,
+      "framework": null,
+      "input_size": null,
+      "normalization": null,
+      "embedding_dim": null,
+      "sha256": null,
+      "source_commit": null,
+      "verification_status": "seed_unverified",
+      "last_verified": null,
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "眼科大模型",
+        "source_row": 13,
+        "imported_at": "2026-07-11T09:08:31Z"
+      },
+      "notes": [
+        "Seed metadata only; URL and redistribution terms have not been verified."
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "checkpoint_id": "visionfm-external-eye",
+      "model_id": "visionfm",
+      "checkpoint_name": "External Eye",
+      "modalities": [
+        "external_eye"
+      ],
+      "weight_url": "https://drive.google.com/file/d/16zGHTD4ZcGAYW382kKHBw3TU6D1OtvTD/view?usp=sharing",
+      "provider": "google_drive",
+      "access_type": "open",
+      "requires_auth": false,
+      "redistribution_allowed": "unknown",
+      "license": null,
+      "framework": null,
+      "input_size": null,
+      "normalization": null,
+      "embedding_dim": null,
+      "sha256": null,
+      "source_commit": null,
+      "verification_status": "seed_unverified",
+      "last_verified": null,
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "有多个权重的模型",
+        "source_row": 2,
+        "imported_at": "2026-07-11T09:08:31Z"
+      },
+      "notes": [
+        "Seed metadata only; URL and redistribution terms have not been verified."
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "checkpoint_id": "visionfm-ffa",
+      "model_id": "visionfm",
+      "checkpoint_name": "FFA",
+      "modalities": [
+        "FFA"
+      ],
+      "weight_url": "https://drive.google.com/file/d/128izBUNV00Ojb9w9Dq3GhBvhWqzU-mla/view?usp=sharing",
+      "provider": "google_drive",
+      "access_type": "open",
+      "requires_auth": false,
+      "redistribution_allowed": "unknown",
+      "license": null,
+      "framework": null,
+      "input_size": null,
+      "normalization": null,
+      "embedding_dim": null,
+      "sha256": null,
+      "source_commit": null,
+      "verification_status": "seed_unverified",
+      "last_verified": null,
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "有多个权重的模型",
+        "source_row": 2,
+        "imported_at": "2026-07-11T09:08:31Z"
+      },
+      "notes": [
+        "Seed metadata only; URL and redistribution terms have not been verified."
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "checkpoint_id": "visionfm-fundus",
+      "model_id": "visionfm",
+      "checkpoint_name": "Fundus",
+      "modalities": [
+        "CFP"
+      ],
+      "weight_url": "https://drive.google.com/file/d/13uWm0a02dCWyARUcrCdHZIcEgRfBmVA4/view?usp=sharing",
+      "provider": "google_drive",
+      "access_type": "open",
+      "requires_auth": false,
+      "redistribution_allowed": "unknown",
+      "license": null,
+      "framework": null,
+      "input_size": null,
+      "normalization": null,
+      "embedding_dim": null,
+      "sha256": null,
+      "source_commit": null,
+      "verification_status": "seed_unverified",
+      "last_verified": null,
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "有多个权重的模型",
+        "source_row": 2,
+        "imported_at": "2026-07-11T09:08:31Z"
+      },
+      "notes": [
+        "Seed metadata only; URL and redistribution terms have not been verified."
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "checkpoint_id": "visionfm-mri",
+      "model_id": "visionfm",
+      "checkpoint_name": "MRI",
+      "modalities": [
+        "MRI"
+      ],
+      "weight_url": "https://drive.google.com/file/d/1fcfylnOWhfnZHBAKT9pQPufyS5ZYCXu0/view?usp=sharing",
+      "provider": "google_drive",
+      "access_type": "open",
+      "requires_auth": false,
+      "redistribution_allowed": "unknown",
+      "license": null,
+      "framework": null,
+      "input_size": null,
+      "normalization": null,
+      "embedding_dim": null,
+      "sha256": null,
+      "source_commit": null,
+      "verification_status": "seed_unverified",
+      "last_verified": null,
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "有多个权重的模型",
+        "source_row": 2,
+        "imported_at": "2026-07-11T09:08:31Z"
+      },
+      "notes": [
+        "Seed metadata only; URL and redistribution terms have not been verified."
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "checkpoint_id": "visionfm-oct",
+      "model_id": "visionfm",
+      "checkpoint_name": "OCT",
+      "modalities": [
+        "OCT"
+      ],
+      "weight_url": "https://drive.google.com/file/d/1o6E-ine2QLx2pxap-c77u-SU0FjxwypA/view?usp=sharing",
+      "provider": "google_drive",
+      "access_type": "open",
+      "requires_auth": false,
+      "redistribution_allowed": "unknown",
+      "license": null,
+      "framework": null,
+      "input_size": null,
+      "normalization": null,
+      "embedding_dim": null,
+      "sha256": null,
+      "source_commit": null,
+      "verification_status": "seed_unverified",
+      "last_verified": null,
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "有多个权重的模型",
+        "source_row": 2,
+        "imported_at": "2026-07-11T09:08:31Z"
+      },
+      "notes": [
+        "Seed metadata only; URL and redistribution terms have not been verified."
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "checkpoint_id": "visionfm-slit-lamp",
+      "model_id": "visionfm",
+      "checkpoint_name": "Slit Lamp",
+      "modalities": [
+        "slit_lamp"
+      ],
+      "weight_url": "https://drive.google.com/file/d/1pemWDkGoZYlqLQ6ooFINktyk8xnv9wY_/view?usp=sharing",
+      "provider": "google_drive",
+      "access_type": "open",
+      "requires_auth": false,
+      "redistribution_allowed": "unknown",
+      "license": null,
+      "framework": null,
+      "input_size": null,
+      "normalization": null,
+      "embedding_dim": null,
+      "sha256": null,
+      "source_commit": null,
+      "verification_status": "seed_unverified",
+      "last_verified": null,
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "有多个权重的模型",
+        "source_row": 2,
+        "imported_at": "2026-07-11T09:08:31Z"
+      },
+      "notes": [
+        "Seed metadata only; URL and redistribution terms have not been verified."
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "checkpoint_id": "visionfm-ubm",
+      "model_id": "visionfm",
+      "checkpoint_name": "UBM",
+      "modalities": [
+        "UBM"
+      ],
+      "weight_url": "https://drive.google.com/file/d/1q2fVOgFBnWNu1BsXaza1A-OIcCiifNUQ/view?usp=sharing",
+      "provider": "google_drive",
+      "access_type": "open",
+      "requires_auth": false,
+      "redistribution_allowed": "unknown",
+      "license": null,
+      "framework": null,
+      "input_size": null,
+      "normalization": null,
+      "embedding_dim": null,
+      "sha256": null,
+      "source_commit": null,
+      "verification_status": "seed_unverified",
+      "last_verified": null,
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "有多个权重的模型",
+        "source_row": 2,
+        "imported_at": "2026-07-11T09:08:31Z"
+      },
+      "notes": [
+        "Seed metadata only; URL and redistribution terms have not been verified."
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "checkpoint_id": "visionfm-ultrasound",
+      "model_id": "visionfm",
+      "checkpoint_name": "Ultrasound",
+      "modalities": [
+        "ultrasound"
+      ],
+      "weight_url": "https://drive.google.com/file/d/1IlD0snowxdEVvxmiIBZGR0D9uOcrCT2D/view?usp=sharing",
+      "provider": "google_drive",
+      "access_type": "open",
+      "requires_auth": false,
+      "redistribution_allowed": "unknown",
+      "license": null,
+      "framework": null,
+      "input_size": null,
+      "normalization": null,
+      "embedding_dim": null,
+      "sha256": null,
+      "source_commit": null,
+      "verification_status": "seed_unverified",
+      "last_verified": null,
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "有多个权重的模型",
+        "source_row": 2,
+        "imported_at": "2026-07-11T09:08:31Z"
+      },
+      "notes": [
+        "Seed metadata only; URL and redistribution terms have not been verified."
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "checkpoint_id": "visionunite-default",
+      "model_id": "visionunite",
+      "checkpoint_name": "Default",
+      "modalities": [
+        "CFP",
+        "OCT",
+        "MRI",
+        "CT",
+        "text"
+      ],
+      "weight_url": "https://drive.google.com/file/d/1kbdpPklCdDxEgxcpsp4OgGjxvxKh5jpV/view?usp=sharing",
+      "provider": "google_drive",
+      "access_type": "open",
+      "requires_auth": false,
+      "redistribution_allowed": "unknown",
+      "license": null,
+      "framework": null,
+      "input_size": null,
+      "normalization": null,
+      "embedding_dim": null,
+      "sha256": null,
+      "source_commit": null,
+      "verification_status": "seed_unverified",
+      "last_verified": null,
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "眼科大模型",
+        "source_row": 9,
+        "imported_at": "2026-07-11T09:08:31Z"
+      },
+      "notes": [
+        "Seed metadata only; URL and redistribution terms have not been verified."
+      ]
+    }
+  ]
+}
