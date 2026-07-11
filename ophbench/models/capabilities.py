@@ -1,0 +1,18 @@
+CAPABILITIES = (
+    "image_encoding",
+    "feature_extraction",
+    "classification",
+    "risk_prediction",
+    "prognosis",
+    "segmentation",
+    "detection",
+    "keypoint_localization",
+    "zero_shot_classification",
+    "few_shot_classification",
+    "retrieval",
+    "multimodal_alignment",
+    "vqa",
+    "report_generation",
+    "uncertainty_estimation",
+    "ood_detection",
+)

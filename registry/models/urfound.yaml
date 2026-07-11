@@ -1,0 +1,38 @@
+schema_version: '1.0'
+model_id: urfound
+model_name: UrFound
+year: 2024
+publication_type: conference
+venue: MICCAI
+model_category: 视觉-语言眼科基础模型
+modalities:
+- CFP
+- OCT
+- text
+architecture: 共享ViT-B编码器 + 8层图像解码器 + 6层条件语言解码器
+pretraining_data_summary: 103,786张CFP，来自25个公开数据集；83,484张OCT，来自OCTCELL
+pretraining_strategy: 图像掩码重建MIM + 图像条件掩码语言建模MLM
+reported_summary: 同一模型统一处理CFP和OCT；在8个公开数据集上全部AUROC最优，具有较强的数据效率与跨模态泛化能力。
+paper_url: https://link.springer.com/chapter/10.1007/978-3-031-72390-2_70
+code_url: https://github.com/yukkai/UrFound
+code_available: true
+capabilities:
+- feature_extraction
+- classification
+benchmark_tracks: []
+runtime_phase: phase2_vision_language
+license: null
+license_verified: false
+verification_status: seed_unverified
+implementation:
+  adapter_status: not_started
+  smoke_test_status: not_run
+  benchmark_status: not_run
+reported_tasks_text: CFP，OCT眼科疾病分类；线性探测与下游微调；低数据量迁移；跨模态及跨数据集泛化；通用特征提取
+provenance:
+  source_file: ophthalmic_models_seed_v0.xlsx
+  source_sheet: 眼科大模型
+  source_row: 15
+  imported_at: '2026-07-11T09:30:27Z'
+notes:
+- 'Original modality text: CFP、OCT、由专家标签扩展的医学描述文本'

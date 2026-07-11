@@ -1,0 +1,39 @@
+schema_version: '1.0'
+model_id: mirage
+model_name: MIRAGE
+year: 2025
+publication_type: journal
+venue: npj Digital Medicine
+model_category: 多模态眼科视觉基础模型
+modalities:
+- OCT
+- SLO
+- retinal_layer_pseudolabels
+architecture: MultiMAE式多模态掩码自编码器：共享ViT编码器 + 模态特异性线性投影层 + 模态特异性Transformer解码器
+pretraining_data_summary: 约26.1万组配对的 OCT–SLO–视网膜层伪标签样本
+pretraining_strategy: MultiMAE多模态自监督掩码重建预训练
+reported_summary: 面向OCT和视网膜多任务分析，仓库同时提供基准和预训练权重；对OCT方向补充价值高。
+paper_url: https://www.nature.com/articles/s41746-025-01852-3
+code_url: https://github.com/j-morano/MIRAGE
+code_available: true
+capabilities:
+- feature_extraction
+- classification
+- segmentation
+benchmark_tracks: []
+runtime_phase: phase1_image_encoder
+license: null
+license_verified: false
+verification_status: seed_unverified
+implementation:
+  adapter_status: not_started
+  smoke_test_status: not_run
+  benchmark_status: not_run
+reported_tasks_text: OCT，SLO疾病诊断与分期；视网膜层及病灶分割；跨数据集分类和分割迁移；多模态特征提取
+provenance:
+  source_file: ophthalmic_models_seed_v0.xlsx
+  source_sheet: 眼科大模型
+  source_row: 7
+  imported_at: '2026-07-11T09:30:27Z'
+notes:
+- 'Original modality text: OCT、SLO、Retinal Layer Pseudo-labels'

@@ -1,0 +1,39 @@
+schema_version: '1.0'
+model_id: flair
+model_name: FLAIR
+year: 2025
+publication_type: journal
+venue: Medical Image Analysis
+model_category: 视觉-语言眼科基础模型
+modalities:
+- CFP
+- text
+architecture: ResNet-50图像编码器 + BioClinicalBERT文本编码器
+pretraining_data_summary: 约28.8万CFP，101种视网膜疾病标签及专家文本描述
+pretraining_strategy: CLIP风格图文对比学习
+reported_summary: 系统化做眼底图文对齐，支持零样本分类；专家prompt显著优于简单类别prompt。
+paper_url: https://doi.org/10.1016/j.media.2024.103357
+code_url: https://github.com/jusiro/FLAIR
+code_available: true
+capabilities:
+- feature_extraction
+- classification
+- zero_shot_classification
+- few_shot_classification
+benchmark_tracks: []
+runtime_phase: phase2_vision_language
+license: null
+license_verified: false
+verification_status: seed_unverified
+implementation:
+  adapter_status: not_started
+  smoke_test_status: not_run
+  benchmark_status: not_run
+reported_tasks_text: CFP眼底疾病零样本与少样本分类；线性探测与全量微调；跨数据集迁移；图像特征提取
+provenance:
+  source_file: ophthalmic_models_seed_v0.xlsx
+  source_sheet: 眼科大模型
+  source_row: 5
+  imported_at: '2026-07-11T09:30:27Z'
+notes:
+- 'Original modality text: CFP、专家文本描述'

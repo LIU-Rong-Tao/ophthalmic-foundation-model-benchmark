@@ -1,0 +1,701 @@
+{
+  "notice": "AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "records": [
+    {
+      "schema_version": "1.0",
+      "model_id": "deretfound",
+      "model_name": "DERETFound",
+      "year": 2025,
+      "publication_type": "journal",
+      "venue": "Nature Biomedical Engineering",
+      "model_category": "眼科视觉基础模型",
+      "modalities": [
+        "CFP"
+      ],
+      "architecture": "ViT-L/16 MAE编码器 + ViT-S解码器",
+      "pretraining_data_summary": "约100万张合成CFP + 150,786张公开真实CFP；来源于AIROGS、EyePACS、DDR和ODIR-2019",
+      "pretraining_strategy": "两阶段MAE：合成CFP MAE预训练 + 真实CFP MAE领域适配",
+      "reported_summary": "仅使用RETFound 16.7%的真实预训练数据，在9个数据集上达到相当或更优表现，并显著降低下游标注需求。",
+      "paper_url": "https://www.nature.com/articles/s41551-025-01365-0",
+      "code_url": "https://github.com/Jonlysun/DERETFound",
+      "code_available": true,
+      "capabilities": [
+        "feature_extraction",
+        "classification"
+      ],
+      "benchmark_tracks": [],
+      "runtime_phase": "phase1_image_encoder",
+      "license": null,
+      "license_verified": false,
+      "verification_status": "seed_unverified",
+      "implementation": {
+        "adapter_status": "not_started",
+        "smoke_test_status": "not_run",
+        "benchmark_status": "not_run"
+      },
+      "reported_tasks_text": "CFP糖尿病视网膜病变分级；青光眼、AMD及多病种分类；特征提取；低标注下游微调与迁移",
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "眼科大模型",
+        "source_row": 16,
+        "imported_at": "2026-07-11T09:30:27Z"
+      },
+      "notes": [
+        "Original modality text: CFP"
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "model_id": "eyeclip",
+      "model_name": "EyeCLIP",
+      "year": 2025,
+      "publication_type": "journal",
+      "venue": "NPJ Digital Medicine",
+      "model_category": "视觉-语言眼科基础模型",
+      "modalities": [
+        "CFP",
+        "OCT",
+        "FFA",
+        "ICGA",
+        "FAF",
+        "ultrasound",
+        "external_eye",
+        "slit_lamp",
+        "specular_microscopy",
+        "CT",
+        "RetCam",
+        "text"
+      ],
+      "architecture": "ViT-Large/16图像编码器 + 文本编码器",
+      "pretraining_data_summary": "278万图像 + 11180份血管造影报告；来自128554名患者、227家机构",
+      "pretraining_strategy": "联合训练：MIM + image-image contrastive learning + image-text contrastive learning",
+      "reported_summary": "综合多模态和视觉语言优势；零样本、少样本、全监督微调均表现强；覆盖UKB等下游任务。",
+      "paper_url": "https://www.nature.com/articles/s41746-025-01772-2",
+      "code_url": "https://github.com/Michi-3000/EyeCLIP",
+      "code_available": true,
+      "capabilities": [
+        "classification",
+        "zero_shot_classification",
+        "few_shot_classification",
+        "retrieval",
+        "vqa"
+      ],
+      "benchmark_tracks": [],
+      "runtime_phase": "phase2_vision_language",
+      "license": null,
+      "license_verified": false,
+      "verification_status": "seed_unverified",
+      "implementation": {
+        "adapter_status": "not_started",
+        "smoke_test_status": "not_run",
+        "benchmark_status": "not_run"
+      },
+      "reported_tasks_text": "眼科疾病零样本、少样本及全监督分类；图像—图像和图像—文本跨模态检索；眼科视觉问答；眼科及全身疾病预测",
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "眼科大模型",
+        "source_row": 4,
+        "imported_at": "2026-07-11T09:30:27Z"
+      },
+      "notes": [
+        "Original modality text: 11种眼科影像（CFP、FFA、SLP、ICGA、OUS、OCT、SM、FAF、EEP、CT、RetCam) + 结构化临床报告"
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "model_id": "flair",
+      "model_name": "FLAIR",
+      "year": 2025,
+      "publication_type": "journal",
+      "venue": "Medical Image Analysis",
+      "model_category": "视觉-语言眼科基础模型",
+      "modalities": [
+        "CFP",
+        "text"
+      ],
+      "architecture": "ResNet-50图像编码器 + BioClinicalBERT文本编码器",
+      "pretraining_data_summary": "约28.8万CFP，101种视网膜疾病标签及专家文本描述",
+      "pretraining_strategy": "CLIP风格图文对比学习",
+      "reported_summary": "系统化做眼底图文对齐，支持零样本分类；专家prompt显著优于简单类别prompt。",
+      "paper_url": "https://doi.org/10.1016/j.media.2024.103357",
+      "code_url": "https://github.com/jusiro/FLAIR",
+      "code_available": true,
+      "capabilities": [
+        "feature_extraction",
+        "classification",
+        "zero_shot_classification",
+        "few_shot_classification"
+      ],
+      "benchmark_tracks": [],
+      "runtime_phase": "phase2_vision_language",
+      "license": null,
+      "license_verified": false,
+      "verification_status": "seed_unverified",
+      "implementation": {
+        "adapter_status": "not_started",
+        "smoke_test_status": "not_run",
+        "benchmark_status": "not_run"
+      },
+      "reported_tasks_text": "CFP眼底疾病零样本与少样本分类；线性探测与全量微调；跨数据集迁移；图像特征提取",
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "眼科大模型",
+        "source_row": 5,
+        "imported_at": "2026-07-11T09:30:27Z"
+      },
+      "notes": [
+        "Original modality text: CFP、专家文本描述"
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "model_id": "fmue",
+      "model_name": "FMUE",
+      "year": 2025,
+      "publication_type": "journal",
+      "venue": "Cell Reports Medicine",
+      "model_category": "眼科视觉基础模型",
+      "modalities": [
+        "OCT"
+      ],
+      "architecture": "RETFound ViT-Large/16编码器 + LoRA + 基于证据学习的Dirichlet不确定性分类器",
+      "pretraining_data_summary": "使用 102,468张有标签OCT图像，来源于汕头国际眼科中心",
+      "pretraining_strategy": "冻结RETFound-OCT主干，通过LoRA进行参数高效监督微调，并使用显式疾病标签训练Dirichlet证据分类器；在验证集上确定不确定性阈值，将高不确定性样本转交医生复核。",
+      "reported_summary": "强调OCT诊断可靠性和不确定性估计；对后续模型置信度、外部泛化分析有方法学价值。",
+      "paper_url": "https://doi.org/10.1016/j.xcrm.2024.101876",
+      "code_url": "https://github.com/yuanyuanpeng0129/FMUE",
+      "code_available": true,
+      "capabilities": [
+        "classification",
+        "uncertainty_estimation",
+        "ood_detection"
+      ],
+      "benchmark_tracks": [],
+      "runtime_phase": "phase1_specialized",
+      "license": null,
+      "license_verified": false,
+      "verification_status": "seed_unverified",
+      "implementation": {
+        "adapter_status": "not_started",
+        "smoke_test_status": "not_run",
+        "benchmark_status": "not_run"
+      },
+      "reported_tasks_text": "OCT疾病分类；预测不确定性估计；分布外及开放集样本识别；高不确定病例分诊与人工复核；模型可靠性评估",
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "眼科大模型",
+        "source_row": 10,
+        "imported_at": "2026-07-11T09:30:27Z"
+      },
+      "notes": [
+        "Original modality text: OCT"
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "model_id": "keepfit",
+      "model_name": "KeepFIT",
+      "year": 2024,
+      "publication_type": "conference",
+      "venue": "MICCAI",
+      "model_category": "视觉-语言眼科基础模型",
+      "modalities": [
+        "CFP",
+        "OCT",
+        "text"
+      ],
+      "architecture": "ResNet-50图像编码器 + BioClinicalBERT文本编码器 + 视觉文本投影头 + 多头交叉注意力知识修订模块",
+      "pretraining_data_summary": "FLAIR汇集的37个公开数据集共278,348张CFP及类别标签，加上MM-Retinal中的2,169组CFP专家文本对",
+      "pretraining_strategy": "知识增强图文对比预训练",
+      "reported_summary": "相比 RETFound, FLAIR 具有较强的零样本、少样本和跨数据集迁移能力。",
+      "paper_url": "https://link.springer.com/chapter/10.1007/978-3-031-72378-0_67",
+      "code_url": "https://github.com/lxirich/MM-Retinal",
+      "code_available": true,
+      "capabilities": [
+        "classification",
+        "zero_shot_classification",
+        "few_shot_classification",
+        "report_generation"
+      ],
+      "benchmark_tracks": [],
+      "runtime_phase": "phase2_vision_language",
+      "license": null,
+      "license_verified": false,
+      "verification_status": "seed_unverified",
+      "implementation": {
+        "adapter_status": "not_started",
+        "smoke_test_status": "not_run",
+        "benchmark_status": "not_run"
+      },
+      "reported_tasks_text": "CFP疾病零样本、少样本及全监督分类；跨数据集迁移；FFA图像描述与报告生成",
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "眼科大模型",
+        "source_row": 11,
+        "imported_at": "2026-07-11T09:30:27Z"
+      },
+      "notes": [
+        "Original modality text: CFP、OCT、眼科专家描述文本"
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "model_id": "mirage",
+      "model_name": "MIRAGE",
+      "year": 2025,
+      "publication_type": "journal",
+      "venue": "npj Digital Medicine",
+      "model_category": "多模态眼科视觉基础模型",
+      "modalities": [
+        "OCT",
+        "SLO",
+        "retinal_layer_pseudolabels"
+      ],
+      "architecture": "MultiMAE式多模态掩码自编码器：共享ViT编码器 + 模态特异性线性投影层 + 模态特异性Transformer解码器",
+      "pretraining_data_summary": "约26.1万组配对的 OCT–SLO–视网膜层伪标签样本",
+      "pretraining_strategy": "MultiMAE多模态自监督掩码重建预训练",
+      "reported_summary": "面向OCT和视网膜多任务分析，仓库同时提供基准和预训练权重；对OCT方向补充价值高。",
+      "paper_url": "https://www.nature.com/articles/s41746-025-01852-3",
+      "code_url": "https://github.com/j-morano/MIRAGE",
+      "code_available": true,
+      "capabilities": [
+        "feature_extraction",
+        "classification",
+        "segmentation"
+      ],
+      "benchmark_tracks": [],
+      "runtime_phase": "phase1_image_encoder",
+      "license": null,
+      "license_verified": false,
+      "verification_status": "seed_unverified",
+      "implementation": {
+        "adapter_status": "not_started",
+        "smoke_test_status": "not_run",
+        "benchmark_status": "not_run"
+      },
+      "reported_tasks_text": "OCT，SLO疾病诊断与分期；视网膜层及病灶分割；跨数据集分类和分割迁移；多模态特征提取",
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "眼科大模型",
+        "source_row": 7,
+        "imported_at": "2026-07-11T09:30:27Z"
+      },
+      "notes": [
+        "Original modality text: OCT、SLO、Retinal Layer Pseudo-labels"
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "model_id": "preti",
+      "model_name": "PRETI",
+      "year": 2025,
+      "publication_type": "conference",
+      "venue": "MICCAI",
+      "model_category": "眼科视觉基础模型",
+      "modalities": [
+        "CFP"
+      ],
+      "architecture": "ViT-S或ViT-B编码器 + ViT-S解码器 + Learnable Metadata Embedding（LME）+ Retina-Aware Adaptive Masking",
+      "pretraining_data_summary": "共 1,017,549张CFP，来自UK Biobank",
+      "pretraining_strategy": "患者级图像对重建 + 视网膜区域自适应掩码 + 元数据引导联合学习",
+      "reported_summary": "无需临床报告，利用年龄和性别学习患者特异性表征；在眼病及全身生物标志物预测中表现领先。",
+      "paper_url": "https://link.springer.com/chapter/10.1007/978-3-032-04927-8_50",
+      "code_url": "https://github.com/MICV-yonsei/PRETI",
+      "code_available": true,
+      "capabilities": [
+        "feature_extraction",
+        "classification"
+      ],
+      "benchmark_tracks": [],
+      "runtime_phase": "phase1_image_encoder",
+      "license": null,
+      "license_verified": false,
+      "verification_status": "seed_unverified",
+      "implementation": {
+        "adapter_status": "not_started",
+        "smoke_test_status": "not_run",
+        "benchmark_status": "not_run"
+      },
+      "reported_tasks_text": "CFP眼科疾病分类；冠状动脉钙化及eGFR等全身生物标志物预测；特征提取；低标注下游微调与迁移",
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "眼科大模型",
+        "source_row": 14,
+        "imported_at": "2026-07-11T09:30:27Z"
+      },
+      "notes": [
+        "Original modality text: CFP"
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "model_id": "ret-clip",
+      "model_name": "RET-CLIP",
+      "year": 2024,
+      "publication_type": "conference",
+      "venue": "MICCAI",
+      "model_category": "视觉-语言眼科基础模型",
+      "modalities": [
+        "CFP",
+        "text"
+      ],
+      "architecture": "ViT-B/16视觉编码器 + RoBERTa-Base中文文本编码器 + MLP",
+      "pretraining_data_summary": "387,730张CFP图像和193,865份临床诊断报告，均来自中国北京同仁医院",
+      "pretraining_strategy": "左眼、右眼、患者三级图文对比预训练",
+      "reported_summary": "在糖尿病视网膜病变、青光眼、多疾病分类和多标签疾病分类等4类任务、8个公开数据集上评测；在线性探测和全量微调中均有16项AUROC或AUPR指标取得最高结果。突出特点是利用真实临床报告，并同时建模单眼细粒度信息与患者双眼整体信息。",
+      "paper_url": "https://doi.org/10.1007/978-3-031-72390-2_66",
+      "code_url": "https://github.com/sStonemason/RET-CLIP",
+      "code_available": true,
+      "capabilities": [
+        "classification"
+      ],
+      "benchmark_tracks": [],
+      "runtime_phase": "phase2_vision_language",
+      "license": null,
+      "license_verified": false,
+      "verification_status": "seed_unverified",
+      "implementation": {
+        "adapter_status": "not_started",
+        "smoke_test_status": "not_run",
+        "benchmark_status": "not_run"
+      },
+      "reported_tasks_text": "CFP糖尿病视网膜病变分级；青光眼识别；多病种及多标签分类；线性探测与全量微调；患者双眼级表征迁移",
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "眼科大模型",
+        "source_row": 12,
+        "imported_at": "2026-07-11T09:30:27Z"
+      },
+      "notes": [
+        "Original modality text: CFP、中文临床自由文本报告"
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "model_id": "retfound",
+      "model_name": "RETFound",
+      "year": 2023,
+      "publication_type": "journal",
+      "venue": "Nature",
+      "model_category": "眼科视觉基础模型",
+      "modalities": [
+        "CFP",
+        "OCT"
+      ],
+      "architecture": "MAE 自监督框架：ViT-Large/16 编码器 + ViT-Small 解码器；下游任务使用 ViT-Large 编码器 + MLP 分类头",
+      "pretraining_data_summary": "自然图像 ImageNet-1k、约90.4万CFP、73.6万OCT；主要来自 MEH-MIDAS，另含 EyePACS 和 Kermany 等公开数据",
+      "pretraining_strategy": "MAE；随机遮挡patch后重建像素",
+      "reported_summary": "在眼科疾病诊断、湿性 AMD 预后预测和 oculomics 全身疾病风险预测中表现优于多种自监督学习基线；具有较强泛化能力和标注效率，可学习视盘、血管、视网膜神经纤维层等视网膜特异结构及病灶表征；但主要用于分类/风险预测，不支持文本生成或视觉定位。",
+      "paper_url": "https://www.nature.com/articles/s41586-023-06555-x",
+      "code_url": "https://github.com/rmaphoh/RETFound",
+      "code_available": true,
+      "capabilities": [
+        "feature_extraction",
+        "classification",
+        "risk_prediction",
+        "prognosis"
+      ],
+      "benchmark_tracks": [],
+      "runtime_phase": "phase1_image_encoder",
+      "license": null,
+      "license_verified": false,
+      "verification_status": "seed_unverified",
+      "implementation": {
+        "adapter_status": "not_started",
+        "smoke_test_status": "not_run",
+        "benchmark_status": "not_run"
+      },
+      "reported_tasks_text": "CFP，OCT眼科疾病分类；湿性AMD进展与预后预测；全身疾病风险预测；特征提取；下游迁移",
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "眼科大模型",
+        "source_row": 2,
+        "imported_at": "2026-07-11T09:30:27Z"
+      },
+      "notes": [
+        "Original modality text: CFP、OCT"
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "model_id": "retfound-green",
+      "model_name": "RETFound-Green",
+      "year": 2025,
+      "publication_type": "journal",
+      "venue": "Nature Communications",
+      "model_category": "眼科视觉基础模型",
+      "modalities": [
+        "CFP"
+      ],
+      "architecture": "ViT-Small + 4个Register Tokens",
+      "pretraining_data_summary": "75,000张公开CFP；来源：AIROGS、DDR和ODIR-2019",
+      "pretraining_strategy": "Self-supervised Token Reconstruction；学生模型从强扰动输入预测教师token特征",
+      "reported_summary": "相比RETFound计算量降低400倍、模型缩小14倍；线性探测性能可比完全微调RETFound，在多数下游任务中表现更优，具有轻量、低碳和低资源适用性。",
+      "paper_url": "https://www.nature.com/articles/s41467-025-62123-z",
+      "code_url": "https://github.com/justinengelmann/RETFound_Green",
+      "code_available": true,
+      "capabilities": [
+        "feature_extraction",
+        "classification"
+      ],
+      "benchmark_tracks": [],
+      "runtime_phase": "phase1_image_encoder",
+      "license": null,
+      "license_verified": false,
+      "verification_status": "seed_unverified",
+      "implementation": {
+        "adapter_status": "not_started",
+        "smoke_test_status": "not_run",
+        "benchmark_status": "not_run"
+      },
+      "reported_tasks_text": "CFP眼科疾病分类；线性探测；图像特征提取；低算力、低资源场景下的下游迁移与部署",
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "眼科大模型",
+        "source_row": 8,
+        "imported_at": "2026-07-11T09:30:27Z"
+      },
+      "notes": [
+        "Original modality text: CFP"
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "model_id": "retizero",
+      "model_name": "RetiZero",
+      "year": 2025,
+      "publication_type": "journal",
+      "venue": "Nature Communications",
+      "model_category": "视觉-语言眼科基础模型",
+      "modalities": [
+        "CFP",
+        "text"
+      ],
+      "architecture": "冻结的 RETFound 图像编码器ViT-Large/16 ＋ BioClinicalBERT 文本编码器",
+      "pretraining_data_summary": "约34.2万CFP，覆盖400+眼底疾病概念",
+      "pretraining_strategy": "CLIP风格图文对比学习",
+      "reported_summary": "强调400+眼底疾病零样本识别，罕见病识别能力强；适合作为眼底VLM路线代表。",
+      "paper_url": "https://www.nature.com/articles/s41467-025-60577-9",
+      "code_url": "https://github.com/LooKing9218/RetiZero",
+      "code_available": true,
+      "capabilities": [
+        "classification",
+        "zero_shot_classification",
+        "few_shot_classification",
+        "retrieval"
+      ],
+      "benchmark_tracks": [],
+      "runtime_phase": "phase2_vision_language",
+      "license": null,
+      "license_verified": false,
+      "verification_status": "seed_unverified",
+      "implementation": {
+        "adapter_status": "not_started",
+        "smoke_test_status": "not_run",
+        "benchmark_status": "not_run"
+      },
+      "reported_tasks_text": "常见及罕见眼底疾病零样本识别；多病种分类；相似病例图像检索；少样本微调与临床辅助诊断",
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "眼科大模型",
+        "source_row": 6,
+        "imported_at": "2026-07-11T09:30:27Z"
+      },
+      "notes": [
+        "Original modality text: CFP 、模板化疾病文本描述"
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "model_id": "urfound",
+      "model_name": "UrFound",
+      "year": 2024,
+      "publication_type": "conference",
+      "venue": "MICCAI",
+      "model_category": "视觉-语言眼科基础模型",
+      "modalities": [
+        "CFP",
+        "OCT",
+        "text"
+      ],
+      "architecture": "共享ViT-B编码器 + 8层图像解码器 + 6层条件语言解码器",
+      "pretraining_data_summary": "103,786张CFP，来自25个公开数据集；83,484张OCT，来自OCTCELL",
+      "pretraining_strategy": "图像掩码重建MIM + 图像条件掩码语言建模MLM",
+      "reported_summary": "同一模型统一处理CFP和OCT；在8个公开数据集上全部AUROC最优，具有较强的数据效率与跨模态泛化能力。",
+      "paper_url": "https://link.springer.com/chapter/10.1007/978-3-031-72390-2_70",
+      "code_url": "https://github.com/yukkai/UrFound",
+      "code_available": true,
+      "capabilities": [
+        "feature_extraction",
+        "classification"
+      ],
+      "benchmark_tracks": [],
+      "runtime_phase": "phase2_vision_language",
+      "license": null,
+      "license_verified": false,
+      "verification_status": "seed_unverified",
+      "implementation": {
+        "adapter_status": "not_started",
+        "smoke_test_status": "not_run",
+        "benchmark_status": "not_run"
+      },
+      "reported_tasks_text": "CFP，OCT眼科疾病分类；线性探测与下游微调；低数据量迁移；跨模态及跨数据集泛化；通用特征提取",
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "眼科大模型",
+        "source_row": 15,
+        "imported_at": "2026-07-11T09:30:27Z"
+      },
+      "notes": [
+        "Original modality text: CFP、OCT、由专家标签扩展的医学描述文本"
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "model_id": "vilref",
+      "model_name": "ViLReF",
+      "year": 2024,
+      "publication_type": "preprint",
+      "venue": "arXiv",
+      "model_category": "视觉-语言眼科基础模型",
+      "modalities": [
+        "CFP",
+        "text"
+      ],
+      "architecture": "ViT-B/16图像编码器 + RoBERTa-wwm-ext-base-chinese文本编码器 + 非线性投影头",
+      "pretraining_data_summary": "451,956组CFP图像—中文诊断报告对。数据由北京同仁医院提供，CFP图像来自中国多家医疗机构，报告由专业眼科医生撰写",
+      "pretraining_strategy": "采用专家知识增强的图文对比预训练",
+      "reported_summary": "缓解假负样本问题，完全微调平均AUC 94.16%，零样本平均AUC 87.48%，具有较强分类和分割迁移能力。",
+      "paper_url": "https://arxiv.org/abs/2408.10894",
+      "code_url": "https://github.com/T6Yang/ViLReF",
+      "code_available": true,
+      "capabilities": [
+        "classification",
+        "segmentation",
+        "zero_shot_classification"
+      ],
+      "benchmark_tracks": [],
+      "runtime_phase": "phase2_vision_language",
+      "license": null,
+      "license_verified": false,
+      "verification_status": "seed_unverified",
+      "implementation": {
+        "adapter_status": "not_started",
+        "smoke_test_status": "not_run",
+        "benchmark_status": "not_run"
+      },
+      "reported_tasks_text": "CFP眼底疾病零样本分类；线性探测与全量微调；病灶分割迁移；跨数据集分类泛化",
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "眼科大模型",
+        "source_row": 13,
+        "imported_at": "2026-07-11T09:30:27Z"
+      },
+      "notes": [
+        "Original modality text: CFP、中文视网膜诊断报告"
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "model_id": "visionfm",
+      "model_name": "VisionFM",
+      "year": 2024,
+      "publication_type": "journal",
+      "venue": "NEJM AI",
+      "model_category": "多模态眼科基础模型",
+      "modalities": [
+        "CFP",
+        "OCT",
+        "FFA",
+        "ultrasound",
+        "external_eye",
+        "slit_lamp",
+        "MRI",
+        "UBM"
+      ],
+      "architecture": "8个独立ViT-B/16编码器，每个模态一个编码器",
+      "pretraining_data_summary": "约340万眼科图像，覆盖8种眼科影像模态",
+      "pretraining_strategy": "iBOT；masked image modeling + self-distillation",
+      "reported_summary": "覆盖眼科模态广；适合多模态眼科任务和系统性疾病预测；但预训练阶段各模态编码器相对独立。",
+      "paper_url": "https://ai.nejm.org/doi/abs/10.1056/AIoa2300221",
+      "code_url": "https://github.com/ABILab-CUHK/VisionFM",
+      "code_available": true,
+      "capabilities": [
+        "risk_prediction",
+        "segmentation",
+        "detection",
+        "keypoint_localization"
+      ],
+      "benchmark_tracks": [],
+      "runtime_phase": "phase1_image_encoder",
+      "license": null,
+      "license_verified": false,
+      "verification_status": "seed_unverified",
+      "implementation": {
+        "adapter_status": "not_started",
+        "smoke_test_status": "not_run",
+        "benchmark_status": "not_run"
+      },
+      "reported_tasks_text": "多模态眼科影像疾病识别与进展预测；疾病表型及解剖结构分割与检测；关键点定位；全身生物标志物与疾病风险预测",
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "眼科大模型",
+        "source_row": 3,
+        "imported_at": "2026-07-11T09:30:27Z"
+      },
+      "notes": [
+        "Original modality text: CFP、OCT、FFA、B超、外眼照、裂隙灯、MRI、UBM"
+      ]
+    },
+    {
+      "schema_version": "1.0",
+      "model_id": "visionunite",
+      "model_name": "VisionUnite",
+      "year": 2025,
+      "publication_type": "journal",
+      "venue": "TPAMI",
+      "model_category": "眼科视觉-语言基础模型",
+      "modalities": [
+        "CFP",
+        "OCT",
+        "FFA",
+        "MRI",
+        "CT",
+        "PET",
+        "X_ray",
+        "text"
+      ],
+      "architecture": "EVA-02/CLIP视觉编码器 + 体征分类Vision Adapter + Vision Projector + LLaMA-7B",
+      "pretraining_data_summary": "约124万组图文对：MS COCO，PMC-OA，Retina Image Bank；随后使用MMFundus的296,379组眼底图文对及889,137轮对话进行领域微调。",
+      "pretraining_strategy": "两阶段训练：通用图文自回归生成预训练（仅LLM Loss）; MMFundus眼科指令微调（CLIP对比学习 + 特征分类 + 文本生成）。",
+      "reported_summary": "支持开放式多病种诊断、临床解释及多轮交互；选择题VQA准确率94.36%，性能优于GPT-4V和Gemini Pro并接近初级眼科医生，辅助医生可提高诊断准确率并缩短诊断时间。",
+      "paper_url": "https://ieeexplore.ieee.org/document/11124413",
+      "code_url": "https://github.com/HUANGLIZI/VisionUnite",
+      "code_available": true,
+      "capabilities": [
+        "vqa",
+        "report_generation"
+      ],
+      "benchmark_tracks": [],
+      "runtime_phase": "phase2_vision_language",
+      "license": null,
+      "license_verified": false,
+      "verification_status": "seed_unverified",
+      "implementation": {
+        "adapter_status": "not_started",
+        "smoke_test_status": "not_run",
+        "benchmark_status": "not_run"
+      },
+      "reported_tasks_text": "CFP开放式多病种诊断；诊断解释；眼底报告生成；眼科视觉问答与多轮医患交互；眼病筛查及临床决策支持",
+      "provenance": {
+        "source_file": "ophthalmic_models_seed_v0.xlsx",
+        "source_sheet": "眼科大模型",
+        "source_row": 9,
+        "imported_at": "2026-07-11T09:30:27Z"
+      },
+      "notes": [
+        "Original modality text: 自然图像与多类医学影像（CT、FA、CFP、MRI、OCT、PET、X-ray）、临床描述, 医患对话文本"
+      ]
+    }
+  ]
+}

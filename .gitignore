@@ -222,8 +222,8 @@ __marimo__/
 # =========================
 
 # Model weights / checkpoints
-weights/
-checkpoints/
+/weights/
+/checkpoints/
 pretrained/
 model_weights/
 *.pth
@@ -236,8 +236,8 @@ model_weights/
 *.pkl
 
 # Datasets / private data
-data/
-datasets/
+/data/
+/datasets/
 raw_data/
 private_data/
 ukb/
@@ -247,20 +247,20 @@ clinical_data/
 external_cohorts/
 
 # Extracted features / embeddings
-features/
-embeddings/
+/features/
+/embeddings/
 feature_cache/
 *.npy
 *.npz
 
 # Benchmark outputs
-outputs/
+/outputs/
 results/raw/
 results/intermediate/
-runs/
-logs/
-wandb/
-mlruns/
+/runs/
+/logs/
+/wandb/
+/mlruns/
 
 # Large image files
 *.svs

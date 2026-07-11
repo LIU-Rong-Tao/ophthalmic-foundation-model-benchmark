@@ -1,0 +1,40 @@
+schema_version: '1.0'
+model_id: keepfit
+model_name: KeepFIT
+year: 2024
+publication_type: conference
+venue: MICCAI
+model_category: 视觉-语言眼科基础模型
+modalities:
+- CFP
+- OCT
+- text
+architecture: ResNet-50图像编码器 + BioClinicalBERT文本编码器 + 视觉文本投影头 + 多头交叉注意力知识修订模块
+pretraining_data_summary: FLAIR汇集的37个公开数据集共278,348张CFP及类别标签，加上MM-Retinal中的2,169组CFP专家文本对
+pretraining_strategy: 知识增强图文对比预训练
+reported_summary: 相比 RETFound, FLAIR 具有较强的零样本、少样本和跨数据集迁移能力。
+paper_url: https://link.springer.com/chapter/10.1007/978-3-031-72378-0_67
+code_url: https://github.com/lxirich/MM-Retinal
+code_available: true
+capabilities:
+- classification
+- zero_shot_classification
+- few_shot_classification
+- report_generation
+benchmark_tracks: []
+runtime_phase: phase2_vision_language
+license: null
+license_verified: false
+verification_status: seed_unverified
+implementation:
+  adapter_status: not_started
+  smoke_test_status: not_run
+  benchmark_status: not_run
+reported_tasks_text: CFP疾病零样本、少样本及全监督分类；跨数据集迁移；FFA图像描述与报告生成
+provenance:
+  source_file: ophthalmic_models_seed_v0.xlsx
+  source_sheet: 眼科大模型
+  source_row: 11
+  imported_at: '2026-07-11T09:30:27Z'
+notes:
+- 'Original modality text: CFP、OCT、眼科专家描述文本'
