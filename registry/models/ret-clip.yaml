@@ -1,0 +1,36 @@
+schema_version: '1.0'
+model_id: ret-clip
+model_name: RET-CLIP
+year: 2024
+publication_type: conference
+venue: MICCAI
+model_category: 视觉-语言眼科基础模型
+modalities:
+- CFP
+- text
+architecture: ViT-B/16视觉编码器 + RoBERTa-Base中文文本编码器 + MLP
+pretraining_data_summary: 387,730张CFP图像和193,865份临床诊断报告，均来自中国北京同仁医院
+pretraining_strategy: 左眼、右眼、患者三级图文对比预训练
+reported_summary: 在糖尿病视网膜病变、青光眼、多疾病分类和多标签疾病分类等4类任务、8个公开数据集上评测；在线性探测和全量微调中均有16项AUROC或AUPR指标取得最高结果。突出特点是利用真实临床报告，并同时建模单眼细粒度信息与患者双眼整体信息。
+paper_url: https://doi.org/10.1007/978-3-031-72390-2_66
+code_url: https://github.com/sStonemason/RET-CLIP
+code_available: true
+capabilities:
+- classification
+benchmark_tracks: []
+runtime_phase: phase2_vision_language
+license: null
+license_verified: false
+verification_status: seed_unverified
+implementation:
+  adapter_status: not_started
+  smoke_test_status: not_run
+  benchmark_status: not_run
+reported_tasks_text: CFP糖尿病视网膜病变分级；青光眼识别；多病种及多标签分类；线性探测与全量微调；患者双眼级表征迁移
+provenance:
+  source_file: ophthalmic_models_seed_v0.xlsx
+  source_sheet: 眼科大模型
+  source_row: 12
+  imported_at: '2026-07-11T09:08:31Z'
+notes:
+- 'Original modality text: CFP、中文临床自由文本报告'

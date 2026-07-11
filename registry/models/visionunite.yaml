@@ -1,0 +1,41 @@
+schema_version: '1.0'
+model_id: visionunite
+model_name: VisionUnite
+year: 2025
+publication_type: journal
+venue: TPAMI
+model_category: 眼科视觉-语言基础模型
+modalities:
+- CFP
+- OCT
+- MRI
+- CT
+- text
+architecture: EVA-02/CLIP视觉编码器 + 体征分类Vision Adapter + Vision Projector + LLaMA-7B
+pretraining_data_summary: 约124万组图文对：MS COCO，PMC-OA，Retina Image Bank；随后使用MMFundus的296,379组眼底图文对及889,137轮对话进行领域微调。
+pretraining_strategy: 两阶段训练：通用图文自回归生成预训练（仅LLM Loss）; MMFundus眼科指令微调（CLIP对比学习 + 特征分类
+  + 文本生成）。
+reported_summary: 支持开放式多病种诊断、临床解释及多轮交互；选择题VQA准确率94.36%，性能优于GPT-4V和Gemini Pro并接近初级眼科医生，辅助医生可提高诊断准确率并缩短诊断时间。
+paper_url: https://ieeexplore.ieee.org/document/11124413
+code_url: https://github.com/HUANGLIZI/VisionUnite
+code_available: true
+capabilities:
+- vqa
+- report_generation
+benchmark_tracks: []
+runtime_phase: phase2_vision_language
+license: null
+license_verified: false
+verification_status: seed_unverified
+implementation:
+  adapter_status: not_started
+  smoke_test_status: not_run
+  benchmark_status: not_run
+reported_tasks_text: CFP开放式多病种诊断；诊断解释；眼底报告生成；眼科视觉问答与多轮医患交互；眼病筛查及临床决策支持
+provenance:
+  source_file: ophthalmic_models_seed_v0.xlsx
+  source_sheet: 眼科大模型
+  source_row: 9
+  imported_at: '2026-07-11T09:08:31Z'
+notes:
+- 'Original modality text: 自然图像与多类医学影像（CT、FA、CFP、MRI、OCT、PET、X-ray）、临床描述, 医患对话文本'

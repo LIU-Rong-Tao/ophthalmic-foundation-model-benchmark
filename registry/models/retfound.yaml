@@ -1,0 +1,42 @@
+schema_version: '1.0'
+model_id: retfound
+model_name: RETFound
+year: 2023
+publication_type: journal
+venue: Nature
+model_category: 眼科视觉基础模型
+modalities:
+- CFP
+- OCT
+- CT
+architecture: MAE 自监督框架：ViT-Large/16 编码器 + ViT-Small 解码器；下游任务使用 ViT-Large 编码器 + MLP
+  分类头
+pretraining_data_summary: 自然图像 ImageNet-1k、约90.4万CFP、73.6万OCT；主要来自 MEH-MIDAS，另含 EyePACS
+  和 Kermany 等公开数据
+pretraining_strategy: MAE；随机遮挡patch后重建像素
+reported_summary: 在眼科疾病诊断、湿性 AMD 预后预测和 oculomics 全身疾病风险预测中表现优于多种自监督学习基线；具有较强泛化能力和标注效率，可学习视盘、血管、视网膜神经纤维层等视网膜特异结构及病灶表征；但主要用于分类/风险预测，不支持文本生成或视觉定位。
+paper_url: https://www.nature.com/articles/s41586-023-06555-x
+code_url: https://github.com/rmaphoh/RETFound
+code_available: true
+capabilities:
+- feature_extraction
+- classification
+- risk_prediction
+- prognosis
+benchmark_tracks: []
+runtime_phase: phase1_image_encoder
+license: null
+license_verified: false
+verification_status: seed_unverified
+implementation:
+  adapter_status: not_started
+  smoke_test_status: not_run
+  benchmark_status: not_run
+reported_tasks_text: CFP，OCT眼科疾病分类；湿性AMD进展与预后预测；全身疾病风险预测；特征提取；下游迁移
+provenance:
+  source_file: ophthalmic_models_seed_v0.xlsx
+  source_sheet: 眼科大模型
+  source_row: 2
+  imported_at: '2026-07-11T09:08:31Z'
+notes:
+- 'Original modality text: CFP、OCT'

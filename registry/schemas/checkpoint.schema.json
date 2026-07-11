@@ -1,0 +1,243 @@
+{
+  "$defs": {
+    "Provenance": {
+      "additionalProperties": false,
+      "properties": {
+        "source_file": {
+          "title": "Source File",
+          "type": "string"
+        },
+        "source_sheet": {
+          "title": "Source Sheet",
+          "type": "string"
+        },
+        "source_row": {
+          "title": "Source Row",
+          "type": "integer"
+        },
+        "imported_at": {
+          "title": "Imported At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_file",
+        "source_sheet",
+        "source_row",
+        "imported_at"
+      ],
+      "title": "Provenance",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "checkpoint_id": {
+      "title": "Checkpoint Id",
+      "type": "string"
+    },
+    "model_id": {
+      "title": "Model Id",
+      "type": "string"
+    },
+    "checkpoint_name": {
+      "title": "Checkpoint Name",
+      "type": "string"
+    },
+    "modalities": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Modalities",
+      "type": "array"
+    },
+    "weight_url": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Weight Url"
+    },
+    "provider": {
+      "enum": [
+        "huggingface",
+        "google_drive",
+        "github_release",
+        "zenodo",
+        "official_repository",
+        "other",
+        "unknown"
+      ],
+      "title": "Provider",
+      "type": "string"
+    },
+    "access_type": {
+      "enum": [
+        "open",
+        "auth_required",
+        "gated",
+        "application_required",
+        "api_only",
+        "unavailable",
+        "unknown"
+      ],
+      "title": "Access Type",
+      "type": "string"
+    },
+    "requires_auth": {
+      "title": "Requires Auth",
+      "type": "boolean"
+    },
+    "redistribution_allowed": {
+      "enum": [
+        "yes",
+        "no",
+        "unknown"
+      ],
+      "title": "Redistribution Allowed",
+      "type": "string"
+    },
+    "license": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "License"
+    },
+    "framework": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Framework"
+    },
+    "input_size": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Input Size"
+    },
+    "normalization": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Normalization"
+    },
+    "embedding_dim": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Embedding Dim"
+    },
+    "sha256": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Sha256"
+    },
+    "source_commit": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Source Commit"
+    },
+    "verification_status": {
+      "enum": [
+        "seed_unverified",
+        "partially_verified",
+        "verified",
+        "blocked"
+      ],
+      "title": "Verification Status",
+      "type": "string"
+    },
+    "last_verified": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Last Verified"
+    },
+    "provenance": {
+      "$ref": "#/$defs/Provenance"
+    },
+    "notes": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Notes",
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "checkpoint_id",
+    "model_id",
+    "checkpoint_name",
+    "modalities",
+    "weight_url",
+    "provider",
+    "access_type",
+    "requires_auth",
+    "redistribution_allowed",
+    "license",
+    "framework",
+    "input_size",
+    "normalization",
+    "embedding_dim",
+    "sha256",
+    "source_commit",
+    "verification_status",
+    "last_verified",
+    "provenance",
+    "notes"
+  ],
+  "title": "CheckpointRecord",
+  "type": "object"
+}

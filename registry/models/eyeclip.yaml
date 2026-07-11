@@ -1,0 +1,48 @@
+schema_version: '1.0'
+model_id: eyeclip
+model_name: EyeCLIP
+year: 2025
+publication_type: journal
+venue: NPJ Digital Medicine
+model_category: 视觉-语言眼科基础模型
+modalities:
+- CFP
+- OCT
+- FFA
+- ICGA
+- FAF
+- CT
+- RetCam
+- text
+architecture: ViT-Large/16图像编码器 + 文本编码器
+pretraining_data_summary: 278万图像 + 11180份血管造影报告；来自128554名患者、227家机构
+pretraining_strategy: 联合训练：MIM + image-image contrastive learning + image-text contrastive
+  learning
+reported_summary: 综合多模态和视觉语言优势；零样本、少样本、全监督微调均表现强；覆盖UKB等下游任务。
+paper_url: https://www.nature.com/articles/s41746-025-01772-2
+code_url: https://github.com/Michi-3000/EyeCLIP
+code_available: true
+capabilities:
+- classification
+- zero_shot_classification
+- few_shot_classification
+- retrieval
+- vqa
+benchmark_tracks: []
+runtime_phase: phase2_vision_language
+license: null
+license_verified: false
+verification_status: seed_unverified
+implementation:
+  adapter_status: not_started
+  smoke_test_status: not_run
+  benchmark_status: not_run
+reported_tasks_text: 眼科疾病零样本、少样本及全监督分类；图像—图像和图像—文本跨模态检索；眼科视觉问答；眼科及全身疾病预测
+provenance:
+  source_file: ophthalmic_models_seed_v0.xlsx
+  source_sheet: 眼科大模型
+  source_row: 4
+  imported_at: '2026-07-11T09:08:31Z'
+notes:
+- 'Original modality text: 11种眼科影像（CFP、FFA、SLP、ICGA、OUS、OCT、SM、FAF、EEP、CT、RetCam)
+  + 结构化临床报告'

@@ -1,0 +1,36 @@
+schema_version: '1.0'
+model_id: retfound-green
+model_name: RETFound-Green
+year: 2025
+publication_type: journal
+venue: Nature Communications
+model_category: 眼科视觉基础模型
+modalities:
+- CFP
+architecture: ViT-Small + 4个Register Tokens
+pretraining_data_summary: 75,000张公开CFP；来源：AIROGS、DDR和ODIR-2019
+pretraining_strategy: Self-supervised Token Reconstruction；学生模型从强扰动输入预测教师token特征
+reported_summary: 相比RETFound计算量降低400倍、模型缩小14倍；线性探测性能可比完全微调RETFound，在多数下游任务中表现更优，具有轻量、低碳和低资源适用性。
+paper_url: https://www.nature.com/articles/s41467-025-62123-z
+code_url: https://github.com/justinengelmann/RETFound_Green
+code_available: true
+capabilities:
+- feature_extraction
+- classification
+benchmark_tracks: []
+runtime_phase: phase1_image_encoder
+license: null
+license_verified: false
+verification_status: seed_unverified
+implementation:
+  adapter_status: not_started
+  smoke_test_status: not_run
+  benchmark_status: not_run
+reported_tasks_text: CFP眼科疾病分类；线性探测；图像特征提取；低算力、低资源场景下的下游迁移与部署
+provenance:
+  source_file: ophthalmic_models_seed_v0.xlsx
+  source_sheet: 眼科大模型
+  source_row: 8
+  imported_at: '2026-07-11T09:08:31Z'
+notes:
+- 'Original modality text: CFP'

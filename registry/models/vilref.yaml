@@ -1,0 +1,38 @@
+schema_version: '1.0'
+model_id: vilref
+model_name: ViLReF
+year: 2024
+publication_type: preprint
+venue: arXiv
+model_category: 视觉-语言眼科基础模型
+modalities:
+- CFP
+- text
+architecture: ViT-B/16图像编码器 + RoBERTa-wwm-ext-base-chinese文本编码器 + 非线性投影头
+pretraining_data_summary: 451,956组CFP图像—中文诊断报告对。数据由北京同仁医院提供，CFP图像来自中国多家医疗机构，报告由专业眼科医生撰写
+pretraining_strategy: 采用专家知识增强的图文对比预训练
+reported_summary: 缓解假负样本问题，完全微调平均AUC 94.16%，零样本平均AUC 87.48%，具有较强分类和分割迁移能力。
+paper_url: https://arxiv.org/abs/2408.10894
+code_url: https://github.com/T6Yang/ViLReF
+code_available: true
+capabilities:
+- classification
+- segmentation
+- zero_shot_classification
+benchmark_tracks: []
+runtime_phase: phase2_vision_language
+license: null
+license_verified: false
+verification_status: seed_unverified
+implementation:
+  adapter_status: not_started
+  smoke_test_status: not_run
+  benchmark_status: not_run
+reported_tasks_text: CFP眼底疾病零样本分类；线性探测与全量微调；病灶分割迁移；跨数据集分类泛化
+provenance:
+  source_file: ophthalmic_models_seed_v0.xlsx
+  source_sheet: 眼科大模型
+  source_row: 13
+  imported_at: '2026-07-11T09:08:31Z'
+notes:
+- 'Original modality text: CFP、中文视网膜诊断报告'
