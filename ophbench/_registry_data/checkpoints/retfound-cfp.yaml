@@ -10,14 +10,14 @@ access_type: auth_required
 requires_auth: true
 redistribution_allowed: unknown
 license: null
-framework: null
-input_size: null
-normalization: null
-embedding_dim: null
-sha256: null
+framework: PyTorch
+input_size: 256x256 RGB, bicubic resize and center crop
+normalization: 'ImageNet mean=(0.485,0.456,0.406), std=(0.229,0.224,0.225)'
+embedding_dim: 1024
+sha256: e1e4f66a1b792eeb6e2efaf158f33be35c8255f36b3d17ed67cd5129da246485
 source_commit: null
-verification_status: seed_unverified
-last_verified: null
+verification_status: partially_verified
+last_verified: '2026-07-11'
 provenance:
   source_file: ophthalmic_models_seed_v0.xlsx
   source_sheet: 有多个权重的模型
@@ -25,3 +25,4 @@ provenance:
   imported_at: '2026-07-11T09:30:27Z'
 notes:
 - Seed metadata only; URL and redistribution terms have not been verified.
+- Local authenticated weight matched the recorded SHA256; GPU image-encoder smoke passed without redistributing the checkpoint.

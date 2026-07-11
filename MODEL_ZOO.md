@@ -6,7 +6,8 @@ Checkpoints: **27**
 
 ## Verification status
 
-- `seed_unverified`: 15
+- `partially_verified`: 1
+- `seed_unverified`: 14
 
 ## Models
 
@@ -20,7 +21,7 @@ Checkpoints: **27**
 | [MIRAGE](https://www.nature.com/articles/s41746-025-01852-3) ([code](https://github.com/j-morano/MIRAGE)) | 2025 | npj Digital Medicine | 多模态眼科视觉基础模型 | OCT, SLO, retinal_layer_pseudolabels | phase1_image_encoder | open | not_started |
 | [PRETI](https://link.springer.com/chapter/10.1007/978-3-032-04927-8_50) ([code](https://github.com/MICV-yonsei/PRETI)) | 2025 | MICCAI | 眼科视觉基础模型 | CFP | phase1_image_encoder | open | not_started |
 | [RET-CLIP](https://doi.org/10.1007/978-3-031-72390-2_66) ([code](https://github.com/sStonemason/RET-CLIP)) | 2024 | MICCAI | 视觉-语言眼科基础模型 | CFP, text | phase2_vision_language | open | not_started |
-| [RETFound](https://www.nature.com/articles/s41586-023-06555-x) ([code](https://github.com/rmaphoh/RETFound)) | 2023 | Nature | 眼科视觉基础模型 | CFP, OCT | phase1_image_encoder | auth_required | not_started |
+| [RETFound](https://www.nature.com/articles/s41586-023-06555-x) ([code](https://github.com/rmaphoh/RETFound)) | 2023 | Nature | 眼科视觉基础模型 | CFP, OCT | phase1_image_encoder | auth_required | implemented |
 | [RETFound-Green](https://www.nature.com/articles/s41467-025-62123-z) ([code](https://github.com/justinengelmann/RETFound_Green)) | 2025 | Nature Communications | 眼科视觉基础模型 | CFP | phase1_image_encoder | open | not_started |
 | [RetiZero](https://www.nature.com/articles/s41467-025-60577-9) ([code](https://github.com/LooKing9218/RetiZero)) | 2025 | Nature Communications | 视觉-语言眼科基础模型 | CFP, text | phase2_vision_language | open | not_started |
 | [UrFound](https://link.springer.com/chapter/10.1007/978-3-031-72390-2_70) ([code](https://github.com/yukkai/UrFound)) | 2024 | MICCAI | 视觉-语言眼科基础模型 | CFP, OCT, text | phase2_vision_language | open | not_started |

@@ -21,9 +21,9 @@ class RegistrySnapshot:
 
     models: tuple[ModelRecord, ...]
     checkpoints: tuple[CheckpointRecord, ...]
-    package_version: st
-    schema_version: st
-    registry_source: st
+    package_version: str
+    schema_version: str
+    registry_source: str
 
     @property
     def model_count(self) -> int:

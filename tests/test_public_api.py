@@ -36,13 +36,14 @@ def test_public_api_supports_explicit_development_registry_root():
 
 
 def test_public_exports_are_explicit():
-    assert ophbench.__version__ == "0.1.1"
+    assert ophbench.__version__ == "0.2.0"
     assert set(ophbench.__all__) == {
         "RegistrySnapshot",
         "__version__",
         "get_registry_info",
         "list_checkpoints",
         "list_models",
+        "load_adapter",
         "load_registry",
     }
 

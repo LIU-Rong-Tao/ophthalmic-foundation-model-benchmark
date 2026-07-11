@@ -1,0 +1,2 @@
+"""Optional concrete model adapters."""
+
