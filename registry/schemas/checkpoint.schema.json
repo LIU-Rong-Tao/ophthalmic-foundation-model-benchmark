@@ -4,10 +4,12 @@
       "additionalProperties": false,
       "properties": {
         "source_file": {
+          "minLength": 1,
           "title": "Source File",
           "type": "string"
         },
         "source_sheet": {
+          "minLength": 1,
           "title": "Source Sheet",
           "type": "string"
         },
@@ -38,21 +40,49 @@
       "type": "string"
     },
     "checkpoint_id": {
+      "minLength": 1,
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*(?:\\.[0-9]+)?$",
       "title": "Checkpoint Id",
       "type": "string"
     },
     "model_id": {
+      "minLength": 1,
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
       "title": "Model Id",
       "type": "string"
     },
     "checkpoint_name": {
+      "minLength": 1,
       "title": "Checkpoint Name",
       "type": "string"
     },
     "modalities": {
       "items": {
+        "enum": [
+          "CFP",
+          "OCT",
+          "OCTA",
+          "FFA",
+          "SLO",
+          "ICGA",
+          "FAF",
+          "ultrasound",
+          "external_eye",
+          "slit_lamp",
+          "specular_microscopy",
+          "MRI",
+          "UBM",
+          "CT",
+          "RetCam",
+          "PET",
+          "X_ray",
+          "text",
+          "retinal_layer_pseudolabels",
+          "other"
+        ],
         "type": "string"
       },
+      "minItems": 1,
       "title": "Modalities",
       "type": "array"
     },

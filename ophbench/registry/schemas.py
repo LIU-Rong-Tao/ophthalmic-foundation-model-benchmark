@@ -1,9 +1,9 @@
 from __future__ import annotations
 
-from typing import Literal
+from typing import Annotated, Literal
 from urllib.parse import urlparse
 
-from pydantic import BaseModel, ConfigDict, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StringConstraints, field_validator
 
 PublicationType = Literal["journal", "conference", "preprint", "unknown"]
 VerificationStatus = Literal["seed_unverified", "partially_verified", "verified", "blocked"]
@@ -24,6 +24,63 @@ Provider = Literal[
     "other",
     "unknown",
 ]
+Identifier = Annotated[
+    str,
+    StringConstraints(
+        strip_whitespace=True,
+        min_length=1,
+        pattern=r"^[a-z0-9]+(?:-[a-z0-9]+)*$",
+    ),
+]
+CheckpointIdentifier = Annotated[
+    str,
+    StringConstraints(
+        strip_whitespace=True,
+        min_length=1,
+        pattern=r"^[a-z0-9]+(?:-[a-z0-9]+)*(?:\.[0-9]+)?$",
+    ),
+]
+NonEmptyStr = Annotated[str, StringConstraints(strip_whitespace=True, min_length=1)]
+Modality = Literal[
+    "CFP",
+    "OCT",
+    "OCTA",
+    "FFA",
+    "SLO",
+    "ICGA",
+    "FAF",
+    "ultrasound",
+    "external_eye",
+    "slit_lamp",
+    "specular_microscopy",
+    "MRI",
+    "UBM",
+    "CT",
+    "RetCam",
+    "PET",
+    "X_ray",
+    "text",
+    "retinal_layer_pseudolabels",
+    "other",
+]
+Capability = Literal[
+    "image_encoding",
+    "feature_extraction",
+    "classification",
+    "risk_prediction",
+    "prognosis",
+    "segmentation",
+    "detection",
+    "keypoint_localization",
+    "zero_shot_classification",
+    "few_shot_classification",
+    "retrieval",
+    "multimodal_alignment",
+    "vqa",
+    "report_generation",
+    "uncertainty_estimation",
+    "ood_detection",
+]
 
 
 class StrictModel(BaseModel):
@@ -31,8 +88,8 @@ class StrictModel(BaseModel):
 
 
 class Provenance(StrictModel):
-    source_file: str
-    source_sheet: str
+    source_file: NonEmptyStr
+    source_sheet: NonEmptyStr
     source_row: int
     imported_at: str
 
@@ -54,28 +111,28 @@ def _validate_url(value: str | None) -> str | None:
 
 class ModelRecord(StrictModel):
     schema_version: Literal["1.0"]
-    model_id: str
-    model_name: str
+    model_id: Identifier
+    model_name: NonEmptyStr
     year: int | None
     publication_type: PublicationType
-    venue: str
-    model_category: str
-    modalities: list[str]
-    architecture: str
-    pretraining_data_summary: str
-    pretraining_strategy: str
-    reported_summary: str
+    venue: NonEmptyStr
+    model_category: NonEmptyStr
+    modalities: Annotated[list[Modality], Field(min_length=1)]
+    architecture: NonEmptyStr
+    pretraining_data_summary: NonEmptyStr
+    pretraining_strategy: NonEmptyStr
+    reported_summary: NonEmptyStr
     paper_url: str | None
     code_url: str | None
     code_available: bool
-    capabilities: list[str]
+    capabilities: list[Capability]
     benchmark_tracks: list[str]
     runtime_phase: RuntimePhase
     license: str | None
     license_verified: bool
     verification_status: VerificationStatus
     implementation: ImplementationStatus
-    reported_tasks_text: str
+    reported_tasks_text: NonEmptyStr
     provenance: Provenance
     notes: list[str]
 
@@ -85,10 +142,10 @@ class ModelRecord(StrictModel):
 
 class CheckpointRecord(StrictModel):
     schema_version: Literal["1.0"]
-    checkpoint_id: str
-    model_id: str
-    checkpoint_name: str
-    modalities: list[str]
+    checkpoint_id: CheckpointIdentifier
+    model_id: Identifier
+    checkpoint_name: NonEmptyStr
+    modalities: Annotated[list[Modality], Field(min_length=1)]
     weight_url: str | None
     provider: Provider
     access_type: AccessType

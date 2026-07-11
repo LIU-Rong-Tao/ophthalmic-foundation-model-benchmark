@@ -1,7 +1,7 @@
 {
   "source_file": "ophthalmic_models_seed_v0.xlsx",
   "sha256": "0980c561aad104170af323ad0dc8e49c36427dc437916e1cf5fdca0094352542",
-  "imported_at": "2026-07-11T09:10:56Z",
+  "imported_at": "2026-07-11T09:30:27Z",
   "source_sheets": [
     "眼科大模型",
     "有多个权重的模型"

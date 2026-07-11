@@ -38,7 +38,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 16,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Original modality text: CFP"
@@ -58,6 +58,10 @@
         "FFA",
         "ICGA",
         "FAF",
+        "ultrasound",
+        "external_eye",
+        "slit_lamp",
+        "specular_microscopy",
         "CT",
         "RetCam",
         "text"
@@ -91,7 +95,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 4,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Original modality text: 11种眼科影像（CFP、FFA、SLP、ICGA、OUS、OCT、SM、FAF、EEP、CT、RetCam) + 结构化临床报告"
@@ -137,7 +141,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 5,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Original modality text: CFP、专家文本描述"
@@ -181,7 +185,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 10,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Original modality text: OCT"
@@ -228,7 +232,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 11,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Original modality text: CFP、OCT、眼科专家描述文本"
@@ -274,7 +278,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 7,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Original modality text: OCT、SLO、Retinal Layer Pseudo-labels"
@@ -317,7 +321,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 14,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Original modality text: CFP"
@@ -360,7 +364,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 12,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Original modality text: CFP、中文临床自由文本报告"
@@ -406,7 +410,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 2,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Original modality text: CFP、OCT"
@@ -449,7 +453,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 8,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Original modality text: CFP"
@@ -495,7 +499,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 6,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Original modality text: CFP 、模板化疾病文本描述"
@@ -540,7 +544,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 15,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Original modality text: CFP、OCT、由专家标签扩展的医学描述文本"
@@ -585,7 +589,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 13,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Original modality text: CFP、中文视网膜诊断报告"
@@ -637,7 +641,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 3,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Original modality text: CFP、OCT、FFA、B超、外眼照、裂隙灯、MRI、UBM"
@@ -654,8 +658,11 @@
       "modalities": [
         "CFP",
         "OCT",
+        "FFA",
         "MRI",
         "CT",
+        "PET",
+        "X_ray",
         "text"
       ],
       "architecture": "EVA-02/CLIP视觉编码器 + 体征分类Vision Adapter + Vision Projector + LLaMA-7B",
@@ -684,7 +691,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 9,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Original modality text: 自然图像与多类医学影像（CT、FA、CFP、MRI、OCT、PET、X-ray）、临床描述, 医患对话文本"

@@ -1,6 +1,6 @@
-from pathlib import Path
+import sys
 
-from ophbench.registry.builder import build_catalog
+from ophbench.cli import app
 
 if __name__ == "__main__":
-    print(build_catalog(Path("registry"), Path("catalog"), model_zoo_path=Path("MODEL_ZOO.md")))
+    app(["catalog", "build", *sys.argv[1:]])

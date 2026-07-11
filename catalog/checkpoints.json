@@ -27,7 +27,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "有多个权重的模型",
         "source_row": 5,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Seed metadata only; URL and redistribution terms have not been verified."
@@ -59,7 +59,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "有多个权重的模型",
         "source_row": 5,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Seed metadata only; URL and redistribution terms have not been verified."
@@ -76,6 +76,10 @@
         "FFA",
         "ICGA",
         "FAF",
+        "ultrasound",
+        "external_eye",
+        "slit_lamp",
+        "specular_microscopy",
         "CT",
         "RetCam",
         "text"
@@ -98,7 +102,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 4,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Seed metadata only; URL and redistribution terms have not been verified."
@@ -131,7 +135,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 5,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Seed metadata only; URL and redistribution terms have not been verified."
@@ -163,7 +167,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 10,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Seed metadata only; URL and redistribution terms have not been verified."
@@ -195,7 +199,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "有多个权重的模型",
         "source_row": 4,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Seed metadata only; URL and redistribution terms have not been verified."
@@ -227,7 +231,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "有多个权重的模型",
         "source_row": 4,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Seed metadata only; URL and redistribution terms have not been verified."
@@ -259,7 +263,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "有多个权重的模型",
         "source_row": 4,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Seed metadata only; URL and redistribution terms have not been verified."
@@ -292,7 +296,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "有多个权重的模型",
         "source_row": 3,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Seed metadata only; URL and redistribution terms have not been verified."
@@ -325,7 +329,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "有多个权重的模型",
         "source_row": 3,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Seed metadata only; URL and redistribution terms have not been verified."
@@ -357,7 +361,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 14,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Seed metadata only; URL and redistribution terms have not been verified."
@@ -390,7 +394,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 12,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Seed metadata only; URL and redistribution terms have not been verified."
@@ -422,7 +426,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "有多个权重的模型",
         "source_row": 1,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Seed metadata only; URL and redistribution terms have not been verified."
@@ -454,7 +458,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 8,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Seed metadata only; URL and redistribution terms have not been verified."
@@ -486,7 +490,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "有多个权重的模型",
         "source_row": 1,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Seed metadata only; URL and redistribution terms have not been verified."
@@ -519,7 +523,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 6,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Seed metadata only; URL and redistribution terms have not been verified."
@@ -553,7 +557,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 15,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Seed metadata only; URL and redistribution terms have not been verified."
@@ -586,7 +590,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 13,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Seed metadata only; URL and redistribution terms have not been verified."
@@ -618,7 +622,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "有多个权重的模型",
         "source_row": 2,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Seed metadata only; URL and redistribution terms have not been verified."
@@ -650,7 +654,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "有多个权重的模型",
         "source_row": 2,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Seed metadata only; URL and redistribution terms have not been verified."
@@ -682,7 +686,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "有多个权重的模型",
         "source_row": 2,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Seed metadata only; URL and redistribution terms have not been verified."
@@ -714,7 +718,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "有多个权重的模型",
         "source_row": 2,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Seed metadata only; URL and redistribution terms have not been verified."
@@ -746,7 +750,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "有多个权重的模型",
         "source_row": 2,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Seed metadata only; URL and redistribution terms have not been verified."
@@ -778,7 +782,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "有多个权重的模型",
         "source_row": 2,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Seed metadata only; URL and redistribution terms have not been verified."
@@ -810,7 +814,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "有多个权重的模型",
         "source_row": 2,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Seed metadata only; URL and redistribution terms have not been verified."
@@ -842,7 +846,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "有多个权重的模型",
         "source_row": 2,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Seed metadata only; URL and redistribution terms have not been verified."
@@ -856,8 +860,11 @@
       "modalities": [
         "CFP",
         "OCT",
+        "FFA",
         "MRI",
         "CT",
+        "PET",
+        "X_ray",
         "text"
       ],
       "weight_url": "https://drive.google.com/file/d/1kbdpPklCdDxEgxcpsp4OgGjxvxKh5jpV/view?usp=sharing",
@@ -878,7 +885,7 @@
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
         "source_row": 9,
-        "imported_at": "2026-07-11T09:10:56Z"
+        "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
         "Seed metadata only; URL and redistribution terms have not been verified."

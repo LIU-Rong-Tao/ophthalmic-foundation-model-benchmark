@@ -13,7 +13,7 @@ Checkpoints: **27**
 | Model | Year | Venue | Category | Modalities | Runtime phase | Weight access | Adapter status |
 |---|---:|---|---|---|---|---|---|
 | [DERETFound](https://www.nature.com/articles/s41551-025-01365-0) ([code](https://github.com/Jonlysun/DERETFound)) | 2025 | Nature Biomedical Engineering | 眼科视觉基础模型 | CFP | phase1_image_encoder | open | not_started |
-| [EyeCLIP](https://www.nature.com/articles/s41746-025-01772-2) ([code](https://github.com/Michi-3000/EyeCLIP)) | 2025 | NPJ Digital Medicine | 视觉-语言眼科基础模型 | CFP, OCT, FFA, ICGA, FAF, CT, RetCam, text | phase2_vision_language | open | not_started |
+| [EyeCLIP](https://www.nature.com/articles/s41746-025-01772-2) ([code](https://github.com/Michi-3000/EyeCLIP)) | 2025 | NPJ Digital Medicine | 视觉-语言眼科基础模型 | CFP, OCT, FFA, ICGA, FAF, ultrasound, external_eye, slit_lamp, specular_microscopy, CT, RetCam, text | phase2_vision_language | open | not_started |
 | [FLAIR](https://doi.org/10.1016/j.media.2024.103357) ([code](https://github.com/jusiro/FLAIR)) | 2025 | Medical Image Analysis | 视觉-语言眼科基础模型 | CFP, text | phase2_vision_language | open | not_started |
 | [FMUE](https://doi.org/10.1016/j.xcrm.2024.101876) ([code](https://github.com/yuanyuanpeng0129/FMUE)) | 2025 | Cell Reports Medicine | 眼科视觉基础模型 | OCT | phase1_specialized | open | not_started |
 | [KeepFIT](https://link.springer.com/chapter/10.1007/978-3-031-72378-0_67) ([code](https://github.com/lxirich/MM-Retinal)) | 2024 | MICCAI | 视觉-语言眼科基础模型 | CFP, OCT, text | phase2_vision_language | open | not_started |
@@ -26,7 +26,7 @@ Checkpoints: **27**
 | [UrFound](https://link.springer.com/chapter/10.1007/978-3-031-72390-2_70) ([code](https://github.com/yukkai/UrFound)) | 2024 | MICCAI | 视觉-语言眼科基础模型 | CFP, OCT, text | phase2_vision_language | open | not_started |
 | [ViLReF](https://arxiv.org/abs/2408.10894) ([code](https://github.com/T6Yang/ViLReF)) | 2024 | arXiv | 视觉-语言眼科基础模型 | CFP, text | phase2_vision_language | open | not_started |
 | [VisionFM](https://ai.nejm.org/doi/abs/10.1056/AIoa2300221) ([code](https://github.com/ABILab-CUHK/VisionFM)) | 2024 | NEJM AI | 多模态眼科基础模型 | CFP, OCT, FFA, ultrasound, external_eye, slit_lamp, MRI, UBM | phase1_image_encoder | open | not_started |
-| [VisionUnite](https://ieeexplore.ieee.org/document/11124413) ([code](https://github.com/HUANGLIZI/VisionUnite)) | 2025 | TPAMI | 眼科视觉-语言基础模型 | CFP, OCT, MRI, CT, text | phase2_vision_language | open | not_started |
+| [VisionUnite](https://ieeexplore.ieee.org/document/11124413) ([code](https://github.com/HUANGLIZI/VisionUnite)) | 2025 | TPAMI | 眼科视觉-语言基础模型 | CFP, OCT, FFA, MRI, CT, PET, X_ray, text | phase2_vision_language | open | not_started |
 
 ## Important notice
 

@@ -8,8 +8,11 @@ model_category: 眼科视觉-语言基础模型
 modalities:
 - CFP
 - OCT
+- FFA
 - MRI
 - CT
+- PET
+- X_ray
 - text
 architecture: EVA-02/CLIP视觉编码器 + 体征分类Vision Adapter + Vision Projector + LLaMA-7B
 pretraining_data_summary: 约124万组图文对：MS COCO，PMC-OA，Retina Image Bank；随后使用MMFundus的296,379组眼底图文对及889,137轮对话进行领域微调。
@@ -36,6 +39,6 @@ provenance:
   source_file: ophthalmic_models_seed_v0.xlsx
   source_sheet: 眼科大模型
   source_row: 9
-  imported_at: '2026-07-11T09:10:56Z'
+  imported_at: '2026-07-11T09:30:27Z'
 notes:
 - 'Original modality text: 自然图像与多类医学影像（CT、FA、CFP、MRI、OCT、PET、X-ray）、临床描述, 医患对话文本'

@@ -107,3 +107,38 @@ def test_missing_required_field_fails():
     del data["model_name"]
     with pytest.raises(ValueError):
         ModelRecord.model_validate(data)
+
+
+@pytest.mark.parametrize("field", ["model_id", "model_name", "architecture"])
+def test_required_model_strings_cannot_be_empty(field):
+    data = model_data()
+    data[field] = ""
+    with pytest.raises(ValueError):
+        ModelRecord.model_validate(data)
+
+
+@pytest.mark.parametrize("model_id", ["RET Found", "ret_found", "retfound!", "-retfound"])
+def test_model_id_must_be_kebab_case(model_id):
+    data = model_data(model_id=model_id)
+    with pytest.raises(ValueError):
+        ModelRecord.model_validate(data)
+
+
+def test_checkpoint_id_must_be_kebab_case():
+    data = checkpoint_data(checkpoint_id="Bad Checkpoint")
+    with pytest.raises(ValueError):
+        CheckpointRecord.model_validate(data)
+
+
+def test_unknown_modality_fails_schema_validation():
+    data = model_data()
+    data["modalities"] = ["fundus_photo"]
+    with pytest.raises(ValueError):
+        ModelRecord.model_validate(data)
+
+
+def test_unknown_capability_fails_schema_validation():
+    data = model_data()
+    data["capabilities"] = ["anything"]
+    with pytest.raises(ValueError):
+        ModelRecord.model_validate(data)

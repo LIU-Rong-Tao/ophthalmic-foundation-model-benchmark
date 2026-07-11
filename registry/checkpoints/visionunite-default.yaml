@@ -5,8 +5,11 @@ checkpoint_name: Default
 modalities:
 - CFP
 - OCT
+- FFA
 - MRI
 - CT
+- PET
+- X_ray
 - text
 weight_url: https://drive.google.com/file/d/1kbdpPklCdDxEgxcpsp4OgGjxvxKh5jpV/view?usp=sharing
 provider: google_drive
@@ -26,6 +29,6 @@ provenance:
   source_file: ophthalmic_models_seed_v0.xlsx
   source_sheet: 眼科大模型
   source_row: 9
-  imported_at: '2026-07-11T09:10:56Z'
+  imported_at: '2026-07-11T09:30:27Z'
 notes:
 - Seed metadata only; URL and redistribution terms have not been verified.

@@ -78,6 +78,28 @@ PHASES = {
         ]
     },
 }
+MODALITY_ORDER = [
+    "CFP",
+    "OCT",
+    "OCTA",
+    "FFA",
+    "SLO",
+    "ICGA",
+    "FAF",
+    "ultrasound",
+    "external_eye",
+    "slit_lamp",
+    "specular_microscopy",
+    "MRI",
+    "UBM",
+    "CT",
+    "RetCam",
+    "PET",
+    "X_ray",
+    "text",
+    "retinal_layer_pseudolabels",
+    "other",
+]
 
 
 @dataclass(frozen=True)
@@ -91,25 +113,36 @@ def _clean(value):
 
 
 def _modalities(text):
+    return _parse_modalities(text)[0]
+
+
+def _parse_modalities(text):
     raw = _clean(text)
     aliases = [
         ("CFP", "CFP"),
         ("OCTA", "OCTA"),
         ("OCT", "OCT"),
         ("FFA", "FFA"),
+        ("FA", "FFA"),
         ("SLO", "SLO"),
+        ("SLP", "slit_lamp"),
         ("ICGA", "ICGA"),
         ("FAF", "FAF"),
         ("B超", "ultrasound"),
         ("Ultrasound", "ultrasound"),
+        ("OUS", "ultrasound"),
         ("外眼", "external_eye"),
         ("External Eye", "external_eye"),
+        ("EEP", "external_eye"),
         ("裂隙灯", "slit_lamp"),
         ("Slit Lamp", "slit_lamp"),
+        ("SM", "specular_microscopy"),
         ("MRI", "MRI"),
         ("UBM", "UBM"),
         ("CT", "CT"),
         ("RetCam", "RetCam"),
+        ("PET", "PET"),
+        ("X-ray", "X_ray"),
         ("文本", "text"),
         ("报告", "text"),
         ("Pseudo-label", "retinal_layer_pseudolabels"),
@@ -124,7 +157,13 @@ def _modalities(text):
             matched = needle.lower() in raw.lower()
         if matched and canonical not in values:
             values.append(canonical)
-    return values or ["other"]
+    known_tokens = {needle.upper() for needle, _ in aliases if needle.isascii()}
+    explicit_tokens = set(re.findall(r"(?<![A-Za-z])[A-Z][A-Z0-9-]{1,}(?![A-Za-z])", raw))
+    unmapped = sorted(token for token in explicit_tokens if token.upper() not in known_tokens)
+    if unmapped or not values:
+        values.append("other")
+    values.sort(key=MODALITY_ORDER.index)
+    return values, unmapped
 
 
 def _capabilities(text):
@@ -204,6 +243,7 @@ def import_seed(input_path: Path, output_root: Path = Path("."), imported_at: st
         model_id = MODEL_ID_MAP[name]
         year, publication_type, venue = _publication(row["年份/文献状态"])
         modality_text = _clean(row["预训练模态"])
+        modalities, unmapped_modalities = _parse_modalities(modality_text)
         model = {
             "schema_version": "1.0",
             "model_id": model_id,
@@ -212,7 +252,7 @@ def import_seed(input_path: Path, output_root: Path = Path("."), imported_at: st
             "publication_type": publication_type,
             "venue": venue,
             "model_category": _clean(row["模型类别"]),
-            "modalities": _modalities(modality_text),
+            "modalities": modalities,
             "architecture": _clean(row["核心架构"]),
             "pretraining_data_summary": _clean(row["预训练数据规模/来源"]),
             "pretraining_strategy": _clean(row["预训练策略"]),
@@ -240,6 +280,10 @@ def import_seed(input_path: Path, output_root: Path = Path("."), imported_at: st
             },
             "notes": [f"Original modality text: {modality_text}"],
         }
+        if unmapped_modalities:
+            model["notes"].append(
+                f"Unmapped modality tokens: {', '.join(unmapped_modalities)}"
+            )
         _yaml(output_root / "registry/models" / f"{model_id}.yaml", model)
 
     multi = workbook["有多个权重的模型"]

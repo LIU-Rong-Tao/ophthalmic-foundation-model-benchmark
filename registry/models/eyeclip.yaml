@@ -11,6 +11,10 @@ modalities:
 - FFA
 - ICGA
 - FAF
+- ultrasound
+- external_eye
+- slit_lamp
+- specular_microscopy
 - CT
 - RetCam
 - text
@@ -42,7 +46,7 @@ provenance:
   source_file: ophthalmic_models_seed_v0.xlsx
   source_sheet: 眼科大模型
   source_row: 4
-  imported_at: '2026-07-11T09:10:56Z'
+  imported_at: '2026-07-11T09:30:27Z'
 notes:
 - 'Original modality text: 11种眼科影像（CFP、FFA、SLP、ICGA、OUS、OCT、SM、FAF、EEP、CT、RetCam)
   + 结构化临床报告'
