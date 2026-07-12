@@ -345,6 +345,7 @@ def run_frozen_feature_transfer(
         "checkpoint_id": protocol["model"]["checkpoint_id"],
         "task_id": protocol["task"]["task_id"],
         "dataset_id": protocol["task"]["dataset_id"],
+        "label_space": protocol["task"]["label_space"],
         "source_git_commit": git_commit,
         "source_git_dirty": git_dirty,
         "ophbench_version": __version__,

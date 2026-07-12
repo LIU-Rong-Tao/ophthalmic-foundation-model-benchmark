@@ -89,5 +89,6 @@ def test_pilot_outputs_are_complete_and_reproducible(tmp_path):
         manifest = json.loads((run / "run_manifest.json").read_text())
         assert manifest["evaluation_role"] == "pilot_protocol_validation"
         assert manifest["research_claim_status"] == "not_for_scientific_comparison"
+        assert manifest["label_space"] == "dr_icdr_0_4"
         assert manifest["patient_level_claim_allowed"] is False
     assert compare_reproduction_runs(*runs)["reproducible"] is True
