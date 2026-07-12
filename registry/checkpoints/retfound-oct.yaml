@@ -17,6 +17,15 @@ embedding_dim: null
 sha256: null
 source_commit: null
 verification_status: seed_unverified
+verification:
+  paper: verified
+  code: verified
+  checkpoint_url: pending
+  checkpoint_file: pending
+  license: pending
+  preprocessing: pending
+  adapter: pending
+  feature_output: pending
 last_verified: null
 provenance:
   source_file: ophthalmic_models_seed_v0.xlsx

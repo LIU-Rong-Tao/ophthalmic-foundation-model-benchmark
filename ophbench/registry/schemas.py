@@ -12,6 +12,7 @@ RuntimePhase = Literal[
 ]
 AdapterStatus = Literal["not_started", "scaffolded", "implemented", "failed"]
 RunStatus = Literal["not_run", "passed", "failed", "blocked"]
+EvidenceStatus = Literal["pending", "verified", "blocked", "not_applicable"]
 AccessType = Literal[
     "open", "auth_required", "gated", "application_required", "api_only", "unavailable", "unknown"
 ]
@@ -100,6 +101,52 @@ class ImplementationStatus(StrictModel):
     benchmark_status: RunStatus
 
 
+class VerificationBreakdown(StrictModel):
+    paper: EvidenceStatus = "pending"
+    code: EvidenceStatus = "pending"
+    checkpoint_url: EvidenceStatus = "pending"
+    checkpoint_file: EvidenceStatus = "pending"
+    license: EvidenceStatus = "pending"
+    preprocessing: EvidenceStatus = "pending"
+    adapter: EvidenceStatus = "pending"
+    feature_output: EvidenceStatus = "pending"
+
+
+class ArchitectureDetails(StrictModel):
+    encoder_family: str | None = None
+    encoder_variant: str | None = None
+    patch_size: int | None = None
+    pretraining_objective: str | None = None
+    runtime_component: str | None = None
+
+
+class InputSpec(StrictModel):
+    color_space: str | None = None
+    size: tuple[int, int] | None = None
+
+
+class ResizeSpec(StrictModel):
+    size: tuple[int, int] | None = None
+    interpolation: str | None = None
+
+
+class CropSpec(StrictModel):
+    type: str | None = None
+    size: tuple[int, int] | None = None
+
+
+class NormalizationSpec(StrictModel):
+    mean: tuple[float, ...]
+    std: tuple[float, ...]
+
+
+class PreprocessingSpec(StrictModel):
+    resize: ResizeSpec | None = None
+    crop: CropSpec | None = None
+    normalization: NormalizationSpec | None = None
+    source: str | None = None
+
+
 def _validate_url(value: str | None) -> str | None:
     if value is None:
         return value
@@ -119,6 +166,7 @@ class ModelRecord(StrictModel):
     model_category: NonEmptyStr
     modalities: Annotated[list[Modality], Field(min_length=1)]
     architecture: NonEmptyStr
+    architecture_details: ArchitectureDetails | None = None
     pretraining_data_summary: NonEmptyStr
     pretraining_strategy: NonEmptyStr
     reported_summary: NonEmptyStr
@@ -131,6 +179,7 @@ class ModelRecord(StrictModel):
     license: str | None
     license_verified: bool
     verification_status: VerificationStatus
+    verification: VerificationBreakdown | None = None
     implementation: ImplementationStatus
     reported_tasks_text: NonEmptyStr
     provenance: Provenance
@@ -154,11 +203,14 @@ class CheckpointRecord(StrictModel):
     license: str | None
     framework: str | None
     input_size: str | None
+    input: InputSpec | None = None
     normalization: str | None
+    preprocessing: PreprocessingSpec | None = None
     embedding_dim: int | None
     sha256: str | None
     source_commit: str | None
     verification_status: VerificationStatus
+    verification: VerificationBreakdown | None = None
     last_verified: str | None
     provenance: Provenance
     notes: list[str]

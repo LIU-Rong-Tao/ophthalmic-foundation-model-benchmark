@@ -1,5 +1,72 @@
 {
   "$defs": {
+    "ArchitectureDetails": {
+      "additionalProperties": false,
+      "properties": {
+        "encoder_family": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Encoder Family"
+        },
+        "encoder_variant": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Encoder Variant"
+        },
+        "patch_size": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Patch Size"
+        },
+        "pretraining_objective": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pretraining Objective"
+        },
+        "runtime_component": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Runtime Component"
+        }
+      },
+      "title": "ArchitectureDetails",
+      "type": "object"
+    },
     "ImplementationStatus": {
       "additionalProperties": false,
       "properties": {
@@ -71,6 +138,101 @@
         "imported_at"
       ],
       "title": "Provenance",
+      "type": "object"
+    },
+    "VerificationBreakdown": {
+      "additionalProperties": false,
+      "properties": {
+        "paper": {
+          "default": "pending",
+          "enum": [
+            "pending",
+            "verified",
+            "blocked",
+            "not_applicable"
+          ],
+          "title": "Paper",
+          "type": "string"
+        },
+        "code": {
+          "default": "pending",
+          "enum": [
+            "pending",
+            "verified",
+            "blocked",
+            "not_applicable"
+          ],
+          "title": "Code",
+          "type": "string"
+        },
+        "checkpoint_url": {
+          "default": "pending",
+          "enum": [
+            "pending",
+            "verified",
+            "blocked",
+            "not_applicable"
+          ],
+          "title": "Checkpoint Url",
+          "type": "string"
+        },
+        "checkpoint_file": {
+          "default": "pending",
+          "enum": [
+            "pending",
+            "verified",
+            "blocked",
+            "not_applicable"
+          ],
+          "title": "Checkpoint File",
+          "type": "string"
+        },
+        "license": {
+          "default": "pending",
+          "enum": [
+            "pending",
+            "verified",
+            "blocked",
+            "not_applicable"
+          ],
+          "title": "License",
+          "type": "string"
+        },
+        "preprocessing": {
+          "default": "pending",
+          "enum": [
+            "pending",
+            "verified",
+            "blocked",
+            "not_applicable"
+          ],
+          "title": "Preprocessing",
+          "type": "string"
+        },
+        "adapter": {
+          "default": "pending",
+          "enum": [
+            "pending",
+            "verified",
+            "blocked",
+            "not_applicable"
+          ],
+          "title": "Adapter",
+          "type": "string"
+        },
+        "feature_output": {
+          "default": "pending",
+          "enum": [
+            "pending",
+            "verified",
+            "blocked",
+            "not_applicable"
+          ],
+          "title": "Feature Output",
+          "type": "string"
+        }
+      },
+      "title": "VerificationBreakdown",
       "type": "object"
     }
   },
@@ -157,6 +319,17 @@
       "minLength": 1,
       "title": "Architecture",
       "type": "string"
+    },
+    "architecture_details": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ArchitectureDetails"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
     },
     "pretraining_data_summary": {
       "minLength": 1,
@@ -265,6 +438,17 @@
       ],
       "title": "Verification Status",
       "type": "string"
+    },
+    "verification": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/VerificationBreakdown"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
     },
     "implementation": {
       "$ref": "#/$defs/ImplementationStatus"

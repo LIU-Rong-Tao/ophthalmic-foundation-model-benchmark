@@ -1,5 +1,164 @@
 {
   "$defs": {
+    "CropSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Type"
+        },
+        "size": {
+          "anyOf": [
+            {
+              "maxItems": 2,
+              "minItems": 2,
+              "prefixItems": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "integer"
+                }
+              ],
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Size"
+        }
+      },
+      "title": "CropSpec",
+      "type": "object"
+    },
+    "InputSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "color_space": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Color Space"
+        },
+        "size": {
+          "anyOf": [
+            {
+              "maxItems": 2,
+              "minItems": 2,
+              "prefixItems": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "integer"
+                }
+              ],
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Size"
+        }
+      },
+      "title": "InputSpec",
+      "type": "object"
+    },
+    "NormalizationSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "mean": {
+          "items": {
+            "type": "number"
+          },
+          "title": "Mean",
+          "type": "array"
+        },
+        "std": {
+          "items": {
+            "type": "number"
+          },
+          "title": "Std",
+          "type": "array"
+        }
+      },
+      "required": [
+        "mean",
+        "std"
+      ],
+      "title": "NormalizationSpec",
+      "type": "object"
+    },
+    "PreprocessingSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "resize": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ResizeSpec"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "crop": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CropSpec"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "normalization": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/NormalizationSpec"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "source": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source"
+        }
+      },
+      "title": "PreprocessingSpec",
+      "type": "object"
+    },
     "Provenance": {
       "additionalProperties": false,
       "properties": {
@@ -29,6 +188,142 @@
         "imported_at"
       ],
       "title": "Provenance",
+      "type": "object"
+    },
+    "ResizeSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "size": {
+          "anyOf": [
+            {
+              "maxItems": 2,
+              "minItems": 2,
+              "prefixItems": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "integer"
+                }
+              ],
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Size"
+        },
+        "interpolation": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Interpolation"
+        }
+      },
+      "title": "ResizeSpec",
+      "type": "object"
+    },
+    "VerificationBreakdown": {
+      "additionalProperties": false,
+      "properties": {
+        "paper": {
+          "default": "pending",
+          "enum": [
+            "pending",
+            "verified",
+            "blocked",
+            "not_applicable"
+          ],
+          "title": "Paper",
+          "type": "string"
+        },
+        "code": {
+          "default": "pending",
+          "enum": [
+            "pending",
+            "verified",
+            "blocked",
+            "not_applicable"
+          ],
+          "title": "Code",
+          "type": "string"
+        },
+        "checkpoint_url": {
+          "default": "pending",
+          "enum": [
+            "pending",
+            "verified",
+            "blocked",
+            "not_applicable"
+          ],
+          "title": "Checkpoint Url",
+          "type": "string"
+        },
+        "checkpoint_file": {
+          "default": "pending",
+          "enum": [
+            "pending",
+            "verified",
+            "blocked",
+            "not_applicable"
+          ],
+          "title": "Checkpoint File",
+          "type": "string"
+        },
+        "license": {
+          "default": "pending",
+          "enum": [
+            "pending",
+            "verified",
+            "blocked",
+            "not_applicable"
+          ],
+          "title": "License",
+          "type": "string"
+        },
+        "preprocessing": {
+          "default": "pending",
+          "enum": [
+            "pending",
+            "verified",
+            "blocked",
+            "not_applicable"
+          ],
+          "title": "Preprocessing",
+          "type": "string"
+        },
+        "adapter": {
+          "default": "pending",
+          "enum": [
+            "pending",
+            "verified",
+            "blocked",
+            "not_applicable"
+          ],
+          "title": "Adapter",
+          "type": "string"
+        },
+        "feature_output": {
+          "default": "pending",
+          "enum": [
+            "pending",
+            "verified",
+            "blocked",
+            "not_applicable"
+          ],
+          "title": "Feature Output",
+          "type": "string"
+        }
+      },
+      "title": "VerificationBreakdown",
       "type": "object"
     }
   },
@@ -169,6 +464,17 @@
       ],
       "title": "Input Size"
     },
+    "input": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/InputSpec"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
     "normalization": {
       "anyOf": [
         {
@@ -179,6 +485,17 @@
         }
       ],
       "title": "Normalization"
+    },
+    "preprocessing": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/PreprocessingSpec"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
     },
     "embedding_dim": {
       "anyOf": [
@@ -222,6 +539,17 @@
       ],
       "title": "Verification Status",
       "type": "string"
+    },
+    "verification": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/VerificationBreakdown"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
     },
     "last_verified": {
       "anyOf": [
