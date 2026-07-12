@@ -9,10 +9,9 @@ from pathlib import Path
 
 import yaml
 
+from ._version import __version__
 from .registry.loader import load_registry as _load_registry_from_path
 from .registry.schemas import CheckpointRecord, ModelRecord
-
-PACKAGE_VERSION = "0.1.1"
 
 
 @dataclass(frozen=True)
@@ -69,7 +68,7 @@ def load_registry(registry_root: Path | str | None = None) -> RegistrySnapshot:
     return RegistrySnapshot(
         models=tuple(models),
         checkpoints=tuple(checkpoints),
-        package_version=PACKAGE_VERSION,
+        package_version=__version__,
         schema_version=_schema_version(models, checkpoints),
         registry_source=source,
     )

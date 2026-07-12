@@ -27,6 +27,16 @@ ophbench catalog build
 
 模型总览见 [MODEL_ZOO.md](MODEL_ZOO.md)。第三方权重默认不在本仓库重新分发，用户须从官方来源获取并遵守各自许可证，详见 [权重政策](docs/weight_policy.md)。开发路线见 [Roadmap](docs/roadmap.md)。
 
+## Frozen Feature Transfer v0.1
+
+`protocols/frozen_feature_transfer_v0_1.yaml` 定义冻结特征迁移评测的唯一协议。第一版仅以
+RETFound CFP + APTOS2019 验证协议可执行性和可复现性，角色为
+`pilot_protocol_validation`，不得据此形成模型优劣或患者级结论。
+
+协议固定模型原生预处理、冻结 embedding、Logistic Regression、validation Macro-F1
+选取 C、test 最终评估一次，以及 image-level bootstrap 95% CI。运行产物默认保存在本地
+忽略目录，不提交医学图像、特征、预测或模型权重。
+
 ## RETFound CFP adapter
 
 注册表功能保持轻量；仅在运行 adapter 时安装可选依赖：

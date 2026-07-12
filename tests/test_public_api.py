@@ -1,7 +1,10 @@
+import re
 from pathlib import Path
 
 import ophbench
 from ophbench import get_registry_info, list_checkpoints, list_models, load_registry
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_public_api_loads_packaged_registry_without_source_path(monkeypatch, tmp_path: Path):
@@ -10,7 +13,7 @@ def test_public_api_loads_packaged_registry_without_source_path(monkeypatch, tmp
 
     assert snapshot.model_count == 15
     assert snapshot.checkpoint_count == 27
-    assert snapshot.package_version == "0.1.1"
+    assert snapshot.package_version == "0.2.0"
     assert snapshot.schema_version == "1.0"
     assert snapshot.registry_source == "package:ophbench/_registry_data"
 
@@ -46,6 +49,13 @@ def test_public_exports_are_explicit():
         "load_adapter",
         "load_registry",
     }
+
+
+def test_package_version_has_one_consistent_value():
+    pyproject_text = (ROOT / "pyproject.toml").read_text(encoding="utf-8")
+    declared = re.search(r'^version = "([^"]+)"$', pyproject_text, re.MULTILINE).group(1)
+    snapshot = ophbench.load_registry(ROOT / "registry")
+    assert declared == ophbench.__version__ == snapshot.package_version
 
 
 def test_packaged_registry_copy_matches_authoritative_yaml():
