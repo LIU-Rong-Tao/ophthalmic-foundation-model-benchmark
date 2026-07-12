@@ -1,0 +1,34 @@
+schema_version: "1.0"
+model_id: example-model
+model_name: Example Model
+year: null
+publication_type: preprint
+venue: unknown
+model_category: 眼科视觉基础模型
+modalities: [CFP]
+architecture: 待核验
+pretraining_data_summary: 待核验
+pretraining_strategy: 待核验
+reported_summary: 待核验
+paper_url: null
+code_url: null
+code_available: false
+capabilities: [feature_extraction]
+benchmark_tracks: []
+runtime_phase: catalog_only
+license: null
+license_verified: false
+verification_status: seed_unverified
+implementation:
+  adapter_status: not_started
+  smoke_test_status: not_run
+  benchmark_status: not_run
+reported_tasks_text: 待核验
+provenance:
+  source_file: manual_submission
+  source_sheet: model
+  source_row: 1
+  imported_at: "2026-01-01T00:00:00Z"
+notes:
+  - 官方预处理说明：待核验
+  - 特征提取能力：待核验

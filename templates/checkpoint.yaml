@@ -1,0 +1,26 @@
+schema_version: "1.0"
+checkpoint_id: example-model-default
+model_id: example-model
+checkpoint_name: Default
+modalities: [CFP]
+weight_url: null
+provider: unknown
+access_type: unknown
+requires_auth: false
+redistribution_allowed: unknown
+license: null
+framework: PyTorch
+input_size: null
+normalization: null
+embedding_dim: null
+sha256: null
+source_commit: null
+verification_status: seed_unverified
+last_verified: null
+provenance:
+  source_file: manual_submission
+  source_sheet: checkpoint
+  source_row: 1
+  imported_at: "2026-01-01T00:00:00Z"
+notes:
+  - 权重入口、访问条件、官方预处理与特征维度待核验。
