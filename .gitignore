@@ -217,6 +217,10 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
+# Local checkpoint probes and downloaded model assets
+artifacts/checkpoint_access_audit/
+model_cache/
+
 # =========================
 # Ophthalmic FM Benchmark
 # =========================
