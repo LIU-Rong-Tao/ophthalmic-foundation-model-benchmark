@@ -269,6 +269,9 @@ results/intermediate/
 # Checkpoint provenance audit run outputs (keep evidence configuration tracked)
 audits/checkpoint_provenance/*/
 
+# Derived checkpoint download plans
+artifacts/checkpoint_download/
+
 # Large image files
 *.svs
 *.ndpi
