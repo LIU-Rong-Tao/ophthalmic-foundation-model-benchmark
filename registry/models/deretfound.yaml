@@ -1,6 +1,6 @@
 schema_version: '1.0'
 model_id: deretfound
-model_name: DERETFound
+model_name: RETFound-DE
 year: 2025
 publication_type: journal
 venue: Nature Biomedical Engineering
@@ -21,7 +21,7 @@ benchmark_tracks: []
 runtime_phase: phase1_image_encoder
 license: null
 license_verified: false
-verification_status: seed_unverified
+verification_status: partially_verified
 implementation:
   adapter_status: not_started
   smoke_test_status: not_run
@@ -33,4 +33,14 @@ provenance:
   source_row: 16
   imported_at: '2026-07-11T09:30:27Z'
 notes:
-- 'Original modality text: CFP'
+- The official repository names the model RETFound-DE; DERETFound remains the stable registry model_id.
+- Zenodo record 13340936 identifies the deposited artifacts as CC BY 4.0.
+verification:
+  paper: verified
+  code: verified
+  checkpoint_url: verified
+  checkpoint_file: verified
+  license: pending
+  preprocessing: pending
+  adapter: pending
+  feature_output: pending

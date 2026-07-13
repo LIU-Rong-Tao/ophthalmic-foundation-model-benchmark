@@ -8,20 +8,31 @@ weight_url: https://github.com/justinengelmann/RETFound_Green/releases/tag/v0.1
 provider: github_release
 access_type: open
 requires_auth: false
-redistribution_allowed: unknown
-license: null
+redistribution_allowed: 'yes'
+license: CNCRL
 framework: null
 input_size: null
 normalization: null
 embedding_dim: null
 sha256: null
 source_commit: null
-verification_status: seed_unverified
-last_verified: null
+verification_status: partially_verified
+last_verified: '2026-07-13'
 provenance:
   source_file: ophthalmic_models_seed_v0.xlsx
   source_sheet: 眼科大模型
   source_row: 8
   imported_at: '2026-07-11T09:30:27Z'
 notes:
-- Seed metadata only; URL and redistribution terms have not been verified.
+- Official README states that this repository contains the model weights; the repository CNCRL permits use, modification, and sharing only for non-commercial research.
+- Redistribution requires attribution and this licence or another recognised non-commercial licence; industry-involved projects require prior written permission.
+artifact_type: foundation_encoder
+verification:
+  paper: verified
+  code: verified
+  checkpoint_url: verified
+  checkpoint_file: verified
+  license: verified
+  preprocessing: pending
+  adapter: pending
+  feature_output: pending

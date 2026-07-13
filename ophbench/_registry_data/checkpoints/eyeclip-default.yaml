@@ -12,7 +12,7 @@ modalities:
 - external_eye
 - slit_lamp
 - specular_microscopy
-- CT
+- corneal_photography
 - RetCam
 - text
 weight_url: https://drive.google.com/file/d/1kWpbDqFCFt4j8RkYqacV4nl-aCKZfqZr/view?usp=sharing
@@ -21,18 +21,37 @@ access_type: open
 requires_auth: false
 redistribution_allowed: unknown
 license: null
-framework: null
-input_size: null
-normalization: null
-embedding_dim: null
+framework: PyTorch
+input_size: 224x224 RGB
+normalization: CLIP mean=(0.48145466,0.4578275,0.40821073), std=(0.26862954,0.26130258,0.27577711)
+embedding_dim: 512
 sha256: null
 source_commit: null
-verification_status: seed_unverified
-last_verified: null
+verification_status: partially_verified
+last_verified: '2026-07-13'
 provenance:
   source_file: ophthalmic_models_seed_v0.xlsx
   source_sheet: 眼科大模型
   source_row: 4
   imported_at: '2026-07-11T09:30:27Z'
 notes:
-- Seed metadata only; URL and redistribution terms have not been verified.
+- Official README lists 11 image modalities; corneal photography replaces the seed spreadsheet's erroneous CT entry.
+- Official repository announced updated weights in 2026-02 after fixing a corrupted text encoder.
+- The current official Google Drive file ID is unchanged; the downloaded file is named eyeclip.pt (2,142,213,487 bytes).
+- Downloaded after the 2026-02 update. Google Drive exposes neither a stable revision nor a provider checksum, so exact provider-version matching remains unverified.
+- Architecture confirmed without model execution using torch.load(weights_only=True) with FakeTensorMode.
+artifact_type: vision_language_model
+verification:
+  paper: verified
+  code: verified
+  checkpoint_url: verified
+  checkpoint_file: verified
+  license: pending
+  preprocessing: verified
+  adapter: pending
+  feature_output: pending
+input:
+  color_space: RGB
+  size:
+  - 224
+  - 224

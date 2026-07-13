@@ -1,7 +1,7 @@
 schema_version: '1.0'
 checkpoint_id: preti-default
 model_id: preti
-checkpoint_name: Default
+checkpoint_name: preti-vitb
 modalities:
 - CFP
 weight_url: https://drive.google.com/file/d/1mEFm3bxSPPOm4bLPC9Ey64oeq-6F0S0G/view?usp=drive_link
@@ -10,18 +10,29 @@ access_type: open
 requires_auth: false
 redistribution_allowed: unknown
 license: null
-framework: null
+framework: PyTorch
 input_size: null
 normalization: null
 embedding_dim: null
 sha256: null
 source_commit: null
-verification_status: seed_unverified
-last_verified: null
+verification_status: partially_verified
+last_verified: '2026-07-13'
 provenance:
   source_file: ophthalmic_models_seed_v0.xlsx
   source_sheet: 眼科大模型
   source_row: 14
   imported_at: '2026-07-11T09:30:27Z'
 notes:
-- Seed metadata only; URL and redistribution terms have not been verified.
+- Official ViT-Base checkpoint trained on paired fundus images with age, gender, ROI masks and laterality.
+- downstream_image_only_usage=unverified.
+artifact_type: foundation_encoder
+verification:
+  paper: verified
+  code: verified
+  checkpoint_url: verified
+  checkpoint_file: verified
+  license: pending
+  preprocessing: pending
+  adapter: pending
+  feature_output: pending

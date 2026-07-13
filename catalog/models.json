@@ -4,7 +4,7 @@
     {
       "schema_version": "1.0",
       "model_id": "deretfound",
-      "model_name": "DERETFound",
+      "model_name": "RETFound-DE",
       "year": 2025,
       "publication_type": "journal",
       "venue": "Nature Biomedical Engineering",
@@ -28,8 +28,17 @@
       "runtime_phase": "phase1_image_encoder",
       "license": null,
       "license_verified": false,
-      "verification_status": "seed_unverified",
-      "verification": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "pending",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
       "implementation": {
         "adapter_status": "not_started",
         "smoke_test_status": "not_run",
@@ -43,7 +52,8 @@
         "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
-        "Original modality text: CFP"
+        "The official repository names the model RETFound-DE; DERETFound remains the stable registry model_id.",
+        "Zenodo record 13340936 identifies the deposited artifacts as CC BY 4.0."
       ]
     },
     {
@@ -64,12 +74,18 @@
         "external_eye",
         "slit_lamp",
         "specular_microscopy",
-        "CT",
+        "corneal_photography",
         "RetCam",
         "text"
       ],
-      "architecture": "ViT-Large/16图像编码器 + 文本编码器",
-      "architecture_details": null,
+      "architecture": "CLIP ViT-B/32 图像编码器 + Transformer 文本编码器",
+      "architecture_details": {
+        "encoder_family": "CLIP ViT",
+        "encoder_variant": "ViT-B/32",
+        "patch_size": 32,
+        "pretraining_objective": "image-image and image-text contrastive learning",
+        "runtime_component": "vision-language model"
+      },
       "pretraining_data_summary": "278万图像 + 11180份血管造影报告；来自128554名患者、227家机构",
       "pretraining_strategy": "联合训练：MIM + image-image contrastive learning + image-text contrastive learning",
       "reported_summary": "综合多模态和视觉语言优势；零样本、少样本、全监督微调均表现强；覆盖UKB等下游任务。",
@@ -87,8 +103,17 @@
       "runtime_phase": "phase2_vision_language",
       "license": null,
       "license_verified": false,
-      "verification_status": "seed_unverified",
-      "verification": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "pending",
+        "preprocessing": "verified",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
       "implementation": {
         "adapter_status": "not_started",
         "smoke_test_status": "not_run",
@@ -102,7 +127,9 @@
         "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
-        "Original modality text: 11种眼科影像（CFP、FFA、SLP、ICGA、OUS、OCT、SM、FAF、EEP、CT、RetCam) + 结构化临床报告"
+        "Official README lists 11 image modalities; corneal photography replaces the seed spreadsheet's erroneous CT entry.",
+        "Official repository announced updated weights in 2026-02 after fixing a corrupted text encoder.",
+        "Safe state-dict inspection of the downloaded 2026 checkpoint found visual.conv1.weight=(768,3,32,32), 12 visual transformer blocks, visual projection 768x512, confirming ViT-B/32 with 512-dimensional joint embeddings."
       ]
     },
     {
@@ -135,8 +162,17 @@
       "runtime_phase": "phase2_vision_language",
       "license": null,
       "license_verified": false,
-      "verification_status": "seed_unverified",
-      "verification": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "pending",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
       "implementation": {
         "adapter_status": "not_started",
         "smoke_test_status": "not_run",
@@ -160,11 +196,11 @@
       "year": 2025,
       "publication_type": "journal",
       "venue": "Cell Reports Medicine",
-      "model_category": "眼科视觉基础模型",
+      "model_category": "OCT 不确定性分类模型（公开权重为任务 checkpoint）",
       "modalities": [
         "OCT"
       ],
-      "architecture": "RETFound ViT-Large/16编码器 + LoRA + 基于证据学习的Dirichlet不确定性分类器",
+      "architecture": "ViT-Large/16 + 16 类 OCT 分类头（Dirichlet evidence output）",
       "architecture_details": null,
       "pretraining_data_summary": "使用 102,468张有标签OCT图像，来源于汕头国际眼科中心",
       "pretraining_strategy": "冻结RETFound-OCT主干，通过LoRA进行参数高效监督微调，并使用显式疾病标签训练Dirichlet证据分类器；在验证集上确定不确定性阈值，将高不确定性样本转交医生复核。",
@@ -181,8 +217,17 @@
       "runtime_phase": "phase1_specialized",
       "license": null,
       "license_verified": false,
-      "verification_status": "seed_unverified",
-      "verification": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "pending",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
       "implementation": {
         "adapter_status": "not_started",
         "smoke_test_status": "not_run",
@@ -196,7 +241,8 @@
         "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
-        "Original modality text: OCT"
+        "Official inference.py constructs vit_large_patch16 with input_size=224 and nb_classes=16, then loads FMUE.pth as a full classification model.",
+        "Reuse as a generic foundation encoder or frozen-feature extractor has not been verified."
       ]
     },
     {
@@ -209,7 +255,7 @@
       "model_category": "视觉-语言眼科基础模型",
       "modalities": [
         "CFP",
-        "OCT",
+        "FFA",
         "text"
       ],
       "architecture": "ResNet-50图像编码器 + BioClinicalBERT文本编码器 + 视觉文本投影头 + 多头交叉注意力知识修订模块",
@@ -230,8 +276,17 @@
       "runtime_phase": "phase2_vision_language",
       "license": null,
       "license_verified": false,
-      "verification_status": "seed_unverified",
-      "verification": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "pending",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
       "implementation": {
         "adapter_status": "not_started",
         "smoke_test_status": "not_run",
@@ -245,7 +300,8 @@
         "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
-        "Original modality text: CFP、OCT、眼科专家描述文本"
+        "Official executable directories and released checkpoints are separated into KeepFIT-CFP and KeepFIT-FFA.",
+        "MM-Retinal contains OCT data, but no released OCT-input KeepFIT checkpoint is listed; OCT is therefore not declared as a supported checkpoint input."
       ]
     },
     {
@@ -258,8 +314,7 @@
       "model_category": "多模态眼科视觉基础模型",
       "modalities": [
         "OCT",
-        "SLO",
-        "retinal_layer_pseudolabels"
+        "SLO"
       ],
       "architecture": "MultiMAE式多模态掩码自编码器：共享ViT编码器 + 模态特异性线性投影层 + 模态特异性Transformer解码器",
       "architecture_details": null,
@@ -278,8 +333,17 @@
       "runtime_phase": "phase1_image_encoder",
       "license": null,
       "license_verified": false,
-      "verification_status": "seed_unverified",
-      "verification": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "pending",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
       "implementation": {
         "adapter_status": "not_started",
         "smoke_test_status": "not_run",
@@ -293,7 +357,8 @@
         "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
-        "Original modality text: OCT、SLO、Retinal Layer Pseudo-labels"
+        "Runtime input contract uses paired OCT B-scan and SLO (official wrapper modalities='bscan-slo').",
+        "Retinal-layer pseudolabels are a pretraining supervision signal, not a user input modality."
       ]
     },
     {
@@ -307,7 +372,7 @@
       "modalities": [
         "CFP"
       ],
-      "architecture": "ViT-S或ViT-B编码器 + ViT-S解码器 + Learnable Metadata Embedding（LME）+ Retina-Aware Adaptive Masking",
+      "architecture": "PRETI ViT-Base + Learnable Metadata Embedding + Retina-Aware Adaptive Masking",
       "architecture_details": null,
       "pretraining_data_summary": "共 1,017,549张CFP，来自UK Biobank",
       "pretraining_strategy": "患者级图像对重建 + 视网膜区域自适应掩码 + 元数据引导联合学习",
@@ -323,8 +388,17 @@
       "runtime_phase": "phase1_image_encoder",
       "license": null,
       "license_verified": false,
-      "verification_status": "seed_unverified",
-      "verification": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "pending",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
       "implementation": {
         "adapter_status": "not_started",
         "smoke_test_status": "not_run",
@@ -338,7 +412,9 @@
         "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
-        "Original modality text: CFP"
+        "Official released checkpoint variant is preti-vitb (ViT-Base).",
+        "Pretraining requires paired CFP (left/right or self-pair), age, gender, ROI mask, laterality and patient/exam identifiers.",
+        "Whether the released checkpoint supports downstream single-image-only use without metadata has not been verified."
       ]
     },
     {
@@ -368,8 +444,17 @@
       "runtime_phase": "phase2_vision_language",
       "license": null,
       "license_verified": false,
-      "verification_status": "seed_unverified",
-      "verification": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "pending",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
       "implementation": {
         "adapter_status": "not_started",
         "smoke_test_status": "not_run",
@@ -427,7 +512,7 @@
         "paper": "verified",
         "code": "verified",
         "checkpoint_url": "verified",
-        "checkpoint_file": "pending",
+        "checkpoint_file": "verified",
         "license": "pending",
         "preprocessing": "pending",
         "adapter": "verified",
@@ -477,8 +562,17 @@
       "runtime_phase": "phase1_image_encoder",
       "license": null,
       "license_verified": false,
-      "verification_status": "seed_unverified",
-      "verification": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "pending",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
       "implementation": {
         "adapter_status": "not_started",
         "smoke_test_status": "not_run",
@@ -525,8 +619,17 @@
       "runtime_phase": "phase2_vision_language",
       "license": null,
       "license_verified": false,
-      "verification_status": "seed_unverified",
-      "verification": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "pending",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
       "implementation": {
         "adapter_status": "not_started",
         "smoke_test_status": "not_run",
@@ -572,8 +675,17 @@
       "runtime_phase": "phase2_vision_language",
       "license": null,
       "license_verified": false,
-      "verification_status": "seed_unverified",
-      "verification": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "pending",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
       "implementation": {
         "adapter_status": "not_started",
         "smoke_test_status": "not_run",
@@ -619,8 +731,17 @@
       "runtime_phase": "phase2_vision_language",
       "license": null,
       "license_verified": false,
-      "verification_status": "seed_unverified",
-      "verification": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "pending",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
       "implementation": {
         "adapter_status": "not_started",
         "smoke_test_status": "not_run",
@@ -673,8 +794,17 @@
       "runtime_phase": "phase1_image_encoder",
       "license": null,
       "license_verified": false,
-      "verification_status": "seed_unverified",
-      "verification": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "pending",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
       "implementation": {
         "adapter_status": "not_started",
         "smoke_test_status": "not_run",
@@ -701,12 +831,6 @@
       "model_category": "眼科视觉-语言基础模型",
       "modalities": [
         "CFP",
-        "OCT",
-        "FFA",
-        "MRI",
-        "CT",
-        "PET",
-        "X_ray",
         "text"
       ],
       "architecture": "EVA-02/CLIP视觉编码器 + 体征分类Vision Adapter + Vision Projector + LLaMA-7B",
@@ -725,8 +849,17 @@
       "runtime_phase": "phase2_vision_language",
       "license": null,
       "license_verified": false,
-      "verification_status": "seed_unverified",
-      "verification": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "pending",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
       "implementation": {
         "adapter_status": "not_started",
         "smoke_test_status": "not_run",
@@ -740,7 +873,7 @@
         "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
-        "Original modality text: 自然图像与多类医学影像（CT、FA、CFP、MRI、OCT、PET、X-ray）、临床描述, 医患对话文本"
+        "Official code and MMFundus describe fundus-image input with text/dialogue supervision; the seed spreadsheet's OCT/FFA/MRI/CT/PET/X-ray entries were pretraining-source categories, not supported checkpoint input modalities."
       ]
     }
   ]

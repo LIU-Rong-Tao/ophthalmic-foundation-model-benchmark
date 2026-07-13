@@ -54,4 +54,4 @@ def test_retfound_card_exposes_checkpoint_level_evidence(tmp_path: Path):
     assert "`retfound-cfp` / CFP" in content
     assert "`retfound-oct` / OCT" in content
     assert "embedding 维度 1024" in content
-    assert "| Checkpoint 文件 | 待核验 |" in content
+    assert "| 官方 Checkpoint 文件 | 已核验 |" in content

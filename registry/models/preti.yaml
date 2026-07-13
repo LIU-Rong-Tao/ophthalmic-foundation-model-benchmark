@@ -7,8 +7,7 @@ venue: MICCAI
 model_category: 眼科视觉基础模型
 modalities:
 - CFP
-architecture: ViT-S或ViT-B编码器 + ViT-S解码器 + Learnable Metadata Embedding（LME）+ Retina-Aware
-  Adaptive Masking
+architecture: PRETI ViT-Base + Learnable Metadata Embedding + Retina-Aware Adaptive Masking
 pretraining_data_summary: 共 1,017,549张CFP，来自UK Biobank
 pretraining_strategy: 患者级图像对重建 + 视网膜区域自适应掩码 + 元数据引导联合学习
 reported_summary: 无需临床报告，利用年龄和性别学习患者特异性表征；在眼病及全身生物标志物预测中表现领先。
@@ -22,7 +21,7 @@ benchmark_tracks: []
 runtime_phase: phase1_image_encoder
 license: null
 license_verified: false
-verification_status: seed_unverified
+verification_status: partially_verified
 implementation:
   adapter_status: not_started
   smoke_test_status: not_run
@@ -34,4 +33,15 @@ provenance:
   source_row: 14
   imported_at: '2026-07-11T09:30:27Z'
 notes:
-- 'Original modality text: CFP'
+- Official released checkpoint variant is preti-vitb (ViT-Base).
+- Pretraining requires paired CFP (left/right or self-pair), age, gender, ROI mask, laterality and patient/exam identifiers.
+- Whether the released checkpoint supports downstream single-image-only use without metadata has not been verified.
+verification:
+  paper: verified
+  code: verified
+  checkpoint_url: verified
+  checkpoint_file: verified
+  license: pending
+  preprocessing: pending
+  adapter: pending
+  feature_output: pending

@@ -16,6 +16,14 @@ EvidenceStatus = Literal["pending", "verified", "blocked", "not_applicable"]
 AccessType = Literal[
     "open", "auth_required", "gated", "application_required", "api_only", "unavailable", "unknown"
 ]
+ArtifactType = Literal[
+    "foundation_encoder",
+    "vision_language_model",
+    "task_checkpoint",
+    "generative_model",
+    "ablation_checkpoint",
+    "multimodal_full_model",
+]
 Provider = Literal[
     "huggingface",
     "google_drive",
@@ -54,6 +62,7 @@ Modality = Literal[
     "external_eye",
     "slit_lamp",
     "specular_microscopy",
+    "corneal_photography",
     "MRI",
     "UBM",
     "CT",
@@ -194,6 +203,7 @@ class CheckpointRecord(StrictModel):
     checkpoint_id: CheckpointIdentifier
     model_id: Identifier
     checkpoint_name: NonEmptyStr
+    artifact_type: ArtifactType | None = None
     modalities: Annotated[list[Modality], Field(min_length=1)]
     weight_url: str | None
     provider: Provider

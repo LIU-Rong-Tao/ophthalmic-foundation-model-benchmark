@@ -351,6 +351,26 @@
       "title": "Checkpoint Name",
       "type": "string"
     },
+    "artifact_type": {
+      "anyOf": [
+        {
+          "enum": [
+            "foundation_encoder",
+            "vision_language_model",
+            "task_checkpoint",
+            "generative_model",
+            "ablation_checkpoint",
+            "multimodal_full_model"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Artifact Type"
+    },
     "modalities": {
       "items": {
         "enum": [
@@ -365,6 +385,7 @@
           "external_eye",
           "slit_lamp",
           "specular_microscopy",
+          "corneal_photography",
           "MRI",
           "UBM",
           "CT",

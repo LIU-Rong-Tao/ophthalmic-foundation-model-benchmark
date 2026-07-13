@@ -7,7 +7,7 @@ venue: MICCAI
 model_category: 视觉-语言眼科基础模型
 modalities:
 - CFP
-- OCT
+- FFA
 - text
 architecture: ResNet-50图像编码器 + BioClinicalBERT文本编码器 + 视觉文本投影头 + 多头交叉注意力知识修订模块
 pretraining_data_summary: FLAIR汇集的37个公开数据集共278,348张CFP及类别标签，加上MM-Retinal中的2,169组CFP专家文本对
@@ -25,7 +25,7 @@ benchmark_tracks: []
 runtime_phase: phase2_vision_language
 license: null
 license_verified: false
-verification_status: seed_unverified
+verification_status: partially_verified
 implementation:
   adapter_status: not_started
   smoke_test_status: not_run
@@ -37,4 +37,14 @@ provenance:
   source_row: 11
   imported_at: '2026-07-11T09:30:27Z'
 notes:
-- 'Original modality text: CFP、OCT、眼科专家描述文本'
+- Official executable directories and released checkpoints are separated into KeepFIT-CFP and KeepFIT-FFA.
+- MM-Retinal contains OCT data, but no released OCT-input KeepFIT checkpoint is listed; OCT is therefore not declared as a supported checkpoint input.
+verification:
+  paper: verified
+  code: verified
+  checkpoint_url: verified
+  checkpoint_file: verified
+  license: pending
+  preprocessing: pending
+  adapter: pending
+  feature_output: pending

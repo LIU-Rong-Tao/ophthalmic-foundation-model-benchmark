@@ -24,7 +24,7 @@ benchmark_tracks: []
 runtime_phase: phase2_vision_language
 license: null
 license_verified: false
-verification_status: seed_unverified
+verification_status: partially_verified
 implementation:
   adapter_status: not_started
   smoke_test_status: not_run
@@ -37,3 +37,12 @@ provenance:
   imported_at: '2026-07-11T09:30:27Z'
 notes:
 - 'Original modality text: CFP、专家文本描述'
+verification:
+  paper: verified
+  code: verified
+  checkpoint_url: verified
+  checkpoint_file: verified
+  license: pending
+  preprocessing: pending
+  adapter: pending
+  feature_output: pending

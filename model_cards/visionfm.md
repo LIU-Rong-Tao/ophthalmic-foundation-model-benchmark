@@ -17,16 +17,16 @@
 
 ## Checkpoint 资产
 
-| Checkpoint | 模态 | 来源 | 访问条件 | 文件核验 | Adapter |
-|---|---|---|---|---|---|
-| `visionfm-external-eye` / External Eye | external_eye | [google_drive](https://drive.google.com/file/d/16zGHTD4ZcGAYW382kKHBw3TU6D1OtvTD/view?usp=sharing) | 登记为开放 | 待核验 | 未验证 |
-| `visionfm-ffa` / FFA | FFA | [google_drive](https://drive.google.com/file/d/128izBUNV00Ojb9w9Dq3GhBvhWqzU-mla/view?usp=sharing) | 登记为开放 | 待核验 | 未验证 |
-| `visionfm-fundus` / Fundus | CFP | [google_drive](https://drive.google.com/file/d/13uWm0a02dCWyARUcrCdHZIcEgRfBmVA4/view?usp=sharing) | 登记为开放 | 待核验 | 未验证 |
-| `visionfm-mri` / MRI | MRI | [google_drive](https://drive.google.com/file/d/1fcfylnOWhfnZHBAKT9pQPufyS5ZYCXu0/view?usp=sharing) | 登记为开放 | 待核验 | 未验证 |
-| `visionfm-oct` / OCT | OCT | [google_drive](https://drive.google.com/file/d/1o6E-ine2QLx2pxap-c77u-SU0FjxwypA/view?usp=sharing) | 登记为开放 | 待核验 | 未验证 |
-| `visionfm-slit-lamp` / Slit Lamp | slit_lamp | [google_drive](https://drive.google.com/file/d/1pemWDkGoZYlqLQ6ooFINktyk8xnv9wY_/view?usp=sharing) | 登记为开放 | 待核验 | 未验证 |
-| `visionfm-ubm` / UBM | UBM | [google_drive](https://drive.google.com/file/d/1q2fVOgFBnWNu1BsXaza1A-OIcCiifNUQ/view?usp=sharing) | 登记为开放 | 待核验 | 未验证 |
-| `visionfm-ultrasound` / Ultrasound | ultrasound | [google_drive](https://drive.google.com/file/d/1IlD0snowxdEVvxmiIBZGR0D9uOcrCT2D/view?usp=sharing) | 登记为开放 | 待核验 | 未验证 |
+| Checkpoint | 资产类型 | 模态 | 来源 | 访问条件 | 官方文件探测 | Adapter |
+|---|---|---|---|---|---|---|
+| `visionfm-external-eye` / External Eye | foundation_encoder | external_eye | [google_drive](https://drive.google.com/file/d/16zGHTD4ZcGAYW382kKHBw3TU6D1OtvTD/view?usp=sharing) | 登记为开放 | 已核验 | 未验证 |
+| `visionfm-ffa` / FFA | foundation_encoder | FFA | [google_drive](https://drive.google.com/file/d/128izBUNV00Ojb9w9Dq3GhBvhWqzU-mla/view?usp=sharing) | 登记为开放 | 已核验 | 未验证 |
+| `visionfm-fundus` / Fundus | foundation_encoder | CFP | [google_drive](https://drive.google.com/file/d/13uWm0a02dCWyARUcrCdHZIcEgRfBmVA4/view?usp=sharing) | 登记为开放 | 已核验 | 未验证 |
+| `visionfm-mri` / MRI | foundation_encoder | MRI | [google_drive](https://drive.google.com/file/d/1fcfylnOWhfnZHBAKT9pQPufyS5ZYCXu0/view?usp=sharing) | 登记为开放 | 已核验 | 未验证 |
+| `visionfm-oct` / OCT | foundation_encoder | OCT | [google_drive](https://drive.google.com/file/d/1o6E-ine2QLx2pxap-c77u-SU0FjxwypA/view?usp=sharing) | 登记为开放 | 已核验 | 未验证 |
+| `visionfm-slit-lamp` / Slit Lamp | foundation_encoder | slit_lamp | [google_drive](https://drive.google.com/file/d/1pemWDkGoZYlqLQ6ooFINktyk8xnv9wY_/view?usp=sharing) | 登记为开放 | 已核验 | 未验证 |
+| `visionfm-ubm` / UBM | foundation_encoder | UBM | [google_drive](https://drive.google.com/file/d/1q2fVOgFBnWNu1BsXaza1A-OIcCiifNUQ/view?usp=sharing) | 登记为开放 | 已核验 | 未验证 |
+| `visionfm-ultrasound` / Ultrasound | foundation_encoder | ultrasound | [google_drive](https://drive.google.com/file/d/1IlD0snowxdEVvxmiIBZGR0D9uOcrCT2D/view?usp=sharing) | 登记为开放 | 已核验 | 未验证 |
 
 ## 输入与原生预处理
 
@@ -84,21 +84,17 @@
 
 | 核验项 | 状态 | 证据/记录 | 最近核验 |
 |---|---|---|---|
-| 论文 | 待核验 | https://ai.nejm.org/doi/abs/10.1056/AIoa2300221 | 尚未登记 |
-| 官方代码 | 待核验 | https://github.com/ABILab-CUHK/VisionFM | 尚未登记 |
-| Checkpoint 入口 | 待核验 | 8 个已登记入口 | 尚未登记 |
-| Checkpoint 文件 | 待核验 | 尚未登记 | 尚未登记 |
-| 许可证 | 待核验 | 尚未登记 | 尚未登记 |
-| 原生预处理 | 待核验 | 尚未登记 | 尚未登记 |
-| Adapter | 待核验 | not_started | 尚未登记 |
-| 特征输出 | 待核验 | not_run | 尚未登记 |
+| 论文 | 已核验 | https://ai.nejm.org/doi/abs/10.1056/AIoa2300221 | 2026-07-13 |
+| 官方代码 | 已核验 | https://github.com/ABILab-CUHK/VisionFM | 2026-07-13 |
+| Checkpoint 入口 | 已核验 | 8 个已登记入口 | 2026-07-13 |
+| 官方 Checkpoint 文件 | 已核验 | 8 个官方文件已完成入口/实际文件探测；本地 SHA256 见 download_manifest.csv | 2026-07-13 |
+| 许可证 | 待核验 | 尚未登记 | 2026-07-13 |
+| 原生预处理 | 待核验 | 尚未登记 | 2026-07-13 |
+| Adapter | 待核验 | not_started | 2026-07-13 |
+| 特征输出 | 待核验 | not_run | 2026-07-13 |
 
 ## 待核验事项
 
-- 论文
-- 官方代码
-- Checkpoint 入口
-- Checkpoint 文件
 - 许可证
 - 原生预处理
 - Adapter

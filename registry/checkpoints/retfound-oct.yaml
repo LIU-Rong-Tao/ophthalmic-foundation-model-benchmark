@@ -16,17 +16,17 @@ normalization: null
 embedding_dim: null
 sha256: null
 source_commit: null
-verification_status: seed_unverified
+verification_status: partially_verified
 verification:
   paper: verified
   code: verified
-  checkpoint_url: pending
-  checkpoint_file: pending
-  license: pending
+  checkpoint_url: verified
+  checkpoint_file: verified
+  license: verified
   preprocessing: pending
   adapter: pending
   feature_output: pending
-last_verified: null
+last_verified: '2026-07-13'
 provenance:
   source_file: ophthalmic_models_seed_v0.xlsx
   source_sheet: 有多个权重的模型
@@ -34,3 +34,4 @@ provenance:
   imported_at: '2026-07-11T09:30:27Z'
 notes:
 - Seed metadata only; URL and redistribution terms have not been verified.
+artifact_type: foundation_encoder

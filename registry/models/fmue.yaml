@@ -4,10 +4,10 @@ model_name: FMUE
 year: 2025
 publication_type: journal
 venue: Cell Reports Medicine
-model_category: 眼科视觉基础模型
+model_category: OCT 不确定性分类模型（公开权重为任务 checkpoint）
 modalities:
 - OCT
-architecture: RETFound ViT-Large/16编码器 + LoRA + 基于证据学习的Dirichlet不确定性分类器
+architecture: ViT-Large/16 + 16 类 OCT 分类头（Dirichlet evidence output）
 pretraining_data_summary: 使用 102,468张有标签OCT图像，来源于汕头国际眼科中心
 pretraining_strategy: 冻结RETFound-OCT主干，通过LoRA进行参数高效监督微调，并使用显式疾病标签训练Dirichlet证据分类器；在验证集上确定不确定性阈值，将高不确定性样本转交医生复核。
 reported_summary: 强调OCT诊断可靠性和不确定性估计；对后续模型置信度、外部泛化分析有方法学价值。
@@ -22,7 +22,7 @@ benchmark_tracks: []
 runtime_phase: phase1_specialized
 license: null
 license_verified: false
-verification_status: seed_unverified
+verification_status: partially_verified
 implementation:
   adapter_status: not_started
   smoke_test_status: not_run
@@ -34,4 +34,14 @@ provenance:
   source_row: 10
   imported_at: '2026-07-11T09:30:27Z'
 notes:
-- 'Original modality text: OCT'
+- Official inference.py constructs vit_large_patch16 with input_size=224 and nb_classes=16, then loads FMUE.pth as a full classification model.
+- Reuse as a generic foundation encoder or frozen-feature extractor has not been verified.
+verification:
+  paper: verified
+  code: verified
+  checkpoint_url: verified
+  checkpoint_file: verified
+  license: pending
+  preprocessing: pending
+  adapter: pending
+  feature_output: pending

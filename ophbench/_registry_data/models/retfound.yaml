@@ -8,16 +8,14 @@ model_category: 眼科视觉基础模型
 modalities:
 - CFP
 - OCT
-architecture: MAE 自监督框架：ViT-Large/16 编码器 + ViT-Small 解码器；下游任务使用 ViT-Large 编码器 + MLP
-  分类头
+architecture: MAE 自监督框架：ViT-Large/16 编码器 + ViT-Small 解码器；下游任务使用 ViT-Large 编码器 + MLP 分类头
 architecture_details:
   encoder_family: vit
   encoder_variant: ViT-Large/16
   patch_size: 16
   pretraining_objective: masked_autoencoding
   runtime_component: image_encoder
-pretraining_data_summary: 自然图像 ImageNet-1k、约90.4万CFP、73.6万OCT；主要来自 MEH-MIDAS，另含 EyePACS
-  和 Kermany 等公开数据
+pretraining_data_summary: 自然图像 ImageNet-1k、约90.4万CFP、73.6万OCT；主要来自 MEH-MIDAS，另含 EyePACS 和 Kermany 等公开数据
 pretraining_strategy: MAE；随机遮挡patch后重建像素
 reported_summary: 在眼科疾病诊断、湿性 AMD 预后预测和 oculomics 全身疾病风险预测中表现优于多种自监督学习基线；具有较强泛化能力和标注效率，可学习视盘、血管、视网膜神经纤维层等视网膜特异结构及病灶表征；但主要用于分类/风险预测，不支持文本生成或视觉定位。
 paper_url: https://www.nature.com/articles/s41586-023-06555-x
@@ -37,7 +35,7 @@ verification:
   paper: verified
   code: verified
   checkpoint_url: verified
-  checkpoint_file: pending
+  checkpoint_file: verified
   license: pending
   preprocessing: pending
   adapter: verified

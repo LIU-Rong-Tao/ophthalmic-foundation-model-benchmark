@@ -17,9 +17,9 @@
 
 ## Checkpoint 资产
 
-| Checkpoint | 模态 | 来源 | 访问条件 | 文件核验 | Adapter |
-|---|---|---|---|---|---|
-| `urfound-default` / Default | CFP, OCT, text | [huggingface](https://huggingface.co/yyyyk/UrFound) | 登记为开放 | 待核验 | 未验证 |
+| Checkpoint | 资产类型 | 模态 | 来源 | 访问条件 | 官方文件探测 | Adapter |
+|---|---|---|---|---|---|---|
+| `urfound-default` / Default | vision_language_model | CFP, OCT, text | [huggingface](https://huggingface.co/yyyyk/UrFound) | 登记为开放 | 已核验 | 未验证 |
 
 ## 输入与原生预处理
 
@@ -42,21 +42,17 @@
 
 | 核验项 | 状态 | 证据/记录 | 最近核验 |
 |---|---|---|---|
-| 论文 | 待核验 | https://link.springer.com/chapter/10.1007/978-3-031-72390-2_70 | 尚未登记 |
-| 官方代码 | 待核验 | https://github.com/yukkai/UrFound | 尚未登记 |
-| Checkpoint 入口 | 待核验 | 1 个已登记入口 | 尚未登记 |
-| Checkpoint 文件 | 待核验 | 尚未登记 | 尚未登记 |
-| 许可证 | 待核验 | 尚未登记 | 尚未登记 |
-| 原生预处理 | 待核验 | 尚未登记 | 尚未登记 |
-| Adapter | 待核验 | not_started | 尚未登记 |
-| 特征输出 | 待核验 | not_run | 尚未登记 |
+| 论文 | 已核验 | https://link.springer.com/chapter/10.1007/978-3-031-72390-2_70 | 2026-07-13 |
+| 官方代码 | 已核验 | https://github.com/yukkai/UrFound | 2026-07-13 |
+| Checkpoint 入口 | 已核验 | 1 个已登记入口 | 2026-07-13 |
+| 官方 Checkpoint 文件 | 已核验 | 1 个官方文件已完成入口/实际文件探测；本地 SHA256 见 download_manifest.csv | 2026-07-13 |
+| 许可证 | 待核验 | 尚未登记 | 2026-07-13 |
+| 原生预处理 | 待核验 | 尚未登记 | 2026-07-13 |
+| Adapter | 待核验 | not_started | 2026-07-13 |
+| 特征输出 | 待核验 | not_run | 2026-07-13 |
 
 ## 待核验事项
 
-- 论文
-- 官方代码
-- Checkpoint 入口
-- Checkpoint 文件
 - 许可证
 - 原生预处理
 - Adapter

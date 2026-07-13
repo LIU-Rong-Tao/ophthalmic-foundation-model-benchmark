@@ -1,7 +1,7 @@
 schema_version: '1.0'
 checkpoint_id: fmue-default
 model_id: fmue
-checkpoint_name: Default
+checkpoint_name: Official 16-class OCT classifier
 modalities:
 - OCT
 weight_url: https://drive.google.com/file/d/1-rdx6VPJNWVwkjamkplEoyUOHNGweUho/view?usp=sharing
@@ -10,18 +10,34 @@ access_type: open
 requires_auth: false
 redistribution_allowed: unknown
 license: null
-framework: null
-input_size: null
+framework: PyTorch
+input_size: 224x224
 normalization: null
 embedding_dim: null
 sha256: null
 source_commit: null
-verification_status: seed_unverified
-last_verified: null
+verification_status: partially_verified
+last_verified: '2026-07-13'
 provenance:
   source_file: ophthalmic_models_seed_v0.xlsx
   source_sheet: 眼科大模型
   source_row: 10
   imported_at: '2026-07-11T09:30:27Z'
 notes:
-- Seed metadata only; URL and redistribution terms have not been verified.
+- Official task checkpoint for 16-class OCT classification; output is converted to Dirichlet evidence probabilities.
+- foundation_encoder_reusable=unverified; feature_extraction_ready=false.
+artifact_type: task_checkpoint
+verification:
+  paper: verified
+  code: verified
+  checkpoint_url: verified
+  checkpoint_file: verified
+  license: pending
+  preprocessing: pending
+  adapter: pending
+  feature_output: pending
+input:
+  color_space: RGB
+  size:
+  - 224
+  - 224

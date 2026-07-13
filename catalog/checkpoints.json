@@ -6,6 +6,7 @@
       "checkpoint_id": "deretfound-pretraining",
       "model_id": "deretfound",
       "checkpoint_name": "Pretraining",
+      "artifact_type": "foundation_encoder",
       "modalities": [
         "CFP"
       ],
@@ -13,8 +14,8 @@
       "provider": "zenodo",
       "access_type": "open",
       "requires_auth": false,
-      "redistribution_allowed": "unknown",
-      "license": null,
+      "redistribution_allowed": "yes",
+      "license": "CC-BY-4.0",
       "framework": null,
       "input_size": null,
       "input": null,
@@ -23,9 +24,18 @@
       "embedding_dim": null,
       "sha256": null,
       "source_commit": null,
-      "verification_status": "seed_unverified",
-      "verification": null,
-      "last_verified": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "verified",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
+      "last_verified": "2026-07-13",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "有多个权重的模型",
@@ -33,7 +43,8 @@
         "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
-        "Seed metadata only; URL and redistribution terms have not been verified."
+        "Official Zenodo record 13340936 declares CC BY 4.0 for the deposited artifacts.",
+        "Provider publishes an MD5 checksum; the catalog records it separately from the local SHA256."
       ]
     },
     {
@@ -41,6 +52,7 @@
       "checkpoint_id": "deretfound-sd-retina",
       "model_id": "deretfound",
       "checkpoint_name": "Stable Diffusion Retina",
+      "artifact_type": "generative_model",
       "modalities": [
         "CFP"
       ],
@@ -48,8 +60,8 @@
       "provider": "zenodo",
       "access_type": "open",
       "requires_auth": false,
-      "redistribution_allowed": "unknown",
-      "license": null,
+      "redistribution_allowed": "yes",
+      "license": "CC-BY-4.0",
       "framework": null,
       "input_size": null,
       "input": null,
@@ -58,9 +70,18 @@
       "embedding_dim": null,
       "sha256": null,
       "source_commit": null,
-      "verification_status": "seed_unverified",
-      "verification": null,
-      "last_verified": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "verified",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
+      "last_verified": "2026-07-13",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "有多个权重的模型",
@@ -68,7 +89,8 @@
         "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
-        "Seed metadata only; URL and redistribution terms have not been verified."
+        "Official Zenodo record 13340936 declares CC BY 4.0 for the deposited artifacts.",
+        "Provider publishes an MD5 checksum; the catalog records it separately from the local SHA256."
       ]
     },
     {
@@ -76,6 +98,7 @@
       "checkpoint_id": "eyeclip-default",
       "model_id": "eyeclip",
       "checkpoint_name": "Default",
+      "artifact_type": "vision_language_model",
       "modalities": [
         "CFP",
         "OCT",
@@ -86,7 +109,7 @@
         "external_eye",
         "slit_lamp",
         "specular_microscopy",
-        "CT",
+        "corneal_photography",
         "RetCam",
         "text"
       ],
@@ -96,17 +119,32 @@
       "requires_auth": false,
       "redistribution_allowed": "unknown",
       "license": null,
-      "framework": null,
-      "input_size": null,
-      "input": null,
-      "normalization": null,
+      "framework": "PyTorch",
+      "input_size": "224x224 RGB",
+      "input": {
+        "color_space": "RGB",
+        "size": [
+          224,
+          224
+        ]
+      },
+      "normalization": "CLIP mean=(0.48145466,0.4578275,0.40821073), std=(0.26862954,0.26130258,0.27577711)",
       "preprocessing": null,
-      "embedding_dim": null,
+      "embedding_dim": 512,
       "sha256": null,
       "source_commit": null,
-      "verification_status": "seed_unverified",
-      "verification": null,
-      "last_verified": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "pending",
+        "preprocessing": "verified",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
+      "last_verified": "2026-07-13",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
@@ -114,7 +152,11 @@
         "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
-        "Seed metadata only; URL and redistribution terms have not been verified."
+        "Official README lists 11 image modalities; corneal photography replaces the seed spreadsheet's erroneous CT entry.",
+        "Official repository announced updated weights in 2026-02 after fixing a corrupted text encoder.",
+        "The current official Google Drive file ID is unchanged; the downloaded file is named eyeclip.pt (2,142,213,487 bytes).",
+        "Downloaded after the 2026-02 update. Google Drive exposes neither a stable revision nor a provider checksum, so exact provider-version matching remains unverified.",
+        "Architecture confirmed without model execution using torch.load(weights_only=True) with FakeTensorMode."
       ]
     },
     {
@@ -122,6 +164,7 @@
       "checkpoint_id": "flair-default",
       "model_id": "flair",
       "checkpoint_name": "Default",
+      "artifact_type": "vision_language_model",
       "modalities": [
         "CFP",
         "text"
@@ -140,9 +183,18 @@
       "embedding_dim": null,
       "sha256": null,
       "source_commit": null,
-      "verification_status": "seed_unverified",
-      "verification": null,
-      "last_verified": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "verified",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
+      "last_verified": "2026-07-13",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
@@ -157,7 +209,8 @@
       "schema_version": "1.0",
       "checkpoint_id": "fmue-default",
       "model_id": "fmue",
-      "checkpoint_name": "Default",
+      "checkpoint_name": "Official 16-class OCT classifier",
+      "artifact_type": "task_checkpoint",
       "modalities": [
         "OCT"
       ],
@@ -167,17 +220,32 @@
       "requires_auth": false,
       "redistribution_allowed": "unknown",
       "license": null,
-      "framework": null,
-      "input_size": null,
-      "input": null,
+      "framework": "PyTorch",
+      "input_size": "224x224",
+      "input": {
+        "color_space": "RGB",
+        "size": [
+          224,
+          224
+        ]
+      },
       "normalization": null,
       "preprocessing": null,
       "embedding_dim": null,
       "sha256": null,
       "source_commit": null,
-      "verification_status": "seed_unverified",
-      "verification": null,
-      "last_verified": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "pending",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
+      "last_verified": "2026-07-13",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
@@ -185,7 +253,8 @@
         "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
-        "Seed metadata only; URL and redistribution terms have not been verified."
+        "Official task checkpoint for 16-class OCT classification; output is converted to Dirichlet evidence probabilities.",
+        "foundation_encoder_reusable=unverified; feature_extraction_ready=false."
       ]
     },
     {
@@ -193,6 +262,7 @@
       "checkpoint_id": "keepfit-ffa-ir-mmretinal-ffa",
       "model_id": "keepfit",
       "checkpoint_name": "FFA-IR + MM-Retinal FFA",
+      "artifact_type": "vision_language_model",
       "modalities": [
         "FFA"
       ],
@@ -210,9 +280,18 @@
       "embedding_dim": null,
       "sha256": null,
       "source_commit": null,
-      "verification_status": "seed_unverified",
-      "verification": null,
-      "last_verified": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "pending",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
+      "last_verified": "2026-07-13",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "有多个权重的模型",
@@ -228,6 +307,7 @@
       "checkpoint_id": "keepfit-flair-mmretinal-cfp",
       "model_id": "keepfit",
       "checkpoint_name": "FLAIR + MM-Retinal CFP",
+      "artifact_type": "vision_language_model",
       "modalities": [
         "CFP"
       ],
@@ -245,9 +325,18 @@
       "embedding_dim": null,
       "sha256": null,
       "source_commit": null,
-      "verification_status": "seed_unverified",
-      "verification": null,
-      "last_verified": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "pending",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
+      "last_verified": "2026-07-13",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "有多个权重的模型",
@@ -263,6 +352,7 @@
       "checkpoint_id": "keepfit-half-flair-mmretinal-cfp",
       "model_id": "keepfit",
       "checkpoint_name": "Half FLAIR + MM-Retinal CFP",
+      "artifact_type": "ablation_checkpoint",
       "modalities": [
         "CFP"
       ],
@@ -280,9 +370,18 @@
       "embedding_dim": null,
       "sha256": null,
       "source_commit": null,
-      "verification_status": "seed_unverified",
-      "verification": null,
-      "last_verified": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "pending",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
+      "last_verified": "2026-07-13",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "有多个权重的模型",
@@ -298,6 +397,7 @@
       "checkpoint_id": "mirage-base",
       "model_id": "mirage",
       "checkpoint_name": "Base",
+      "artifact_type": "multimodal_full_model",
       "modalities": [
         "OCT",
         "SLO"
@@ -307,18 +407,27 @@
       "access_type": "open",
       "requires_auth": false,
       "redistribution_allowed": "unknown",
-      "license": null,
-      "framework": null,
-      "input_size": null,
+      "license": "conflict: github-cc-by-4.0; huggingface-cc-by-nc-nd-4.0",
+      "framework": "PyTorch / safetensors",
+      "input_size": "512x512 paired OCT B-scan + SLO",
       "input": null,
       "normalization": null,
       "preprocessing": null,
       "embedding_dim": null,
       "sha256": null,
       "source_commit": null,
-      "verification_status": "seed_unverified",
-      "verification": null,
-      "last_verified": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "blocked",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
+      "last_verified": "2026-07-13",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "有多个权重的模型",
@@ -326,7 +435,9 @@
         "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
-        "Seed metadata only; URL and redistribution terms have not been verified."
+        "This registry entry points to the official Hugging Face safetensors artifact, not the GitHub Release .pth artifact.",
+        "License conflict: the official GitHub repository states CC BY 4.0, while the Hugging Face model card metadata states CC BY-NC-ND-4.0. Treat the stricter provider terms as controlling until clarified.",
+        "paired_input_required=true; training_supervision includes retinal-layer pseudolabels."
       ]
     },
     {
@@ -334,6 +445,7 @@
       "checkpoint_id": "mirage-large",
       "model_id": "mirage",
       "checkpoint_name": "Large",
+      "artifact_type": "multimodal_full_model",
       "modalities": [
         "OCT",
         "SLO"
@@ -343,18 +455,27 @@
       "access_type": "open",
       "requires_auth": false,
       "redistribution_allowed": "unknown",
-      "license": null,
-      "framework": null,
-      "input_size": null,
+      "license": "conflict: github-cc-by-4.0; huggingface-cc-by-nc-nd-4.0",
+      "framework": "PyTorch / safetensors",
+      "input_size": "512x512 paired OCT B-scan + SLO",
       "input": null,
       "normalization": null,
       "preprocessing": null,
       "embedding_dim": null,
       "sha256": null,
       "source_commit": null,
-      "verification_status": "seed_unverified",
-      "verification": null,
-      "last_verified": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "blocked",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
+      "last_verified": "2026-07-13",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "有多个权重的模型",
@@ -362,14 +483,17 @@
         "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
-        "Seed metadata only; URL and redistribution terms have not been verified."
+        "This registry entry points to the official Hugging Face safetensors artifact, not the GitHub Release .pth artifact.",
+        "License conflict: the official GitHub repository states CC BY 4.0, while the Hugging Face model card metadata states CC BY-NC-ND-4.0. Treat the stricter provider terms as controlling until clarified.",
+        "paired_input_required=true; training_supervision includes retinal-layer pseudolabels."
       ]
     },
     {
       "schema_version": "1.0",
       "checkpoint_id": "preti-default",
       "model_id": "preti",
-      "checkpoint_name": "Default",
+      "checkpoint_name": "preti-vitb",
+      "artifact_type": "foundation_encoder",
       "modalities": [
         "CFP"
       ],
@@ -379,7 +503,7 @@
       "requires_auth": false,
       "redistribution_allowed": "unknown",
       "license": null,
-      "framework": null,
+      "framework": "PyTorch",
       "input_size": null,
       "input": null,
       "normalization": null,
@@ -387,9 +511,18 @@
       "embedding_dim": null,
       "sha256": null,
       "source_commit": null,
-      "verification_status": "seed_unverified",
-      "verification": null,
-      "last_verified": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "pending",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
+      "last_verified": "2026-07-13",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
@@ -397,7 +530,8 @@
         "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
-        "Seed metadata only; URL and redistribution terms have not been verified."
+        "Official ViT-Base checkpoint trained on paired fundus images with age, gender, ROI masks and laterality.",
+        "downstream_image_only_usage=unverified."
       ]
     },
     {
@@ -405,6 +539,7 @@
       "checkpoint_id": "ret-clip-default",
       "model_id": "ret-clip",
       "checkpoint_name": "Default",
+      "artifact_type": "vision_language_model",
       "modalities": [
         "CFP",
         "text"
@@ -423,9 +558,18 @@
       "embedding_dim": null,
       "sha256": null,
       "source_commit": null,
-      "verification_status": "seed_unverified",
-      "verification": null,
-      "last_verified": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "pending",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
+      "last_verified": "2026-07-13",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
@@ -441,6 +585,7 @@
       "checkpoint_id": "retfound-cfp",
       "model_id": "retfound",
       "checkpoint_name": "CFP",
+      "artifact_type": "foundation_encoder",
       "modalities": [
         "CFP"
       ],
@@ -498,12 +643,12 @@
         "code": "verified",
         "checkpoint_url": "verified",
         "checkpoint_file": "verified",
-        "license": "pending",
-        "preprocessing": "verified",
+        "license": "verified",
+        "preprocessing": "pending",
         "adapter": "verified",
         "feature_output": "verified"
       },
-      "last_verified": "2026-07-11",
+      "last_verified": "2026-07-13",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "有多个权重的模型",
@@ -520,6 +665,7 @@
       "checkpoint_id": "retfound-green-v0.1",
       "model_id": "retfound-green",
       "checkpoint_name": "v0.1",
+      "artifact_type": "foundation_encoder",
       "modalities": [
         "CFP"
       ],
@@ -527,8 +673,8 @@
       "provider": "github_release",
       "access_type": "open",
       "requires_auth": false,
-      "redistribution_allowed": "unknown",
-      "license": null,
+      "redistribution_allowed": "yes",
+      "license": "CNCRL",
       "framework": null,
       "input_size": null,
       "input": null,
@@ -537,9 +683,18 @@
       "embedding_dim": null,
       "sha256": null,
       "source_commit": null,
-      "verification_status": "seed_unverified",
-      "verification": null,
-      "last_verified": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "verified",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
+      "last_verified": "2026-07-13",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
@@ -547,7 +702,8 @@
         "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
-        "Seed metadata only; URL and redistribution terms have not been verified."
+        "Official README states that this repository contains the model weights; the repository CNCRL permits use, modification, and sharing only for non-commercial research.",
+        "Redistribution requires attribution and this licence or another recognised non-commercial licence; industry-involved projects require prior written permission."
       ]
     },
     {
@@ -555,6 +711,7 @@
       "checkpoint_id": "retfound-oct",
       "model_id": "retfound",
       "checkpoint_name": "OCT",
+      "artifact_type": "foundation_encoder",
       "modalities": [
         "OCT"
       ],
@@ -572,18 +729,18 @@
       "embedding_dim": null,
       "sha256": null,
       "source_commit": null,
-      "verification_status": "seed_unverified",
+      "verification_status": "partially_verified",
       "verification": {
         "paper": "verified",
         "code": "verified",
-        "checkpoint_url": "pending",
-        "checkpoint_file": "pending",
-        "license": "pending",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "verified",
         "preprocessing": "pending",
         "adapter": "pending",
         "feature_output": "pending"
       },
-      "last_verified": null,
+      "last_verified": "2026-07-13",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "有多个权重的模型",
@@ -599,6 +756,7 @@
       "checkpoint_id": "retizero-default",
       "model_id": "retizero",
       "checkpoint_name": "Default",
+      "artifact_type": "vision_language_model",
       "modalities": [
         "CFP",
         "text"
@@ -617,9 +775,18 @@
       "embedding_dim": null,
       "sha256": null,
       "source_commit": null,
-      "verification_status": "seed_unverified",
-      "verification": null,
-      "last_verified": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "pending",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
+      "last_verified": "2026-07-13",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
@@ -635,6 +802,7 @@
       "checkpoint_id": "urfound-default",
       "model_id": "urfound",
       "checkpoint_name": "Default",
+      "artifact_type": "vision_language_model",
       "modalities": [
         "CFP",
         "OCT",
@@ -654,9 +822,18 @@
       "embedding_dim": null,
       "sha256": null,
       "source_commit": null,
-      "verification_status": "seed_unverified",
-      "verification": null,
-      "last_verified": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "pending",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
+      "last_verified": "2026-07-13",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
@@ -672,6 +849,7 @@
       "checkpoint_id": "vilref-default",
       "model_id": "vilref",
       "checkpoint_name": "Default",
+      "artifact_type": "vision_language_model",
       "modalities": [
         "CFP",
         "text"
@@ -690,9 +868,18 @@
       "embedding_dim": null,
       "sha256": null,
       "source_commit": null,
-      "verification_status": "seed_unverified",
-      "verification": null,
-      "last_verified": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "pending",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
+      "last_verified": "2026-07-13",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
@@ -708,6 +895,7 @@
       "checkpoint_id": "visionfm-external-eye",
       "model_id": "visionfm",
       "checkpoint_name": "External Eye",
+      "artifact_type": "foundation_encoder",
       "modalities": [
         "external_eye"
       ],
@@ -725,9 +913,18 @@
       "embedding_dim": null,
       "sha256": null,
       "source_commit": null,
-      "verification_status": "seed_unverified",
-      "verification": null,
-      "last_verified": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "pending",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
+      "last_verified": "2026-07-13",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "有多个权重的模型",
@@ -743,6 +940,7 @@
       "checkpoint_id": "visionfm-ffa",
       "model_id": "visionfm",
       "checkpoint_name": "FFA",
+      "artifact_type": "foundation_encoder",
       "modalities": [
         "FFA"
       ],
@@ -760,9 +958,18 @@
       "embedding_dim": null,
       "sha256": null,
       "source_commit": null,
-      "verification_status": "seed_unverified",
-      "verification": null,
-      "last_verified": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "pending",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
+      "last_verified": "2026-07-13",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "有多个权重的模型",
@@ -778,6 +985,7 @@
       "checkpoint_id": "visionfm-fundus",
       "model_id": "visionfm",
       "checkpoint_name": "Fundus",
+      "artifact_type": "foundation_encoder",
       "modalities": [
         "CFP"
       ],
@@ -795,9 +1003,18 @@
       "embedding_dim": null,
       "sha256": null,
       "source_commit": null,
-      "verification_status": "seed_unverified",
-      "verification": null,
-      "last_verified": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "pending",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
+      "last_verified": "2026-07-13",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "有多个权重的模型",
@@ -813,6 +1030,7 @@
       "checkpoint_id": "visionfm-mri",
       "model_id": "visionfm",
       "checkpoint_name": "MRI",
+      "artifact_type": "foundation_encoder",
       "modalities": [
         "MRI"
       ],
@@ -830,9 +1048,18 @@
       "embedding_dim": null,
       "sha256": null,
       "source_commit": null,
-      "verification_status": "seed_unverified",
-      "verification": null,
-      "last_verified": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "pending",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
+      "last_verified": "2026-07-13",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "有多个权重的模型",
@@ -848,6 +1075,7 @@
       "checkpoint_id": "visionfm-oct",
       "model_id": "visionfm",
       "checkpoint_name": "OCT",
+      "artifact_type": "foundation_encoder",
       "modalities": [
         "OCT"
       ],
@@ -865,9 +1093,18 @@
       "embedding_dim": null,
       "sha256": null,
       "source_commit": null,
-      "verification_status": "seed_unverified",
-      "verification": null,
-      "last_verified": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "pending",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
+      "last_verified": "2026-07-13",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "有多个权重的模型",
@@ -883,6 +1120,7 @@
       "checkpoint_id": "visionfm-slit-lamp",
       "model_id": "visionfm",
       "checkpoint_name": "Slit Lamp",
+      "artifact_type": "foundation_encoder",
       "modalities": [
         "slit_lamp"
       ],
@@ -900,9 +1138,18 @@
       "embedding_dim": null,
       "sha256": null,
       "source_commit": null,
-      "verification_status": "seed_unverified",
-      "verification": null,
-      "last_verified": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "pending",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
+      "last_verified": "2026-07-13",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "有多个权重的模型",
@@ -918,6 +1165,7 @@
       "checkpoint_id": "visionfm-ubm",
       "model_id": "visionfm",
       "checkpoint_name": "UBM",
+      "artifact_type": "foundation_encoder",
       "modalities": [
         "UBM"
       ],
@@ -935,9 +1183,18 @@
       "embedding_dim": null,
       "sha256": null,
       "source_commit": null,
-      "verification_status": "seed_unverified",
-      "verification": null,
-      "last_verified": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "pending",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
+      "last_verified": "2026-07-13",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "有多个权重的模型",
@@ -953,6 +1210,7 @@
       "checkpoint_id": "visionfm-ultrasound",
       "model_id": "visionfm",
       "checkpoint_name": "Ultrasound",
+      "artifact_type": "foundation_encoder",
       "modalities": [
         "ultrasound"
       ],
@@ -970,9 +1228,18 @@
       "embedding_dim": null,
       "sha256": null,
       "source_commit": null,
-      "verification_status": "seed_unverified",
-      "verification": null,
-      "last_verified": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "pending",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
+      "last_verified": "2026-07-13",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "有多个权重的模型",
@@ -988,14 +1255,9 @@
       "checkpoint_id": "visionunite-default",
       "model_id": "visionunite",
       "checkpoint_name": "Default",
+      "artifact_type": "multimodal_full_model",
       "modalities": [
         "CFP",
-        "OCT",
-        "FFA",
-        "MRI",
-        "CT",
-        "PET",
-        "X_ray",
         "text"
       ],
       "weight_url": "https://drive.google.com/file/d/1kbdpPklCdDxEgxcpsp4OgGjxvxKh5jpV/view?usp=sharing",
@@ -1012,9 +1274,18 @@
       "embedding_dim": null,
       "sha256": null,
       "source_commit": null,
-      "verification_status": "seed_unverified",
-      "verification": null,
-      "last_verified": null,
+      "verification_status": "partially_verified",
+      "verification": {
+        "paper": "verified",
+        "code": "verified",
+        "checkpoint_url": "verified",
+        "checkpoint_file": "verified",
+        "license": "pending",
+        "preprocessing": "pending",
+        "adapter": "pending",
+        "feature_output": "pending"
+      },
+      "last_verified": "2026-07-13",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
@@ -1022,7 +1293,7 @@
         "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
-        "Seed metadata only; URL and redistribution terms have not been verified."
+        "Official code and MMFundus describe fundus-image input with text/dialogue supervision; the seed spreadsheet's OCT/FFA/MRI/CT/PET/X-ray entries were pretraining-source categories, not supported checkpoint input modalities."
       ]
     }
   ]

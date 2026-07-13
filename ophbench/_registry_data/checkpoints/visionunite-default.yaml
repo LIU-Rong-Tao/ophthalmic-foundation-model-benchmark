@@ -4,12 +4,6 @@ model_id: visionunite
 checkpoint_name: Default
 modalities:
 - CFP
-- OCT
-- FFA
-- MRI
-- CT
-- PET
-- X_ray
 - text
 weight_url: https://drive.google.com/file/d/1kbdpPklCdDxEgxcpsp4OgGjxvxKh5jpV/view?usp=sharing
 provider: google_drive
@@ -23,12 +17,22 @@ normalization: null
 embedding_dim: null
 sha256: null
 source_commit: null
-verification_status: seed_unverified
-last_verified: null
+verification_status: partially_verified
+last_verified: '2026-07-13'
 provenance:
   source_file: ophthalmic_models_seed_v0.xlsx
   source_sheet: 眼科大模型
   source_row: 9
   imported_at: '2026-07-11T09:30:27Z'
 notes:
-- Seed metadata only; URL and redistribution terms have not been verified.
+- Official code and MMFundus describe fundus-image input with text/dialogue supervision; the seed spreadsheet's OCT/FFA/MRI/CT/PET/X-ray entries were pretraining-source categories, not supported checkpoint input modalities.
+artifact_type: multimodal_full_model
+verification:
+  paper: verified
+  code: verified
+  checkpoint_url: verified
+  checkpoint_file: verified
+  license: pending
+  preprocessing: pending
+  adapter: pending
+  feature_output: pending

@@ -177,7 +177,7 @@ def _model_card(model, checkpoints):
         ("paper", "论文"),
         ("code", "官方代码"),
         ("checkpoint_url", "Checkpoint 入口"),
-        ("checkpoint_file", "Checkpoint 文件"),
+        ("checkpoint_file", "官方 Checkpoint 文件"),
         ("license", "许可证"),
         ("preprocessing", "原生预处理"),
         ("adapter", "Adapter"),
@@ -196,10 +196,10 @@ def _model_card(model, checkpoints):
         "paper": model.paper_url or "尚未登记",
         "code": model.code_url or "尚未登记",
         "checkpoint_url": f"{sum(bool(item.weight_url) for item in checkpoints)} 个已登记入口",
-        "checkpoint_file": ", ".join(
-            f"{item.checkpoint_id}:{item.sha256[:12]}…" for item in checkpoints if item.sha256
-        )
-        or "尚未登记",
+        "checkpoint_file": (
+            f"{sum(_evidence(item, 'checkpoint_file') == 'verified' for item in checkpoints)} "
+            "个官方文件已完成入口/实际文件探测；本地 SHA256 见 download_manifest.csv"
+        ),
         "license": model.license or "尚未登记",
         "preprocessing": ", ".join(preprocessing_sources) or "尚未登记",
         "adapter": model.implementation.adapter_status,
@@ -222,8 +222,8 @@ def _model_card(model, checkpoints):
             "",
             "## Checkpoint 资产",
             "",
-            "| Checkpoint | 模态 | 来源 | 访问条件 | 文件核验 | Adapter |",
-            "|---|---|---|---|---|---|",
+            "| Checkpoint | 资产类型 | 模态 | 来源 | 访问条件 | 官方文件探测 | Adapter |",
+            "|---|---|---|---|---|---|---|",
         ]
     )
     for checkpoint in checkpoints:
@@ -239,6 +239,7 @@ def _model_card(model, checkpoints):
         ) else "未验证"
         lines.append(
             f"| `{checkpoint.checkpoint_id}` / {checkpoint.checkpoint_name} | "
+            f"{checkpoint.artifact_type or '待分类'} | "
             f"{', '.join(checkpoint.modalities)} | {source} | "
             f"{ACCESS_LABELS.get(checkpoint.access_type, checkpoint.access_type)} | "
             f"{file_status} | {adapter} |"

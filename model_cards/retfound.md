@@ -17,10 +17,10 @@
 
 ## Checkpoint 资产
 
-| Checkpoint | 模态 | 来源 | 访问条件 | 文件核验 | Adapter |
-|---|---|---|---|---|---|
-| `retfound-cfp` / CFP | CFP | [huggingface](https://huggingface.co/YukunZhou/RETFound_mae_natureCFP) | 需认证/申请 | 已核验 | 已验证 |
-| `retfound-oct` / OCT | OCT | [huggingface](https://huggingface.co/YukunZhou/RETFound_mae_natureOCT) | 需认证/申请 | 待核验 | 未验证 |
+| Checkpoint | 资产类型 | 模态 | 来源 | 访问条件 | 官方文件探测 | Adapter |
+|---|---|---|---|---|---|---|
+| `retfound-cfp` / CFP | foundation_encoder | CFP | [huggingface](https://huggingface.co/YukunZhou/RETFound_mae_natureCFP) | 需认证/申请 | 已核验 | 已验证 |
+| `retfound-oct` / OCT | foundation_encoder | OCT | [huggingface](https://huggingface.co/YukunZhou/RETFound_mae_natureOCT) | 需认证/申请 | 已核验 | 未验证 |
 
 ## 输入与原生预处理
 
@@ -29,7 +29,7 @@
 - Resize：256 × 256，bicubic
 - Crop：center，256 × 256
 - 归一化：ImageNet mean=(0.485,0.456,0.406), std=(0.229,0.224,0.225)
-- 预处理核验：已核验
+- 预处理核验：待核验
 ### `retfound-oct`
 - 输入：待核验
 - 归一化：待核验
@@ -50,18 +50,17 @@
 
 | 核验项 | 状态 | 证据/记录 | 最近核验 |
 |---|---|---|---|
-| 论文 | 已核验 | https://www.nature.com/articles/s41586-023-06555-x | 2026-07-11 |
-| 官方代码 | 已核验 | https://github.com/rmaphoh/RETFound | 2026-07-11 |
-| Checkpoint 入口 | 已核验 | 2 个已登记入口 | 2026-07-11 |
-| Checkpoint 文件 | 待核验 | retfound-cfp:e1e4f66a1b79… | 2026-07-11 |
-| 许可证 | 待核验 | 尚未登记 | 2026-07-11 |
-| 原生预处理 | 待核验 | official_code_and_adapter_smoke | 2026-07-11 |
-| Adapter | 已核验 | implemented | 2026-07-11 |
-| 特征输出 | 已核验 | passed | 2026-07-11 |
+| 论文 | 已核验 | https://www.nature.com/articles/s41586-023-06555-x | 2026-07-13 |
+| 官方代码 | 已核验 | https://github.com/rmaphoh/RETFound | 2026-07-13 |
+| Checkpoint 入口 | 已核验 | 2 个已登记入口 | 2026-07-13 |
+| 官方 Checkpoint 文件 | 已核验 | 2 个官方文件已完成入口/实际文件探测；本地 SHA256 见 download_manifest.csv | 2026-07-13 |
+| 许可证 | 待核验 | 尚未登记 | 2026-07-13 |
+| 原生预处理 | 待核验 | official_code_and_adapter_smoke | 2026-07-13 |
+| Adapter | 已核验 | implemented | 2026-07-13 |
+| 特征输出 | 已核验 | passed | 2026-07-13 |
 
 ## 待核验事项
 
-- Checkpoint 文件
 - 许可证
 - 原生预处理
 

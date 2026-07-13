@@ -5,7 +5,7 @@
 
 - **Model ID**：`mirage`
 - **模型类型**：多模态眼科视觉基础模型
-- **模态**：OCT, SLO, retinal_layer_pseudolabels
+- **模态**：OCT, SLO
 - **核心架构**：MultiMAE式多模态掩码自编码器：共享ViT编码器 + 模态特异性线性投影层 + 模态特异…
 - **预训练方式**：MultiMAE多模态自监督掩码重建预训练
 - **当前状态**：尚不可运行
@@ -17,19 +17,19 @@
 
 ## Checkpoint 资产
 
-| Checkpoint | 模态 | 来源 | 访问条件 | 文件核验 | Adapter |
-|---|---|---|---|---|---|
-| `mirage-base` / Base | OCT, SLO | [huggingface](https://huggingface.co/j-morano/MIRAGE-Base) | 登记为开放 | 待核验 | 未验证 |
-| `mirage-large` / Large | OCT, SLO | [huggingface](https://huggingface.co/j-morano/MIRAGE-Large) | 登记为开放 | 待核验 | 未验证 |
+| Checkpoint | 资产类型 | 模态 | 来源 | 访问条件 | 官方文件探测 | Adapter |
+|---|---|---|---|---|---|---|
+| `mirage-base` / Base | multimodal_full_model | OCT, SLO | [huggingface](https://huggingface.co/j-morano/MIRAGE-Base) | 登记为开放 | 已核验 | 未验证 |
+| `mirage-large` / Large | multimodal_full_model | OCT, SLO | [huggingface](https://huggingface.co/j-morano/MIRAGE-Large) | 登记为开放 | 已核验 | 未验证 |
 
 ## 输入与原生预处理
 
 ### `mirage-base`
-- 输入：待核验
+- 输入：512x512 paired OCT B-scan + SLO
 - 归一化：待核验
 - 预处理核验：待核验
 ### `mirage-large`
-- 输入：待核验
+- 输入：512x512 paired OCT B-scan + SLO
 - 归一化：待核验
 - 预处理核验：待核验
 
@@ -48,21 +48,17 @@
 
 | 核验项 | 状态 | 证据/记录 | 最近核验 |
 |---|---|---|---|
-| 论文 | 待核验 | https://www.nature.com/articles/s41746-025-01852-3 | 尚未登记 |
-| 官方代码 | 待核验 | https://github.com/j-morano/MIRAGE | 尚未登记 |
-| Checkpoint 入口 | 待核验 | 2 个已登记入口 | 尚未登记 |
-| Checkpoint 文件 | 待核验 | 尚未登记 | 尚未登记 |
-| 许可证 | 待核验 | 尚未登记 | 尚未登记 |
-| 原生预处理 | 待核验 | 尚未登记 | 尚未登记 |
-| Adapter | 待核验 | not_started | 尚未登记 |
-| 特征输出 | 待核验 | not_run | 尚未登记 |
+| 论文 | 已核验 | https://www.nature.com/articles/s41746-025-01852-3 | 2026-07-13 |
+| 官方代码 | 已核验 | https://github.com/j-morano/MIRAGE | 2026-07-13 |
+| Checkpoint 入口 | 已核验 | 2 个已登记入口 | 2026-07-13 |
+| 官方 Checkpoint 文件 | 已核验 | 2 个官方文件已完成入口/实际文件探测；本地 SHA256 见 download_manifest.csv | 2026-07-13 |
+| 许可证 | 待核验 | 尚未登记 | 2026-07-13 |
+| 原生预处理 | 待核验 | 尚未登记 | 2026-07-13 |
+| Adapter | 待核验 | not_started | 2026-07-13 |
+| 特征输出 | 待核验 | not_run | 2026-07-13 |
 
 ## 待核验事项
 
-- 论文
-- 官方代码
-- Checkpoint 入口
-- Checkpoint 文件
 - 许可证
 - 原生预处理
 - Adapter

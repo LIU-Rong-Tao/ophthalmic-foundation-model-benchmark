@@ -8,20 +8,31 @@ weight_url: https://zenodo.org/records/13340936/files/PreTraining.zip?download=1
 provider: zenodo
 access_type: open
 requires_auth: false
-redistribution_allowed: unknown
-license: null
+redistribution_allowed: 'yes'
+license: CC-BY-4.0
 framework: null
 input_size: null
 normalization: null
 embedding_dim: null
 sha256: null
 source_commit: null
-verification_status: seed_unverified
-last_verified: null
+verification_status: partially_verified
+last_verified: '2026-07-13'
 provenance:
   source_file: ophthalmic_models_seed_v0.xlsx
   source_sheet: 有多个权重的模型
   source_row: 5
   imported_at: '2026-07-11T09:30:27Z'
 notes:
-- Seed metadata only; URL and redistribution terms have not been verified.
+- Official Zenodo record 13340936 declares CC BY 4.0 for the deposited artifacts.
+- Provider publishes an MD5 checksum; the catalog records it separately from the local SHA256.
+artifact_type: foundation_encoder
+verification:
+  paper: verified
+  code: verified
+  checkpoint_url: verified
+  checkpoint_file: verified
+  license: verified
+  preprocessing: pending
+  adapter: pending
+  feature_output: pending
