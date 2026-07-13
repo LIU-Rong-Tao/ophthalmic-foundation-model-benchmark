@@ -266,6 +266,9 @@ results/intermediate/
 /wandb/
 /mlruns/
 
+# Checkpoint provenance audit run outputs (keep evidence configuration tracked)
+audits/checkpoint_provenance/*/
+
 # Large image files
 *.svs
 *.ndpi

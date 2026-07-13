@@ -1,0 +1,133 @@
+schema_version: "1.0"
+checkpoints:
+  retfound-green-v0.1:
+    exact_filename: retfoundgreen_statedict.pth
+models:
+  deretfound:
+    repository_class: official
+    repository_owner: Jonlysun
+    official_project_url: https://github.com/Jonlysun/DERETFound
+    evidence_source_type: official_code_repository_readme
+    evidence_summary: 官方仓库 README 明确称其为 RETFound-DE 官方仓库，并将预训练及下游权重指向 Zenodo。
+    license_url: https://github.com/Jonlysun/DERETFound/blob/master/LICENSE
+    license_status: repository_license_present_weight_scope_unverified
+  eyeclip:
+    repository_class: official
+    repository_owner: Michi-3000
+    official_project_url: https://github.com/Michi-3000/EyeCLIP
+    evidence_source_type: paper_code_availability_and_official_code_readme
+    evidence_summary: 论文 Code availability 指向该仓库；仓库 README 的预训练权重表给出 EyeCLIP Google Drive 入口。
+    license_url: null
+    license_status: not_declared
+  flair:
+    repository_class: official
+    repository_owner: jusiro
+    official_project_url: https://jusiro.github.io/projects/flair
+    evidence_source_type: official_project_and_code_readme
+    evidence_summary: 作者项目页和代码仓库对应 FLAIR；README 使用 jusiro2/FLAIR 加载正式模型。
+    license_url: https://github.com/jusiro/FLAIR/blob/main/LICENSE
+    license_status: apache-2.0_code_and_weights_declared
+    weight_reference_patterns:
+      - jusiro2/FLAIR
+  fmue:
+    repository_class: official
+    repository_owner: yuanyuanpeng0129
+    official_project_url: https://github.com/yuanyuanpeng0129/FMUE
+    evidence_source_type: paper_code_availability_and_author_repository_readme
+    evidence_summary: 论文声明代码位于该作者仓库；仓库 README 给出唯一的模型权重 Google Drive 入口。
+    license_url: null
+    license_status: not_declared
+  keepfit:
+    repository_class: official
+    repository_owner: lxirich
+    official_project_url: https://github.com/lxirich/MM-Retinal
+    evidence_source_type: official_code_repository_readme
+    evidence_summary: MM-Retinal/KeepFIT 项目 README 的 Checkpoints 表逐项给出三个登记权重入口。
+    license_url: null
+    license_status: not_declared
+  mirage:
+    repository_class: official
+    repository_owner: j-morano
+    official_project_url: https://github.com/j-morano/MIRAGE
+    evidence_source_type: official_code_repository_readme
+    evidence_summary: MIRAGE 官方仓库 README 明确给出 Base 与 Large 的 Hugging Face 标识及模型权重发布页。
+    license_url: https://github.com/j-morano/MIRAGE/blob/main/LICENSE
+    license_status: cc-by-4.0_models_and_code_declared
+    weight_reference_patterns:
+      - j-morano/MIRAGE-Base
+      - j-morano/MIRAGE-Large
+  preti:
+    repository_class: official
+    repository_owner: MICV-yonsei
+    official_project_url: https://github.com/MICV-yonsei/PRETI
+    evidence_source_type: paper_code_availability_and_official_code_readme
+    evidence_summary: 论文明确声明代码和预训练模型位于该仓库；README 的 preti-vitb 行给出登记的 Google Drive 入口。
+    license_url: null
+    license_status: not_declared
+  ret-clip:
+    repository_class: official
+    repository_owner: sStonemason
+    official_project_url: https://github.com/sStonemason/RET-CLIP
+    evidence_source_type: author_code_repository_readme
+    evidence_summary: RET-CLIP 论文项目仓库 README 的 Pretrained Model 表给出 ViT-B/16 权重入口。
+    license_url: null
+    license_status: not_declared
+  retfound:
+    repository_class: official
+    repository_owner: rmaphoh
+    official_project_url: https://github.com/rmaphoh/RETFound
+    evidence_source_type: official_code_repository_readme
+    evidence_summary: RETFound 官方仓库逐项链接 CFP 与 OCT Hugging Face 模型，并说明必须注册、填表和登录后访问。
+    license_url: https://github.com/rmaphoh/RETFound/blob/main/LICENSE
+    license_status: repository_license_present_weight_access_terms_required
+    weight_reference_patterns:
+      - YukunZhou/RETFound_mae_natureCFP
+      - YukunZhou/RETFound_mae_natureOCT
+  retfound-green:
+    repository_class: official
+    repository_owner: justinengelmann
+    official_project_url: https://github.com/justinengelmann/RETFound_Green
+    evidence_source_type: official_code_repository_readme_and_release
+    evidence_summary: 官方仓库 README 给出 v0.1 release 中 retfoundgreen_statedict.pth 的准确下载地址。
+    license_url: https://github.com/justinengelmann/RETFound_Green/blob/main/LICENSE
+    license_status: repository_license_present_weight_scope_unverified
+  retizero:
+    repository_class: official
+    repository_owner: LooKing9218
+    official_project_url: https://github.com/LooKing9218/RetiZero
+    evidence_source_type: author_code_repository_readme
+    evidence_summary: RetiZero 论文项目仓库 README 直接给出登记的预训练权重 Google Drive 入口。
+    license_url: null
+    license_status: not_declared
+  urfound:
+    repository_class: official
+    repository_owner: yukkai
+    official_project_url: https://github.com/yukkai/UrFound
+    evidence_source_type: official_code_repository_readme
+    evidence_summary: UrFound README 明确称其为论文官方实现，并在 Release 段链接预训练模型 Hugging Face 仓库。
+    license_url: https://github.com/yukkai/UrFound/blob/main/LICENSE
+    license_status: mit_code_license_weight_scope_unverified
+  vilref:
+    repository_class: official
+    repository_owner: T6Yang
+    official_project_url: https://github.com/T6Yang/ViLReF
+    evidence_source_type: author_code_repository_readme
+    evidence_summary: ViLReF 论文项目仓库 README 的 checkpoint 表给出 ViLReF_ViT Google Drive 入口。
+    license_url: null
+    license_status: not_declared
+  visionfm:
+    repository_class: official
+    repository_owner: ABILab-CUHK
+    official_project_url: https://github.com/ABILab-CUHK/VisionFM
+    evidence_source_type: official_code_repository_readme
+    evidence_summary: VisionFM 官方仓库按八种模态逐项给出 Google Drive 权重入口，并声明研究教育用途限制。
+    license_url: https://github.com/ABILab-CUHK/VisionFM/blob/main/LICENSE
+    license_status: research_and_education_only_noncommercial
+  visionunite:
+    repository_class: official
+    repository_owner: HUANGLIZI
+    official_project_url: https://github.com/HUANGLIZI/VisionUnite
+    evidence_source_type: paper_code_availability_and_official_code_readme
+    evidence_summary: 论文和 README 均确认该官方仓库；README 的 VisionUnite V1 行给出登记权重入口并声明使用限制。
+    license_url: https://github.com/HUANGLIZI/VisionUnite/blob/main/LICENSE
+    license_status: academic_research_only_no_commercial_or_second_development
