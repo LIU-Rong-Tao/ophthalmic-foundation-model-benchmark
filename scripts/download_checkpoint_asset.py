@@ -45,6 +45,7 @@ SECRET_QUERY_KEYS = {
     "skt",
     "se",
     "sv",
+    "confirm",
 }
 
 
@@ -67,6 +68,8 @@ def sanitize_url(value: str | None) -> str:
         if not item:
             continue
         key = item.split("=", 1)[0].lower()
+        if key == "confirm":
+            continue
         query.append(f"{key}=[REDACTED]" if key in SECRET_QUERY_KEYS else item)
     return urlunparse(parsed._replace(query="&".join(query)))
 
