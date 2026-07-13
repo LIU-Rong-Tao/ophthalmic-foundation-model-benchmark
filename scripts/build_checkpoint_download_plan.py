@@ -97,8 +97,9 @@ def directory_size(path: Path) -> int:
 
 
 def disk_summary(cache_root: Path, *, ready_bytes: int) -> dict[str, Any]:
-    usage = shutil.disk_usage(cache_root)
-    existing_bytes = directory_size(cache_root)
+    resource_root = cache_root.parent if cache_root.name == "ophbench" else cache_root
+    usage = shutil.disk_usage(resource_root)
+    existing_bytes = directory_size(resource_root)
     after_ready = usage.free - ready_bytes
     reserved = int(usage.total * 0.20)
     return {
@@ -240,7 +241,7 @@ def main() -> None:
         "--provenance-root", type=Path, default=Path("audits/checkpoint_provenance")
     )
     parser.add_argument("--output-dir", type=Path, default=Path("artifacts/checkpoint_download"))
-    parser.add_argument("--cache-root", type=Path, default=Path("/data/LRT/model_cache"))
+    parser.add_argument("--cache-root", type=Path, default=Path("/data/LRT/model_cache/ophbench"))
     args = parser.parse_args()
     provenance_path = args.provenance_audit or latest_provenance_file(args.provenance_root)
     access_rows = read_csv(args.access_audit)

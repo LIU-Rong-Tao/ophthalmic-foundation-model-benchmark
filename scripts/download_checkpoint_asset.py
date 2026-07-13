@@ -206,7 +206,7 @@ def main() -> None:
         type=Path,
         default=Path("artifacts/checkpoint_access_audit/checkpoint_access_audit.csv"),
     )
-    parser.add_argument("--cache-root", type=Path, default=Path("/data/LRT/model_cache"))
+    parser.add_argument("--cache-root", type=Path, default=Path("/data/LRT/model_cache/ophbench"))
     parser.add_argument("--manifest", type=Path)
     args = parser.parse_args()
     plan = read_rows(args.plan)[args.checkpoint_id]

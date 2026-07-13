@@ -268,6 +268,7 @@ results/intermediate/
 
 # Checkpoint provenance audit run outputs (keep evidence configuration tracked)
 audits/checkpoint_provenance/*/
+audits/checkpoint_license/*/
 
 # Derived checkpoint download plans
 artifacts/checkpoint_download/
