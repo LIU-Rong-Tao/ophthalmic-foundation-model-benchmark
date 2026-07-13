@@ -37,7 +37,14 @@ SECRET_QUERY_KEYS = {
     "authorization",
     "cookie",
     "signature",
+    "sig",
+    "jwt",
     "policy",
+    "sp",
+    "ske",
+    "skt",
+    "se",
+    "sv",
 }
 
 
@@ -50,7 +57,10 @@ def sanitize_url(value: str | None) -> str:
     if not value:
         return ""
     parsed = urlparse(value)
-    if parsed.netloc.lower().endswith("cdn.hf.co"):
+    if (
+        parsed.netloc.lower().endswith("cdn.hf.co")
+        or parsed.netloc.lower() == "release-assets.githubusercontent.com"
+    ):
         return urlunparse(parsed._replace(query=""))
     query = []
     for item in parsed.query.split("&"):
@@ -117,7 +127,7 @@ def download_one(
                 "checkpoint_id": plan["checkpoint_id"],
                 "provider": plan["provider"],
                 "source_url": plan["registered_weight_url"],
-                "resolved_url": existing_manifest.get("resolved_url", ""),
+                "resolved_url": sanitize_url(existing_manifest.get("resolved_url", "")),
                 "filename": filename,
                 "local_path": str(destination),
                 "size_bytes": str(destination.stat().st_size),
