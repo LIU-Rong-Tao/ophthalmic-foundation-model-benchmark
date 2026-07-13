@@ -6,6 +6,16 @@ OphBench 当前用于**收集、核验和规范登记眼科基础模型资产**�
 
 [模型目录](MODEL_ZOO.md) · [收集规范](docs/model_collection.md) · [核验状态](docs/verification_status.md) · [新增模型](docs/adding_a_model.md) · [权重政策](docs/weight_policy.md)
 
+
+## 快速入口
+
+- [模型与权重目录](docs/MODEL_WEIGHT_CATALOG.md)
+- [下载与文件核验](docs/DOWNLOAD_AND_VERIFY.md)
+- [机器可读下载清单](catalog/download_manifest.csv)
+- [下一阶段评估交接](docs/EVALUATION_HANDOFF.md)
+
+本仓库当前第一版完成的是眼科基础模型的收集、官方来源核验、权重获取信息和后续评估交接，不声称已经完成统一性能评测。当前服务器侧已有 19 个 checkpoint 通过文件大小、SHA256 和非 HTML 校验；8 个 VisionFM checkpoint 因属于项目初代模型而不重复获取。权重文件不提交到 Git。
+
 ## 当前主线
 
 ```text
