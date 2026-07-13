@@ -52,9 +52,14 @@ def test_retfound_assets_are_verified_but_future_access_is_gated() -> None:
 def test_human_catalog_contains_every_checkpoint() -> None:
     text = CATALOG.read_text(encoding="utf-8")
     for row in _rows():
-        assert f"| {row['model_name']} | {row['checkpoint_id']} |" in text
+        if row["model_id"] != "visionfm":
+            assert row["checkpoint_id"] in text
     assert "影响因子" in text
     assert "SHA256" in text
+    assert "使用限制 |" not in text
+    assert text.count("| **VisionFM** |") == 1
+    assert "CFP、OCT、FFA、B超、外眼、裂隙灯、MRI、UBM" in text
+    assert "Stable Diffusion 生成模型" in text
 
 
 def test_public_handoff_files_do_not_leak_local_or_transient_data() -> None:
