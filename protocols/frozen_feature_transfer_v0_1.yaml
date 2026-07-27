@@ -1,0 +1,30 @@
+track: frozen_feature_transfer
+protocol_version: "0.1"
+model:
+  model_id: retfound
+  checkpoint_id: retfound-cfp
+  encoder_frozen: true
+  preprocessing: model_native
+task:
+  task_id: aptos_dr_5class
+  dataset_id: aptos2019
+  modality: CFP
+  task_type: ordinal_classification
+  label_space: dr_icdr_0_4
+  num_classes: 5
+probe:
+  type: logistic_regression
+  c_candidates: [0.01, 0.1, 1.0]
+  max_iter: 2000
+  selection_split: val
+  selection_metric: macro_f1
+  seed: 42
+evaluation:
+  primary_metric: quadratic_kappa
+  secondary_metrics: [macro_f1, accuracy, per_class_recall]
+  test_not_used_for_selection: true
+  bootstrap:
+    unit: image
+    resamples: 2000
+    confidence_level: 0.95
+    seed: 42

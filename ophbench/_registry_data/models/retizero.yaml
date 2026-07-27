@@ -1,0 +1,39 @@
+schema_version: '1.0'
+model_id: retizero
+model_name: RetiZero
+year: 2025
+publication_type: journal
+venue: Nature Communications
+model_category: 视觉-语言眼科基础模型
+modalities:
+- CFP
+- text
+architecture: 冻结的 RETFound 图像编码器ViT-Large/16 ＋ BioClinicalBERT 文本编码器
+pretraining_data_summary: 约34.2万CFP，覆盖400+眼底疾病概念
+pretraining_strategy: CLIP风格图文对比学习
+reported_summary: 强调400+眼底疾病零样本识别，罕见病识别能力强；适合作为眼底VLM路线代表。
+paper_url: https://www.nature.com/articles/s41467-025-60577-9
+code_url: https://github.com/LooKing9218/RetiZero
+code_available: true
+capabilities:
+- classification
+- zero_shot_classification
+- few_shot_classification
+- retrieval
+benchmark_tracks: []
+runtime_phase: phase2_vision_language
+license: null
+license_verified: false
+verification_status: seed_unverified
+implementation:
+  adapter_status: not_started
+  smoke_test_status: not_run
+  benchmark_status: not_run
+reported_tasks_text: 常见及罕见眼底疾病零样本识别；多病种分类；相似病例图像检索；少样本微调与临床辅助诊断
+provenance:
+  source_file: ophthalmic_models_seed_v0.xlsx
+  source_sheet: 眼科大模型
+  source_row: 6
+  imported_at: '2026-07-11T09:30:27Z'
+notes:
+- 'Original modality text: CFP 、模板化疾病文本描述'

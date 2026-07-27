@@ -1,0 +1,28 @@
+schema_version: '1.0'
+checkpoint_id: mirage-base
+model_id: mirage
+checkpoint_name: Base
+modalities:
+- OCT
+- SLO
+weight_url: https://huggingface.co/j-morano/MIRAGE-Base
+provider: huggingface
+access_type: open
+requires_auth: false
+redistribution_allowed: unknown
+license: null
+framework: null
+input_size: null
+normalization: null
+embedding_dim: null
+sha256: null
+source_commit: null
+verification_status: seed_unverified
+last_verified: null
+provenance:
+  source_file: ophthalmic_models_seed_v0.xlsx
+  source_sheet: 有多个权重的模型
+  source_row: 3
+  imported_at: '2026-07-11T09:30:27Z'
+notes:
+- Seed metadata only; URL and redistribution terms have not been verified.

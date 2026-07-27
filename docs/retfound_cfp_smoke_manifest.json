@@ -1,0 +1,16 @@
+{
+  "model_id": "retfound",
+  "checkpoint_id": "retfound-cfp",
+  "checkpoint_filename": "RETFound_mae_natureCFP.pth",
+  "checkpoint_size": 3952489221,
+  "checkpoint_sha256": "e1e4f66a1b792eeb6e2efaf158f33be35c8255f36b3d17ed67cd5129da246485",
+  "adapter_version": "0.2.0",
+  "device_class": "NVIDIA CUDA GPU",
+  "input_source": "APTOS2019 existing server split; image not copied",
+  "input_size": 256,
+  "output_shape": [1, 1024],
+  "finite": true,
+  "repeat_exact": true,
+  "smoke_test": "passed",
+  "verified_at": "2026-07-11"
+}

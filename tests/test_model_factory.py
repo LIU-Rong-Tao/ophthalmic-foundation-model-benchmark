@@ -29,4 +29,4 @@ def test_unimplemented_adapter_error_contains_context():
     message = str(exc.value)
     assert "retfound" in message
     assert "phase1_image_encoder" in message
-    assert "not_started" in message
+    assert "implemented" in message
