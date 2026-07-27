@@ -120,8 +120,9 @@ def dashboard_command(
     import sys
 
     script = Path(__file__).with_name("dashboard.py")
-    command = [sys.executable, "-m", "streamlit", "run", str(script), "--server.address", host, "--server.port", str(port), "--", str(results)]
-    raise typer.Exit(subprocess.call(command))
+    command = [sys.executable, "-m", "streamlit", "run", str(script), "--server.address", host, "--server.port", str(port)]
+    environment = {**__import__("os").environ, "OPHBENCH_DASHBOARD_RESULTS": str(results.resolve())}
+    raise typer.Exit(subprocess.call(command, env=environment))
 
 
 @registry_app.command("import-seed")
