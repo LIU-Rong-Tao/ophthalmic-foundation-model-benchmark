@@ -4,6 +4,8 @@ import pytest
 
 from ophbench import load_adapter
 from ophbench.models.adapters.retfound_cfp import EnvironmentCheck, RETFoundCFPAdapter
+from ophbench.models.adapters.retfound_green import RETFoundGreenAdapter
+from ophbench.models.adapters.eyeclip import EyeCLIPAdapter
 from ophbench.models.errors import CheckpointResolutionError, InvalidCheckpointError
 
 
@@ -15,6 +17,13 @@ def test_public_factory_dispatches_retfound_cfp(tmp_path):
     )
     assert isinstance(adapter, RETFoundCFPAdapter)
     assert adapter.embedding_dim == 1024
+
+
+def test_public_factory_dispatches_other_verified_image_encoders(tmp_path):
+    green = load_adapter("retfound-green", "retfound-green-v0.1", checkpoint_path=tmp_path / "green.pth")
+    eyeclip = load_adapter("eyeclip", "eyeclip-default", checkpoint_path=tmp_path / "eyeclip.pt")
+    assert isinstance(green, RETFoundGreenAdapter) and green.embedding_dim == 384
+    assert isinstance(eyeclip, EyeCLIPAdapter) and eyeclip.embedding_dim == 512
 
 
 def test_missing_checkpoint_is_explicit():

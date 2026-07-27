@@ -1,0 +1,9 @@
+release_id: demo-v1
+title: OphBench local demonstration
+release_date: '2026-07-27'
+status: draft
+task_ids: []
+protocol_ids: []
+notes: This release intentionally contains no private patient-level data.
+limitations:
+  - Local demonstration only; import sanitized aggregate results before use.
