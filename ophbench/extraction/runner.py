@@ -222,7 +222,9 @@ def run_extraction(
     atomic_json(config.output_dir / "artifact_manifest.json", artifact_manifest)
     summary = {"success_count": len(success_rows), "failure_count": len(failures), "embedding_dim": embedding_dim, "completed_at": _now()}
     atomic_json(config.output_dir / "extraction_summary.json", summary)
-    run_manifest = {**fingerprint, **summary, "model_id": config.model_id, "checkpoint_id": config.checkpoint_id, "dtype": "float32", "device": config.device, "batch_size": config.batch_size, "sample_count": len(records), "git_commit": _git_commit(), "package_version": "0.2.0"}
+    from ophbench._version import __version__
+
+    run_manifest = {**fingerprint, **summary, "model_id": config.model_id, "checkpoint_id": config.checkpoint_id, "dtype": "float32", "device": config.device, "batch_size": config.batch_size, "sample_count": len(records), "git_commit": _git_commit(), "package_version": __version__}
     atomic_json(config.output_dir / "run_manifest.json", run_manifest)
     persist(completed=True)
     return ExtractionResult(config.output_dir, len(success_rows), len(failures), embedding_dim or 0, True)

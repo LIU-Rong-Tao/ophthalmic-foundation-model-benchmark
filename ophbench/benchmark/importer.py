@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 
 from .schemas import ModelRun
+from .metrics import normalize_metrics
 
 
 def _load_json(path: Path) -> dict:
@@ -31,12 +32,12 @@ def import_benchmark_run(
 ) -> Path:
     metrics = _load_json(metrics_path)
     manifest = _load_json(run_manifest_path) if run_manifest_path else {}
-    normalized_metrics = {("AUPRC" if key == "AP" else key): value for key, value in metrics.items()}
+    normalized_metrics = normalize_metrics(metrics)
     per_class = []
     if per_class_path:
         with per_class_path.open("r", encoding="utf-8", newline="") as handle:
             for row in csv.DictReader(handle):
-                per_class.append({("AUPRC" if key == "AP" else key): value for key, value in row.items()})
+                per_class.append(normalize_metrics(row))
     run = ModelRun(
         run_id=f"{release_id}--{model_id}--{task_id}",
         release_id=release_id,
@@ -55,6 +56,8 @@ def import_benchmark_run(
         limitations=list(manifest.get("limitations") or []),
     ).to_dict()
     run["per_class"] = per_class
+    run["confusion_matrix"] = manifest.get("confusion_matrix")
+    run["stability"] = manifest.get("stability") or {}
     runs_root.mkdir(parents=True, exist_ok=True)
     output = runs_root / f"{run['run_id']}.json"
     output.write_text(json.dumps(run, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")

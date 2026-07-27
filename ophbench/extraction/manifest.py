@@ -52,6 +52,8 @@ def load_manifest(path: Path, path_column: str, id_column: str) -> list[dict[str
         records = []
         for index, row in enumerate(reader):
             source = Path(row[path_column]).expanduser()
+            if not source.is_absolute():
+                source = path.parent / source
             sample_id = (row.get(id_column) or "").strip()
             if not sample_id:
                 raise ValueError(f"Manifest row {index + 2} has an empty {id_column}")

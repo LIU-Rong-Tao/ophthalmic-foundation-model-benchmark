@@ -71,9 +71,34 @@ def test_manifest_input_and_resume_fingerprint_guard(tmp_path):
     Image.new("RGB", (8, 8), color=(2, 2, 2)).save(images / "one.png")
     (tmp_path / "weights.bin").write_bytes(b"fake weights")
     manifest = tmp_path / "manifest.csv"
-    manifest.write_text("sample_id,image_path\nx1," + str(images / "one.png") + "\n", encoding="utf-8")
+    manifest.write_text("sample_id,image_path\nx1,images/one.png\n", encoding="utf-8")
     config = _config(tmp_path, images, input_dir=None, manifest=manifest)
     assert run_extraction(config, adapter_factory=fake_factory).success_count == 1
     assert run_extraction(config, adapter_factory=fake_factory).completed is True
     with pytest.raises(ExtractionError, match="fingerprint"):
         run_extraction(_config(tmp_path, images, checkpoint_id="other", resume=True), adapter_factory=fake_factory)
+
+
+def test_interrupted_run_resumes_after_a_completed_shard(tmp_path):
+    images = tmp_path / "images"
+    images.mkdir()
+    for index in range(3):
+        Image.new("RGB", (8, 8), color=(index, index, index)).save(images / f"{index}.png")
+    (tmp_path / "weights.bin").write_bytes(b"fake weights")
+
+    class InterruptingAdapter(FakeAdapter):
+        calls = 0
+
+        def encode_image(self, batch):
+            self.__class__.calls += 1
+            if self.__class__.calls == 2:
+                raise KeyboardInterrupt("test interruption")
+            return super().encode_image(batch)
+
+    config = _config(tmp_path, images, batch_size=1, shard_size=1)
+    with pytest.raises(KeyboardInterrupt):
+        run_extraction(config, adapter_factory=lambda **_: InterruptingAdapter())
+    resumed = run_extraction(
+        _config(tmp_path, images, batch_size=1, shard_size=1, resume=True), adapter_factory=fake_factory
+    )
+    assert resumed.success_count == 3
