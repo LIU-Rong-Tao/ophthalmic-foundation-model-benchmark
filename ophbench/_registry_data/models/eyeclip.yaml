@@ -38,7 +38,7 @@ license: null
 license_verified: false
 verification_status: seed_unverified
 implementation:
-  adapter_status: not_started
+  adapter_status: requires_external_runtime
   smoke_test_status: not_run
   benchmark_status: not_run
 reported_tasks_text: 眼科疾病零样本、少样本及全监督分类；图像—图像和图像—文本跨模态检索；眼科视觉问答；眼科及全身疾病预测

@@ -39,10 +39,8 @@ def load_adapter(model_id, checkpoint_id, **kwargs):
 
     from .adapters.retfound_cfp import RETFoundCFPAdapter
     from .adapters.retfound_green import RETFoundGreenAdapter
-    from .adapters.eyeclip import EyeCLIPAdapter
 
     factory = AdapterFactory()
     factory.register(RETFoundCFPAdapter)
     factory.register(RETFoundGreenAdapter)
-    factory.register(EyeCLIPAdapter)
     return factory.create(model_id, checkpoint_id=checkpoint_id, **kwargs)

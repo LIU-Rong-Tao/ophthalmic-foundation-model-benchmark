@@ -21,6 +21,8 @@ ophbench dashboard --results benchmark\generated
 
 `extract` 输出可恢复的 NPY 分片、样本对齐表、失败记录、运行指纹和 SHA256 清单；只有相同 fingerprint 的未完成运行才可使用 `--resume`。Dashboard 只读取 `benchmark/generated/` 内的静态脱敏 JSON，不能扫描实验目录或重新计算指标。
 
+当前实现的通用提取 Adapter 为 RETFound CFP 和 RETFound-Green。EyeCLIP 需要已核验的官方本地运行时及真实 checkpoint 容器审计，当前状态为 `requires_external_runtime`，不会以普通 CLIP 实现替代。
+
 ## 快速开始
 
 ```powershell

@@ -8,6 +8,7 @@
             "not_started",
             "scaffolded",
             "implemented",
+            "requires_external_runtime",
             "failed"
           ],
           "title": "Adapter Status",

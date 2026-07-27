@@ -150,6 +150,17 @@ def run_extraction(
             completed=completed,
         )
 
+    def flush_pending_shard(force: bool = False):
+        nonlocal embedding_dim, shard_index, shard_chunks, shard_rows
+        if not shard_chunks or (not force and sum(len(chunk) for chunk in shard_chunks) < config.shard_size):
+            return
+        dim, filename = _flush_shard(config.output_dir, shard_index, shard_chunks, shard_rows)
+        embedding_dim = embedding_dim or dim
+        shards.append({"file": f"features/{filename}", "sample_count": len(shard_rows), "shape": [len(shard_rows), dim]})
+        success_rows.extend(shard_rows)
+        shard_index += 1
+        shard_chunks, shard_rows = [], []
+
     pending: list[tuple[dict, object]] = []
 
     def encode_pending():
@@ -183,12 +194,7 @@ def run_extraction(
                 return
         pending.clear()
         if sum(len(chunk) for chunk in shard_chunks) >= config.shard_size:
-            dim, filename = _flush_shard(config.output_dir, shard_index, shard_chunks, shard_rows)
-            embedding_dim = embedding_dim or dim
-            shards.append({"file": f"features/{filename}", "sample_count": len(shard_rows), "shape": [len(shard_rows), dim]})
-            success_rows.extend(shard_rows)
-            shard_index += 1
-            shard_chunks, shard_rows = [], []
+            flush_pending_shard()
             persist()
 
     for record in records[processed:]:
@@ -197,17 +203,14 @@ def run_extraction(
             image = open_rgb_image(record["source_path"])
         except Exception as exc:
             failures.append({"sample_id": record["sample_id"], "relative_path": record["relative_path"], "failure_stage": "image_decode", "exception_type": type(exc).__name__, "sanitized_error": str(exc)[:300]})
+            flush_pending_shard(force=True)
             persist()
             continue
         pending.append((record, image))
         if len(pending) >= config.batch_size:
             encode_pending()
     encode_pending()
-    if shard_chunks:
-        dim, filename = _flush_shard(config.output_dir, shard_index, shard_chunks, shard_rows)
-        embedding_dim = embedding_dim or dim
-        shards.append({"file": f"features/{filename}", "sample_count": len(shard_rows), "shape": [len(shard_rows), dim]})
-        success_rows.extend(shard_rows)
+    flush_pending_shard(force=True)
     if embedding_dim is None and records:
         raise ExtractionError("No readable images produced valid embeddings")
     write_csv(config.output_dir / "samples.csv", success_rows, ["row_index", "sample_id", "relative_path", "shard", "offset", "status"])
