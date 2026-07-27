@@ -13,7 +13,7 @@ def test_public_api_loads_packaged_registry_without_source_path(monkeypatch, tmp
 
     assert snapshot.model_count == 15
     assert snapshot.checkpoint_count == 27
-    assert snapshot.package_version == "0.2.0"
+    assert snapshot.package_version == "0.3.0"
     assert snapshot.schema_version == "1.0"
     assert snapshot.registry_source == "package:ophbench/_registry_data"
 
@@ -39,7 +39,7 @@ def test_public_api_supports_explicit_development_registry_root():
 
 
 def test_public_exports_are_explicit():
-    assert ophbench.__version__ == "0.2.0"
+    assert ophbench.__version__ == "0.3.0"
     assert set(ophbench.__all__) == {
         "RegistrySnapshot",
         "__version__",

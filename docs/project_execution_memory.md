@@ -4,4 +4,5 @@
 - 既有 v0.2 工作区 `/data3/jxin/projects/ophthalmic-foundation-model-benchmark` 是脏工作区，不得 reset、clean、覆盖或用于 v0.3 验收。
 - v0.3 隔离验收副本固定为 `/data3/jxin/projects/ophbench-v03-standalone`；若需同步本地已提交分支，优先从本机生成完整 Git bundle 并经 SSH/SCP 传入 A6000。原仓库是 partial clone，`git worktree add` 会触发直连 GitHub 补对象并可能卡住，不作为默认路径。
 - A6000 复用环境固定为 `/data3/jxin/conda-envs/ophbench/bin/python` 与对应 `pip`；不要新建 Conda 环境。命令行工具应使用该环境的 `python -m <tool>`，不要假设 `ruff`、`pytest` 等 console entry 位于 PATH。
+- A6000 缺少 Python 包时可使用当前默认可用的清华 PyPI 镜像；这不等同于设置 HTTP/HTTPS/SOCKS 代理，仍不得配置任何代理变量。
 - RETFound CFP 本地 checkpoint：`/data3/jxin/New_RETFound/RETFound_mae_natureCFP/RETFound_mae_natureCFP.pth`。仅本地显式加载，不下载权重。

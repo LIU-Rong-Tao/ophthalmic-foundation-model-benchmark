@@ -86,7 +86,7 @@
       "license_verified": false,
       "verification_status": "seed_unverified",
       "implementation": {
-        "adapter_status": "not_started",
+        "adapter_status": "requires_external_runtime",
         "smoke_test_status": "not_run",
         "benchmark_status": "not_run"
       },
@@ -399,10 +399,10 @@
       "runtime_phase": "phase1_image_encoder",
       "license": null,
       "license_verified": false,
-      "verification_status": "seed_unverified",
+      "verification_status": "partially_verified",
       "implementation": {
-        "adapter_status": "not_started",
-        "smoke_test_status": "not_run",
+        "adapter_status": "implemented",
+        "smoke_test_status": "passed",
         "benchmark_status": "not_run"
       },
       "reported_tasks_text": "CFP，OCT眼科疾病分类；湿性AMD进展与预后预测；全身疾病风险预测；特征提取；下游迁移",
@@ -413,7 +413,8 @@
         "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
-        "Original modality text: CFP、OCT"
+        "Original modality text: CFP、OCT",
+        "RETFound CFP adapter verified with the official MAE ViT-L/16 architecture and a local authenticated checkpoint; no weights are redistributed."
       ]
     },
     {
