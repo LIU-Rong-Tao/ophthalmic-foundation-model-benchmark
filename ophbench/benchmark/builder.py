@@ -10,7 +10,9 @@ from .metrics import SINGLE_LABEL_HOME_METRICS
 
 
 def _write_json(path: Path, payload) -> None:
-    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    path.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
 
 
 def _stable_winners(runs: list[dict]) -> dict[str, dict[str, int]]:
@@ -19,12 +21,17 @@ def _stable_winners(runs: list[dict]) -> dict[str, dict[str, int]]:
     for run in runs:
         for row in run.get("per_class", []):
             if (row.get("Support") or 0) >= 5:
-                key = str(row.get("class_id") or row.get("class_name") or "")
+                class_id = row.get("class_id")
+                key = str(class_id if class_id is not None else row.get("class_name") or "")
                 if key:
                     grouped.setdefault(key, []).append((run, row))
     for candidates in grouped.values():
         for metric in winners:
-            available = [(run, row.get(metric)) for run, row in candidates if isinstance(row.get(metric), (int, float))]
+            available = [
+                (run, row.get(metric))
+                for run, row in candidates
+                if isinstance(row.get(metric), (int, float))
+            ]
             if available:
                 winner = max(available, key=lambda item: item[1])[0]["model_id"]
                 winners[metric][winner] = winners[metric].get(winner, 0) + 1
@@ -48,8 +55,62 @@ def _radar_rows(runs: list[dict]) -> list[dict]:
             minimum, maximum = min(values), max(values)
             for row in rows:
                 value = row.get(key)
-                row[key] = None if value is None else (1.0 if maximum == minimum else (value - minimum) / (maximum - minimum))
+                row[key] = (
+                    None
+                    if value is None
+                    else (1.0 if maximum == minimum else (value - minimum) / (maximum - minimum))
+                )
     return rows
+
+
+def _task_insights(runs: list[dict], limitations: list[str]) -> dict:
+    return {
+        "metric_comparison": [
+            {"model_id": run["model_id"], **run.get("metrics", {}), **run.get("cost", {})}
+            for run in runs
+        ],
+        "stable_class_winners": _stable_winners(runs),
+        "cost_ranking": sorted(
+            [run for run in runs if run.get("cost", {}).get("latency_ms") is not None],
+            key=lambda run: run["cost"]["latency_ms"],
+        ),
+        "radar": _radar_rows(runs),
+        "home_metrics": list(SINGLE_LABEL_HOME_METRICS),
+        "limitations": limitations,
+    }
+
+
+def _task_catalog(release: dict, runs: list[dict]) -> list[dict]:
+    declared = {
+        str(task["task_id"]): dict(task)
+        for task in release.get("tasks", [])
+        if isinstance(task, dict) and task.get("task_id")
+    }
+    task_ids = list(release.get("task_ids") or [])
+    task_ids.extend(
+        run["task_id"] for run in runs if run.get("task_id") and run["task_id"] not in task_ids
+    )
+    catalog = []
+    for task_id in task_ids:
+        metadata = declared.get(task_id, {"task_id": task_id})
+        task_runs = [run for run in runs if run.get("task_id") == task_id]
+        if task_runs:
+            imported = task_runs[0].get("task_metadata") or {}
+            for key, value in imported.items():
+                metadata.setdefault(key, value)
+        metadata["model_count"] = len(task_runs)
+        catalog.append(metadata)
+    return catalog
+
+
+def _leaderboard_sort_key(run: dict) -> tuple[str, float, str]:
+    score = run.get("metrics", {}).get("Macro-F1")
+    score_order = -float(score) if isinstance(score, (int, float)) else float("inf")
+    return (
+        str(run.get("task_id") or ""),
+        score_order,
+        str(run.get("model_id") or ""),
+    )
 
 
 def build_benchmark(release_path: Path, runs_root: Path, output_dir: Path) -> dict:
@@ -64,29 +125,37 @@ def build_benchmark(release_path: Path, runs_root: Path, output_dir: Path) -> di
         if payload.get("release_id") == release_id:
             runs.append(payload)
     output_dir.mkdir(parents=True, exist_ok=True)
-    leaderboard = sorted(runs, key=lambda run: run.get("metrics", {}).get("Macro-F1") or -1, reverse=True)
+    leaderboard = sorted(runs, key=_leaderboard_sort_key)
+    tasks = _task_catalog(release, leaderboard)
+    default_task_id = str(release.get("default_task_id") or (tasks[0]["task_id"] if tasks else ""))
+    by_task = {}
+    for task in tasks:
+        task_id = str(task["task_id"])
+        task_runs = [run for run in leaderboard if run.get("task_id") == task_id]
+        by_task[task_id] = _task_insights(
+            task_runs,
+            list(task.get("limitations") or release.get("limitations", [])),
+        )
     insights = {
-        "metric_comparison": [
-            {"model_id": run["model_id"], **run.get("metrics", {}), **run.get("cost", {})}
-            for run in leaderboard
-        ],
-        "stable_class_winners": _stable_winners(leaderboard),
-        "cost_ranking": sorted(
-            [run for run in leaderboard if run.get("cost", {}).get("latency_ms") is not None],
-            key=lambda run: run["cost"]["latency_ms"],
+        "default_task_id": default_task_id,
+        "by_task": by_task,
+        **(
+            by_task[default_task_id]
+            if default_task_id in by_task
+            else _task_insights([], list(release.get("limitations", [])))
         ),
-        "radar": _radar_rows(leaderboard),
-        "home_metrics": list(SINGLE_LABEL_HOME_METRICS),
-        "limitations": release.get("limitations", []),
     }
     files = {
         "releases.json": [release],
+        "tasks.json": tasks,
         "leaderboard.json": leaderboard,
         "insights.json": insights,
         "model_details.json": {run["run_id"]: run for run in runs},
     }
     for name, payload in files.items():
         _write_json(output_dir / name, payload)
-    checksums = {name: hashlib.sha256((output_dir / name).read_bytes()).hexdigest() for name in files}
+    checksums = {
+        name: hashlib.sha256((output_dir / name).read_bytes()).hexdigest() for name in files
+    }
     _write_json(output_dir / "artifact_manifest.json", checksums)
     return {"release_id": release_id, "run_count": len(runs), "output_dir": str(output_dir)}

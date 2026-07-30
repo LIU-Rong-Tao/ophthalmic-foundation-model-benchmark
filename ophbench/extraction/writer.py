@@ -10,7 +10,9 @@ from typing import Any
 
 def atomic_json(path: Path, payload: dict[str, Any]) -> None:
     temp = path.with_suffix(path.suffix + ".tmp")
-    temp.write_text(json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    temp.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
     os.replace(temp, path)
 
 

@@ -90,14 +90,14 @@
       "requires_auth": false,
       "redistribution_allowed": "unknown",
       "license": null,
-      "framework": null,
-      "input_size": null,
-      "normalization": null,
-      "embedding_dim": null,
-      "sha256": null,
+      "framework": "PyTorch",
+      "input_size": "224x224 RGB, bicubic resize preserving aspect ratio and center crop",
+      "normalization": "CLIP mean=(0.48145466,0.4578275,0.40821073), std=(0.26862954,0.26130258,0.27577711)",
+      "embedding_dim": 512,
+      "sha256": "dfb6990aa31d55e6eee23f5b79d4b170d86af9d0f533fedaa805f0cdb5d686d4",
       "source_commit": null,
-      "verification_status": "seed_unverified",
-      "last_verified": null,
+      "verification_status": "partially_verified",
+      "last_verified": "2026-07-30",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
@@ -105,7 +105,8 @@
         "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
-        "Seed metadata only; URL and redistribution terms have not been verified."
+        "Seed metadata only; URL and redistribution terms have not been verified.",
+        "Local checkpoint model_state_dict visual branch loaded strictly with 100% key and parameter coverage; weights are not redistributed."
       ]
     },
     {
@@ -447,14 +448,14 @@
       "requires_auth": false,
       "redistribution_allowed": "unknown",
       "license": null,
-      "framework": null,
-      "input_size": null,
-      "normalization": null,
-      "embedding_dim": null,
-      "sha256": null,
+      "framework": "PyTorch/timm",
+      "input_size": "392x392 RGB, direct bicubic resize",
+      "normalization": "mean=(0.5,0.5,0.5), std=(0.5,0.5,0.5)",
+      "embedding_dim": 384,
+      "sha256": "431de5dbc1bebbb32f60e2c0bcf8daa4f8bcbf06f7cb1e1dc97ec589713942e1",
       "source_commit": null,
-      "verification_status": "seed_unverified",
-      "last_verified": null,
+      "verification_status": "partially_verified",
+      "last_verified": "2026-07-30",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
@@ -462,7 +463,8 @@
         "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
-        "Seed metadata only; URL and redistribution terms have not been verified."
+        "Seed metadata only; URL and redistribution terms have not been verified.",
+        "Local A6000 GPU smoke passed with the official DINOv2 ViT-S/14 register-token structure; weights are not redistributed."
       ]
     },
     {

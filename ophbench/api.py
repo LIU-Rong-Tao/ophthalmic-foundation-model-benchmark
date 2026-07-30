@@ -9,10 +9,9 @@ from pathlib import Path
 
 import yaml
 
+from ._version import __version__
 from .registry.loader import load_registry as _load_registry_from_path
 from .registry.schemas import CheckpointRecord, ModelRecord
-
-from ._version import __version__
 
 
 @dataclass(frozen=True)

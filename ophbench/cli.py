@@ -1,15 +1,18 @@
+from __future__ import annotations
+
 from pathlib import Path
 
 import typer
 from rich.console import Console
 from rich.table import Table
 
+from .benchmark import build_benchmark, import_benchmark_run
+from .extraction import ExtractionConfig, ExtractionError, run_extraction
+from .extraction.profiles import load_extraction_defaults, resolve_extraction_profile
 from .registry.builder import build_catalog
 from .registry.importer import import_seed
 from .registry.loader import load_registry
 from .registry.validator import RegistryValidationError, validate_registry
-from .extraction import ExtractionConfig, ExtractionError, run_extraction
-from .benchmark import build_benchmark, import_benchmark_run
 
 app = typer.Typer(help="Ophthalmic foundation model registry tools.")
 registry_app = typer.Typer()
@@ -23,43 +26,67 @@ console = Console()
 
 @app.command("extract")
 def extract_command(
-    model: str = typer.Option(None, "--model"),
-    checkpoint_id: str = typer.Option(None, "--checkpoint-id"),
-    checkpoint: Path = typer.Option(None, "--checkpoint"),
-    output_dir: Path = typer.Option(None, "--output-dir"),
-    input_dir: Path = typer.Option(None, "--input-dir"),
-    manifest: Path = typer.Option(None, "--manifest"),
+    profile: str | None = typer.Argument(
+        None,
+        help="Checkpoint profile, for example retfound-cfp, retfound-green, or eyeclip.",
+    ),
+    model: str | None = typer.Option(None, "--model"),
+    checkpoint_id: str | None = typer.Option(None, "--checkpoint-id"),
+    checkpoint: Path | None = typer.Option(None, "--checkpoint"),
+    output_dir: Path | None = typer.Option(None, "--output", "--output-dir"),
+    input_dir: Path | None = typer.Option(None, "--input", "--input-dir"),
+    manifest: Path | None = typer.Option(None, "--manifest"),
     path_column: str = typer.Option("image_path", "--path-column"),
     id_column: str = typer.Option("sample_id", "--id-column"),
-    device: str = typer.Option("cpu", "--device"),
-    batch_size: int = typer.Option(32, "--batch-size"),
-    num_workers: int = typer.Option(0, "--num-workers"),
-    shard_size: int = typer.Option(2048, "--shard-size"),
+    device: str | None = typer.Option(None, "--device"),
+    batch_size: int | None = typer.Option(None, "--batch-size"),
+    num_workers: int | None = typer.Option(None, "--num-workers"),
+    shard_size: int | None = typer.Option(None, "--shard-size"),
     resume: bool = typer.Option(False, "--resume"),
-    config: Path = typer.Option(None, "--config", exists=True),
+    config: Path | None = typer.Option(None, "--config", exists=True),
 ):
-    """以一条命令生成可恢复的冻结特征分片。"""
-    if config:
-        import yaml
+    """以一条命令生成可恢复的冻结特征分片；不下载权重或上传数据。"""
+    try:
+        values, loaded_config = load_extraction_defaults(config)
+        resolved = resolve_extraction_profile(
+            profile=profile,
+            model_id=model,
+            checkpoint_id=checkpoint_id,
+            checkpoint_path=checkpoint,
+            values=values,
+            config_path=loaded_config,
+        )
+    except (OSError, ValueError) as exc:
+        raise typer.BadParameter(str(exc)) from exc
 
-        values = yaml.safe_load(config.read_text(encoding="utf-8")) or {}
-        model, checkpoint_id = model or values.get("model"), checkpoint_id or values.get("checkpoint_id")
-        checkpoint = checkpoint or (Path(values["checkpoint"]) if values.get("checkpoint") else None)
-        output_dir = output_dir or (Path(values["output_dir"]) if values.get("output_dir") else None)
-        input_dir = input_dir or (Path(values["input_dir"]) if values.get("input_dir") else None)
-        manifest = manifest or (Path(values["manifest"]) if values.get("manifest") else None)
-        path_column, id_column = values.get("path_column", path_column), values.get("id_column", id_column)
-        device, batch_size = values.get("device", device), values.get("batch_size", batch_size)
+    output_dir = output_dir or (
+        Path(str(values["output_dir"])).expanduser() if values.get("output_dir") else None
+    )
+    input_dir = input_dir or (
+        Path(str(values["input_dir"])).expanduser() if values.get("input_dir") else None
+    )
+    manifest = manifest or (
+        Path(str(values["manifest"])).expanduser() if values.get("manifest") else None
+    )
+    path_column = str(values.get("path_column", path_column))
+    id_column = str(values.get("id_column", id_column))
+    device = device or str(values.get("device", "cpu"))
+    batch_size = batch_size if batch_size is not None else int(values.get("batch_size", 32))
+    num_workers = num_workers if num_workers is not None else int(values.get("num_workers", 0))
+    shard_size = shard_size if shard_size is not None else int(values.get("shard_size", 2048))
     if num_workers:
-        console.print("--num-workers is accepted but v0.3 currently performs safe synchronous decoding.", style="yellow")
-    if not all((model, checkpoint_id, checkpoint, output_dir)):
-        raise typer.BadParameter("model, checkpoint-id, checkpoint, and output-dir are required")
+        console.print(
+            "--num-workers is accepted but v0.3 currently performs safe synchronous decoding.",
+            style="yellow",
+        )
+    if output_dir is None:
+        raise typer.BadParameter("--output/--output-dir is required")
     try:
         result = run_extraction(
             ExtractionConfig(
-                model_id=model,
-                checkpoint_id=checkpoint_id,
-                checkpoint=checkpoint,
+                model_id=resolved.model_id,
+                checkpoint_id=resolved.checkpoint_id,
+                checkpoint=resolved.checkpoint_path,
                 output_dir=output_dir,
                 input_dir=input_dir,
                 manifest=manifest,
@@ -74,7 +101,10 @@ def extract_command(
     except (ExtractionError, ValueError, OSError) as exc:
         console.print(f"Extraction failed: {exc}", style="red")
         raise typer.Exit(1) from exc
-    console.print(f"Extraction complete: {result.success_count} success, {result.failure_count} failures, dim={result.embedding_dim}.")
+    console.print(
+        f"Extraction complete: {result.success_count} success, "
+        f"{result.failure_count} failures, dim={result.embedding_dim}."
+    )
 
 
 @benchmark_app.command("import")
@@ -109,6 +139,45 @@ def benchmark_build_command(
     console.print(f"Built {result['run_count']} dashboard run(s) for {result['release_id']}.")
 
 
+@benchmark_app.command("probe")
+def benchmark_probe_command(
+    features: Path = typer.Option(..., "--features", exists=True),
+    samples: Path = typer.Option(..., "--samples", exists=True),
+    labels: Path = typer.Option(..., "--labels", exists=True),
+    split_manifest: Path = typer.Option(..., "--split-manifest", exists=True),
+    output: Path = typer.Option(..., "--output"),
+    release: str = typer.Option(..., "--release"),
+    model: str = typer.Option(..., "--model"),
+    checkpoint_id: str = typer.Option(..., "--checkpoint-id"),
+    task: str = typer.Option(..., "--task"),
+    task_name: str | None = typer.Option(None, "--task-name"),
+    label_space: str | None = typer.Option(None, "--label-space"),
+    adapter_version: str | None = typer.Option(None, "--adapter-version"),
+    seed: int = typer.Option(2026, "--seed"),
+):
+    """对已冻结且严格对齐的特征运行统一多分类轻量探针。"""
+    from .evaluation import PrecomputedProbeConfig, run_precomputed_probe
+
+    result = run_precomputed_probe(
+        PrecomputedProbeConfig(
+            features=features,
+            samples=samples,
+            labels=labels,
+            split_manifest=split_manifest,
+            output_dir=output,
+            release_id=release,
+            model_id=model,
+            checkpoint_id=checkpoint_id,
+            task_id=task,
+            task_display_name=task_name,
+            label_space=label_space,
+            adapter_version=adapter_version,
+            seed=seed,
+        )
+    )
+    console.print(f"Built frozen-feature probe artifacts: {result}")
+
+
 @app.command("dashboard")
 def dashboard_command(
     results: Path = typer.Option(Path("benchmark/generated"), "--results"),
@@ -120,7 +189,17 @@ def dashboard_command(
     import sys
 
     script = Path(__file__).with_name("dashboard.py")
-    command = [sys.executable, "-m", "streamlit", "run", str(script), "--server.address", host, "--server.port", str(port)]
+    command = [
+        sys.executable,
+        "-m",
+        "streamlit",
+        "run",
+        str(script),
+        "--server.address",
+        host,
+        "--server.port",
+        str(port),
+    ]
     environment = {**__import__("os").environ, "OPHBENCH_DASHBOARD_RESULTS": str(results.resolve())}
     raise typer.Exit(subprocess.call(command, env=environment))
 
@@ -157,8 +236,7 @@ def build_command(check: bool = typer.Option(False)):
         raise typer.Exit(1)
     state = "is current" if check else "built"
     console.print(
-        f"Catalog {state}: {result.model_count} models, "
-        f"{result.checkpoint_count} checkpoints."
+        f"Catalog {state}: {result.model_count} models, {result.checkpoint_count} checkpoints."
     )
 
 

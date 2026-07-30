@@ -2,16 +2,23 @@ from __future__ import annotations
 
 import hashlib
 import subprocess
+from collections.abc import Callable
 from datetime import UTC, datetime
 from pathlib import Path
-from typing import Callable
 
 from .dataset import open_rgb_image
-from .manifest import load_manifest, scan_directory, serialized_manifest, sha256_file, write_input_manifest
+from .manifest import (
+    load_manifest,
+    scan_directory,
+    serialized_manifest,
+    sha256_file,
+    write_input_manifest,
+)
 from .resume import load_state, save_state
 from .schemas import ExtractionConfig, ExtractionResult
 from .validation import validate_embeddings
-from .writer import atomic_json, sha256_file as artifact_sha256, write_csv
+from .writer import atomic_json, write_csv
+from .writer import sha256_file as artifact_sha256
 
 
 class ExtractionError(RuntimeError):
@@ -29,7 +36,9 @@ def _git_commit() -> str | None:
         return None
 
 
-def _fingerprint(config: ExtractionConfig, checkpoint_sha256: str, input_sha256: str, adapter) -> dict:
+def _fingerprint(
+    config: ExtractionConfig, checkpoint_sha256: str, input_sha256: str, adapter
+) -> dict:
     return {
         "model_id": config.model_id,
         "checkpoint_id": config.checkpoint_id,
@@ -54,7 +63,9 @@ def _prepare_output(config: ExtractionConfig, fingerprint: dict) -> dict | None:
             raise ExtractionError("Extraction is incomplete; re-run with --resume")
         return state
     if output.exists() and {item.name for item in output.iterdir()} - {"input_manifest.csv"}:
-        raise ExtractionError("Refusing to write into a non-empty directory without OphBench state.json")
+        raise ExtractionError(
+            "Refusing to write into a non-empty directory without OphBench state.json"
+        )
     output.mkdir(parents=True, exist_ok=True)
     (output / "features").mkdir(exist_ok=True)
     return None
@@ -88,10 +99,14 @@ def run_extraction(
 
     existing_state = load_state(config.output_dir) if config.output_dir.exists() else None
     if config.output_dir.exists() and any(config.output_dir.iterdir()) and existing_state is None:
-        raise ExtractionError("Refusing to write into a non-empty directory without OphBench state.json")
+        raise ExtractionError(
+            "Refusing to write into a non-empty directory without OphBench state.json"
+        )
 
     records = (
-        scan_directory(config.input_dir) if config.input_dir else load_manifest(config.manifest, config.path_column, config.id_column)
+        scan_directory(config.input_dir)
+        if config.input_dir
+        else load_manifest(config.manifest, config.path_column, config.id_column)
     )
     identifiers = [record["sample_id"] for record in records]
     if len(identifiers) != len(set(identifiers)):
@@ -107,6 +122,18 @@ def run_extraction(
         checkpoint_path=config.checkpoint,
         device=config.device,
     )
+    checkpoint_sha256 = sha256_file(config.checkpoint)
+    fingerprint = _fingerprint(config, checkpoint_sha256, input_sha256, adapter)
+    state = _prepare_output(config, fingerprint)
+    if state and state.get("completed"):
+        return ExtractionResult(
+            config.output_dir,
+            state["success_count"],
+            state["failure_count"],
+            state["embedding_dim"],
+            True,
+        )
+
     adapter.load()
     import torch
 
@@ -117,16 +144,17 @@ def run_extraction(
         if any(parameter.requires_grad for parameter in model.parameters()):
             raise ExtractionError("Adapter model still has trainable parameters after freezing")
 
-    checkpoint_sha256 = sha256_file(config.checkpoint)
-    fingerprint = _fingerprint(config, checkpoint_sha256, input_sha256, adapter)
-    state = _prepare_output(config, fingerprint)
-    if state and state.get("completed"):
-        return ExtractionResult(config.output_dir, state["success_count"], state["failure_count"], state["embedding_dim"], True)
     written_input_sha256 = write_input_manifest(records, config.output_dir / "input_manifest.csv")
     if written_input_sha256 != input_sha256:
         raise ExtractionError("Input manifest serialization changed during extraction setup")
 
-    state = state or {"processed": 0, "success_rows": [], "failures": [], "shards": [], "started_at": _now()}
+    state = state or {
+        "processed": 0,
+        "success_rows": [],
+        "failures": [],
+        "shards": [],
+        "started_at": _now(),
+    }
     processed = state["processed"]
     success_rows = state["success_rows"]
     failures = state["failures"]
@@ -152,11 +180,19 @@ def run_extraction(
 
     def flush_pending_shard(force: bool = False):
         nonlocal embedding_dim, shard_index, shard_chunks, shard_rows
-        if not shard_chunks or (not force and sum(len(chunk) for chunk in shard_chunks) < config.shard_size):
+        if not shard_chunks or (
+            not force and sum(len(chunk) for chunk in shard_chunks) < config.shard_size
+        ):
             return
         dim, filename = _flush_shard(config.output_dir, shard_index, shard_chunks, shard_rows)
         embedding_dim = embedding_dim or dim
-        shards.append({"file": f"features/{filename}", "sample_count": len(shard_rows), "shape": [len(shard_rows), dim]})
+        shards.append(
+            {
+                "file": f"features/{filename}",
+                "sample_count": len(shard_rows),
+                "shape": [len(shard_rows), dim],
+            }
+        )
         success_rows.extend(shard_rows)
         shard_index += 1
         shard_chunks, shard_rows = [], []
@@ -180,11 +216,26 @@ def run_extraction(
             if values.shape[1] != embedding_dim:
                 raise ValueError("Embedding dimension changed during one extraction run")
             shard_chunks.append(values)
-            shard_rows.extend({"row_index": len(success_rows) + len(shard_rows), "sample_id": record["sample_id"], "relative_path": record["relative_path"]} for record, _ in pending)
+            shard_rows.extend(
+                {
+                    "row_index": len(success_rows) + len(shard_rows),
+                    "sample_id": record["sample_id"],
+                    "relative_path": record["relative_path"],
+                }
+                for record, _ in pending
+            )
         except Exception as exc:  # isolate a bad sample, then retain other samples
             if len(pending) == 1:
                 record, _ = pending[0]
-                failures.append({"sample_id": record["sample_id"], "relative_path": record["relative_path"], "failure_stage": "preprocess_or_encode", "exception_type": type(exc).__name__, "sanitized_error": str(exc)[:300]})
+                failures.append(
+                    {
+                        "sample_id": record["sample_id"],
+                        "relative_path": record["relative_path"],
+                        "failure_stage": "preprocess_or_encode",
+                        "exception_type": type(exc).__name__,
+                        "sanitized_error": str(exc)[:300],
+                    }
+                )
             else:
                 items = list(pending)
                 pending.clear()
@@ -202,7 +253,15 @@ def run_extraction(
         try:
             image = open_rgb_image(record["source_path"])
         except Exception as exc:
-            failures.append({"sample_id": record["sample_id"], "relative_path": record["relative_path"], "failure_stage": "image_decode", "exception_type": type(exc).__name__, "sanitized_error": str(exc)[:300]})
+            failures.append(
+                {
+                    "sample_id": record["sample_id"],
+                    "relative_path": record["relative_path"],
+                    "failure_stage": "image_decode",
+                    "exception_type": type(exc).__name__,
+                    "sanitized_error": str(exc)[:300],
+                }
+            )
             flush_pending_shard(force=True)
             persist()
             continue
@@ -213,18 +272,48 @@ def run_extraction(
     flush_pending_shard(force=True)
     if embedding_dim is None and records:
         raise ExtractionError("No readable images produced valid embeddings")
-    write_csv(config.output_dir / "samples.csv", success_rows, ["row_index", "sample_id", "relative_path", "shard", "offset", "status"])
-    write_csv(config.output_dir / "failures.csv", failures, ["sample_id", "relative_path", "failure_stage", "exception_type", "sanitized_error"])
+    write_csv(
+        config.output_dir / "samples.csv",
+        success_rows,
+        ["row_index", "sample_id", "relative_path", "shard", "offset", "status"],
+    )
+    write_csv(
+        config.output_dir / "failures.csv",
+        failures,
+        ["sample_id", "relative_path", "failure_stage", "exception_type", "sanitized_error"],
+    )
     for shard in shards:
         shard["sha256"] = artifact_sha256(config.output_dir / shard["file"])
-    artifacts = ["input_manifest.csv", "samples.csv", "failures.csv"] + [item["file"] for item in shards]
+    artifacts = ["input_manifest.csv", "samples.csv", "failures.csv"] + [
+        item["file"] for item in shards
+    ]
     artifact_manifest = {name: artifact_sha256(config.output_dir / name) for name in artifacts}
     atomic_json(config.output_dir / "artifact_manifest.json", artifact_manifest)
-    summary = {"success_count": len(success_rows), "failure_count": len(failures), "embedding_dim": embedding_dim, "completed_at": _now()}
+    summary = {
+        "success_count": len(success_rows),
+        "failure_count": len(failures),
+        "embedding_dim": embedding_dim,
+        "completed_at": _now(),
+    }
     atomic_json(config.output_dir / "extraction_summary.json", summary)
     from ophbench._version import __version__
 
-    run_manifest = {**fingerprint, **summary, "model_id": config.model_id, "checkpoint_id": config.checkpoint_id, "dtype": "float32", "device": config.device, "batch_size": config.batch_size, "sample_count": len(records), "git_commit": _git_commit(), "package_version": __version__}
+    runtime_metadata = getattr(adapter, "runtime_metadata", lambda: {})()
+    run_manifest = {
+        **fingerprint,
+        **summary,
+        "model_id": config.model_id,
+        "checkpoint_id": config.checkpoint_id,
+        "dtype": "float32",
+        "device": config.device,
+        "batch_size": config.batch_size,
+        "sample_count": len(records),
+        "git_commit": _git_commit(),
+        "package_version": __version__,
+        "adapter_runtime": runtime_metadata,
+    }
     atomic_json(config.output_dir / "run_manifest.json", run_manifest)
     persist(completed=True)
-    return ExtractionResult(config.output_dir, len(success_rows), len(failures), embedding_dim or 0, True)
+    return ExtractionResult(
+        config.output_dir, len(success_rows), len(failures), embedding_dim or 0, True
+    )

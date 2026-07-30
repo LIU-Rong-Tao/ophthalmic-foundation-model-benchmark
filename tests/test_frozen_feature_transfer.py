@@ -2,9 +2,9 @@ import json
 from pathlib import Path
 
 import numpy as np
-from PIL import Image
 import torch
 import yaml
+from PIL import Image
 
 from ophbench.evaluation.frozen_feature import (
     OUTPUT_FILES,
@@ -12,7 +12,6 @@ from ophbench.evaluation.frozen_feature import (
     load_protocol,
     run_frozen_feature_transfer,
 )
-
 
 CLASSES = ("anodr", "bmilddr", "cmoderatedr", "dseveredr", "eproliferativedr")
 

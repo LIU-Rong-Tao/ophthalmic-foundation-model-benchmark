@@ -5,7 +5,6 @@ import hashlib
 import io
 from pathlib import Path
 
-
 IMAGE_SUFFIXES = {".png", ".jpg", ".jpeg", ".tif", ".tiff"}
 
 

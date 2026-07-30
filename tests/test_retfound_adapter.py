@@ -19,7 +19,9 @@ def test_public_factory_dispatches_retfound_cfp(tmp_path):
 
 
 def test_public_factory_dispatches_retfound_green(tmp_path):
-    green = load_adapter("retfound-green", "retfound-green-v0.1", checkpoint_path=tmp_path / "green.pth")
+    green = load_adapter(
+        "retfound-green", "retfound-green-v0.1", checkpoint_path=tmp_path / "green.pth"
+    )
     assert isinstance(green, RETFoundGreenAdapter) and green.embedding_dim == 384
 
 

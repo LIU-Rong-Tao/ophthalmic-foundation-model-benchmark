@@ -76,7 +76,10 @@ def test_manifest_input_and_resume_fingerprint_guard(tmp_path):
     assert run_extraction(config, adapter_factory=fake_factory).success_count == 1
     assert run_extraction(config, adapter_factory=fake_factory).completed is True
     with pytest.raises(ExtractionError, match="fingerprint"):
-        run_extraction(_config(tmp_path, images, checkpoint_id="other", resume=True), adapter_factory=fake_factory)
+        run_extraction(
+            _config(tmp_path, images, checkpoint_id="other", resume=True),
+            adapter_factory=fake_factory,
+        )
 
 
 def test_interrupted_run_resumes_after_a_completed_shard(tmp_path):
@@ -99,6 +102,7 @@ def test_interrupted_run_resumes_after_a_completed_shard(tmp_path):
     with pytest.raises(KeyboardInterrupt):
         run_extraction(config, adapter_factory=lambda **_: InterruptingAdapter())
     resumed = run_extraction(
-        _config(tmp_path, images, batch_size=1, shard_size=1, resume=True), adapter_factory=fake_factory
+        _config(tmp_path, images, batch_size=1, shard_size=1, resume=True),
+        adapter_factory=fake_factory,
     )
     assert resumed.success_count == 3

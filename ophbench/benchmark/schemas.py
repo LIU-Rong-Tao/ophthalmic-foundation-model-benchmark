@@ -27,6 +27,7 @@ class ModelRun:
     adapter_version: str | None
     protocol_id: str
     task_id: str
+    task_metadata: dict[str, Any]
     qualification_status: str
     metrics: dict[str, Any]
     cost: dict[str, Any]

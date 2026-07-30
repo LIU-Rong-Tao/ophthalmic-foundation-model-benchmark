@@ -1,0 +1,26 @@
+release_id: '2026.07'
+title: OphBench private CFP frozen-feature benchmark
+release_date: '2026-07-30'
+status: internal
+default_task_id: private-fundus-59class
+task_ids:
+  - private-fundus-59class
+  - private-fundus-dr-stage-3class
+tasks:
+  - task_id: private-fundus-59class
+    display_name: 59类眼底疾病
+    task_type: single_label_multiclass_classification
+    class_count: 59
+    sample_count: 9853
+  - task_id: private-fundus-dr-stage-3class
+    display_name: DR三阶段（Normal / NPDR / PDR）
+    task_type: single_label_multiclass_classification
+    class_count: 3
+    sample_count: 673
+protocol_ids:
+  - frozen-feature-single-observed-v1
+  - precomputed-frozen-feature-logreg-v1
+notes: This release contains sanitized aggregate metrics only.
+limitations:
+  - Dashboard results are exploratory frozen-feature comparisons.
+  - Patient identifiers are unavailable; patient-level generalization is not established.

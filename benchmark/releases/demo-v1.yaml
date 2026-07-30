@@ -2,8 +2,24 @@ release_id: demo-v1
 title: OphBench local demonstration
 release_date: '2026-07-27'
 status: draft
-task_ids: []
-protocol_ids: []
+default_task_id: private-fundus-59class
+task_ids:
+  - private-fundus-59class
+  - private-fundus-dr-stage-3class
+tasks:
+  - task_id: private-fundus-59class
+    display_name: 59类眼底疾病
+    task_type: single_label_multiclass_classification
+    class_count: 59
+    sample_count: 9853
+  - task_id: private-fundus-dr-stage-3class
+    display_name: DR三阶段（Normal / NPDR / PDR）
+    task_type: single_label_multiclass_classification
+    class_count: 3
+    sample_count: 673
+protocol_ids:
+  - frozen-feature-single-observed-v1
+  - precomputed-frozen-feature-logreg-v1
 notes: This release intentionally contains no private patient-level data.
 limitations:
   - Local demonstration only; import sanitized aggregate results before use.

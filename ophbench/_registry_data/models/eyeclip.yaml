@@ -18,7 +18,7 @@ modalities:
 - CT
 - RetCam
 - text
-architecture: ViT-Large/16图像编码器 + 文本编码器
+architecture: CLIP式ViT-B/32视觉编码器（12层、宽度768）+文本编码器；已验证的本地权重另含不参与特征提取的MAE解码器
 pretraining_data_summary: 278万图像 + 11180份血管造影报告；来自128554名患者、227家机构
 pretraining_strategy: 联合训练：MIM + image-image contrastive learning + image-text contrastive
   learning
@@ -27,6 +27,8 @@ paper_url: https://www.nature.com/articles/s41746-025-01772-2
 code_url: https://github.com/Michi-3000/EyeCLIP
 code_available: true
 capabilities:
+- image_encoding
+- feature_extraction
 - classification
 - zero_shot_classification
 - few_shot_classification
@@ -36,10 +38,10 @@ benchmark_tracks: []
 runtime_phase: phase2_vision_language
 license: null
 license_verified: false
-verification_status: seed_unverified
+verification_status: partially_verified
 implementation:
-  adapter_status: requires_external_runtime
-  smoke_test_status: not_run
+  adapter_status: implemented
+  smoke_test_status: passed
   benchmark_status: not_run
 reported_tasks_text: 眼科疾病零样本、少样本及全监督分类；图像—图像和图像—文本跨模态检索；眼科视觉问答；眼科及全身疾病预测
 provenance:
@@ -50,3 +52,4 @@ provenance:
 notes:
 - 'Original modality text: 11种眼科影像（CFP、FFA、SLP、ICGA、OUS、OCT、SM、FAF、EEP、CT、RetCam)
   + 结构化临床报告'
+- v0.3视觉Adapter依据官方EyeCLIP代码构建；A6000本地GPU smoke完成12张有效图像并隔离1张坏图，文本编码器与MAE解码器均不参与512维图像特征。

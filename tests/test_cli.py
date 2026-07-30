@@ -1,10 +1,15 @@
 import subprocess
 import sys
 from pathlib import Path
+from types import SimpleNamespace
 
 from typer.testing import CliRunner
 
 from ophbench.cli import app
+from ophbench.extraction.profiles import (
+    load_extraction_defaults,
+    resolve_extraction_profile,
+)
 
 ROOT = Path(__file__).parents[1]
 runner = CliRunner()
@@ -47,3 +52,59 @@ def test_import_script_forwards_command_line_arguments(tmp_path: Path):
     )
     assert result.returncode == 0
     assert len(list((tmp_path / "registry/models").glob("*.yaml"))) == 15
+
+
+def test_short_extract_profile_resolves_registry_and_local_checkpoint(tmp_path: Path):
+    checkpoint = tmp_path / "retfound.pth"
+    checkpoint.write_bytes(b"weights")
+    config = tmp_path / "config.yaml"
+    config.write_text(
+        f"checkpoints:\n  retfound-cfp: {checkpoint.as_posix()}\n",
+        encoding="utf-8",
+    )
+    values, loaded_path = load_extraction_defaults(config)
+    resolved = resolve_extraction_profile(
+        profile="retfound-cfp",
+        model_id=None,
+        checkpoint_id=None,
+        checkpoint_path=None,
+        values=values,
+        config_path=loaded_path,
+    )
+    assert resolved.model_id == "retfound"
+    assert resolved.checkpoint_id == "retfound-cfp"
+    assert resolved.checkpoint_path == checkpoint.resolve()
+
+
+def test_short_extract_cli_preserves_legacy_options(monkeypatch, tmp_path: Path):
+    checkpoint = tmp_path / "retfound.pth"
+    checkpoint.write_bytes(b"weights")
+    config = tmp_path / "config.yaml"
+    config.write_text(
+        f"checkpoints:\n  retfound-cfp: {checkpoint.as_posix()}\n",
+        encoding="utf-8",
+    )
+    captured = {}
+
+    def fake_run_extraction(extraction_config):
+        captured["config"] = extraction_config
+        return SimpleNamespace(success_count=8, failure_count=0, embedding_dim=1024)
+
+    monkeypatch.setattr("ophbench.cli.run_extraction", fake_run_extraction)
+    result = runner.invoke(
+        app,
+        [
+            "extract",
+            "retfound-cfp",
+            "--input",
+            str(tmp_path / "images"),
+            "--output",
+            str(tmp_path / "features"),
+            "--config",
+            str(config),
+        ],
+    )
+    assert result.exit_code == 0
+    assert "8 success" in result.stdout
+    assert captured["config"].model_id == "retfound"
+    assert captured["config"].checkpoint_id == "retfound-cfp"

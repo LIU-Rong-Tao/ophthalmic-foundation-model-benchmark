@@ -1,0 +1,113 @@
+{
+  "adapter_version": "0.2.0",
+  "artifacts": {
+    "metrics": "metrics.json",
+    "per_class": "per_class.csv"
+  },
+  "checkpoint_id": "retfound-cfp",
+  "confusion_matrix": [
+    [
+      44,
+      1,
+      0
+    ],
+    [
+      1,
+      35,
+      4
+    ],
+    [
+      0,
+      4,
+      14
+    ]
+  ],
+  "cost": {
+    "feature_dim": 1024,
+    "latency_ms": null,
+    "peak_vram_gb": null,
+    "throughput": null
+  },
+  "limitations": [
+    "Image-level split; patient identifiers are unavailable.",
+    "Observed directory labels are exploratory and may not capture hidden comorbidity."
+  ],
+  "metrics": {
+    "Accuracy": 0.9029126213592233,
+    "Balanced Accuracy": 0.8768518518518519,
+    "Macro-AUROC": 0.9763600459340825,
+    "Macro-F1": 0.8768518518518519,
+    "Top-3 Accuracy": null,
+    "Top-5 Accuracy": null,
+    "Weighted-F1": 0.9029126213592233,
+    "Macro-AUPRC": 0.9482855298981777
+  },
+  "model_id": "retfound",
+  "per_class": [
+    {
+      "AUPRC": 0.9915776419643522,
+      "AUROC": 0.9942528735632185,
+      "F1": 0.9777777777777777,
+      "Precision": 0.9777777777777777,
+      "Recall": 0.9777777777777777,
+      "Specificity": 0.9827586206896551,
+      "Support": 45.0,
+      "class_id": 0.0,
+      "class_name": "Normal",
+      "metric_stability": "standard"
+    },
+    {
+      "AUPRC": 0.9499754610933613,
+      "AUROC": 0.9603174603174605,
+      "F1": 0.875,
+      "Precision": 0.875,
+      "Recall": 0.875,
+      "Specificity": 0.9206349206349206,
+      "Support": 40.0,
+      "class_id": 1.0,
+      "class_name": "NPDR",
+      "metric_stability": "standard"
+    },
+    {
+      "AUPRC": 0.9033034866368201,
+      "AUROC": 0.9745098039215686,
+      "F1": 0.7777777777777778,
+      "Precision": 0.7777777777777778,
+      "Recall": 0.7777777777777778,
+      "Specificity": 0.9529411764705882,
+      "Support": 18.0,
+      "class_id": 2.0,
+      "class_name": "PDR",
+      "metric_stability": "standard"
+    }
+  ],
+  "protocol_id": "precomputed-frozen-feature-logreg-v1",
+  "qualification_status": "exploratory",
+  "release_id": "2026.07",
+  "run_id": "2026.07--retfound--private-fundus-dr-stage-3class",
+  "stability": {
+    "accuracy_mean": 0.9066385882328651,
+    "accuracy_std": 0.007090952231770736,
+    "balanced_accuracy_mean": 0.8794090688621761,
+    "balanced_accuracy_std": 0.008073983838608252,
+    "macro_f1_mean": 0.8788281581953402,
+    "macro_f1_std": 0.00880863474348102,
+    "seed_selected_by_test": false,
+    "seeds": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+    ]
+  },
+  "task_id": "private-fundus-dr-stage-3class",
+  "task_metadata": {
+    "class_count": 3,
+    "display_name": "DR三阶段（Normal / NPDR / PDR）",
+    "label_semantics": "observed_directory_labels",
+    "label_space": "normal_npdr_pdr",
+    "sample_count": 673,
+    "task_type": "single_label_multiclass_classification"
+  }
+}

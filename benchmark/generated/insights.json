@@ -1,0 +1,318 @@
+{
+  "by_task": {
+    "private-fundus-59class": {
+      "cost_ranking": [],
+      "home_metrics": [
+        "Macro-F1",
+        "Balanced Accuracy",
+        "Accuracy",
+        "Top-3 Accuracy",
+        "Macro-AUROC"
+      ],
+      "limitations": [
+        "Dashboard results are exploratory frozen-feature comparisons.",
+        "Patient identifiers are unavailable; patient-level generalization is not established."
+      ],
+      "metric_comparison": [
+        {
+          "Accuracy": 0.5981055480378891,
+          "Balanced Accuracy": 0.4646482041996581,
+          "Macro-AUROC": 0.9646557926243973,
+          "Macro-F1": 0.47433071799106014,
+          "Top-3 Accuracy": 0.8322056833558863,
+          "Top-5 Accuracy": 0.8944519621109608,
+          "Weighted-F1": 0.588720822993637,
+          "feature_dim": 384,
+          "latency_ms": null,
+          "macro_auprc": 0.5256881697522426,
+          "model_id": "retfound-green",
+          "peak_vram_gb": null,
+          "throughput": null
+        },
+        {
+          "Accuracy": 0.4810554803788904,
+          "Balanced Accuracy": 0.40272455747193536,
+          "Macro-AUROC": 0.9134474382276235,
+          "Macro-F1": 0.3876605476767622,
+          "Top-3 Accuracy": 0.7090663058186739,
+          "Top-5 Accuracy": 0.793640054127199,
+          "Weighted-F1": 0.4858176114879809,
+          "feature_dim": 1024,
+          "latency_ms": null,
+          "macro_auprc": 0.39561884074654957,
+          "model_id": "retfound",
+          "peak_vram_gb": null,
+          "throughput": null
+        },
+        {
+          "Accuracy": 0.36400541271989173,
+          "Balanced Accuracy": 0.2703381843696283,
+          "Macro-AUROC": 0.8662390517689497,
+          "Macro-F1": 0.2596798875696022,
+          "Top-3 Accuracy": 0.5805142083897158,
+          "Top-5 Accuracy": 0.6860622462787551,
+          "Weighted-F1": 0.3590473088228287,
+          "feature_dim": 512,
+          "latency_ms": null,
+          "macro_auprc": 0.2505146925425843,
+          "model_id": "eyeclip",
+          "peak_vram_gb": null,
+          "throughput": null
+        }
+      ],
+      "radar": [
+        {
+          "Accuracy": 1.0,
+          "Balanced Accuracy": 1.0,
+          "Efficiency": null,
+          "Macro-AUROC": 1.0,
+          "Macro-F1": 1.0,
+          "Stability": 0.9938907884313477,
+          "model_id": "retfound-green"
+        },
+        {
+          "Accuracy": 0.5,
+          "Balanced Accuracy": 0.6813152158499616,
+          "Efficiency": null,
+          "Macro-AUROC": 0.47967841698814767,
+          "Macro-F1": 0.596227183728455,
+          "Stability": 0.9909778315226921,
+          "model_id": "retfound"
+        },
+        {
+          "Accuracy": 0.0,
+          "Balanced Accuracy": 0.0,
+          "Efficiency": null,
+          "Macro-AUROC": 0.0,
+          "Macro-F1": 0.0,
+          "Stability": 0.9914516022975474,
+          "model_id": "eyeclip"
+        }
+      ],
+      "stable_class_winners": {
+        "AUROC": {
+          "retfound": 4,
+          "retfound-green": 46
+        },
+        "F1": {
+          "eyeclip": 1,
+          "retfound": 10,
+          "retfound-green": 39
+        },
+        "Recall": {
+          "eyeclip": 1,
+          "retfound": 10,
+          "retfound-green": 39
+        }
+      }
+    },
+    "private-fundus-dr-stage-3class": {
+      "cost_ranking": [],
+      "home_metrics": [
+        "Macro-F1",
+        "Balanced Accuracy",
+        "Accuracy",
+        "Top-3 Accuracy",
+        "Macro-AUROC"
+      ],
+      "limitations": [
+        "Dashboard results are exploratory frozen-feature comparisons.",
+        "Patient identifiers are unavailable; patient-level generalization is not established."
+      ],
+      "metric_comparison": [
+        {
+          "Accuracy": 0.912621359223301,
+          "Balanced Accuracy": 0.8944444444444445,
+          "Macro-AUPRC": 0.9328877387180765,
+          "Macro-AUROC": 0.9721658778453911,
+          "Macro-F1": 0.8872005187794662,
+          "Top-3 Accuracy": null,
+          "Top-5 Accuracy": null,
+          "Weighted-F1": 0.9130164674364982,
+          "feature_dim": 384,
+          "latency_ms": null,
+          "model_id": "retfound-green",
+          "peak_vram_gb": null,
+          "throughput": null
+        },
+        {
+          "Accuracy": 0.9029126213592233,
+          "Balanced Accuracy": 0.8768518518518519,
+          "Macro-AUPRC": 0.9482855298981777,
+          "Macro-AUROC": 0.9763600459340825,
+          "Macro-F1": 0.8768518518518519,
+          "Top-3 Accuracy": null,
+          "Top-5 Accuracy": null,
+          "Weighted-F1": 0.9029126213592233,
+          "feature_dim": 1024,
+          "latency_ms": null,
+          "model_id": "retfound",
+          "peak_vram_gb": null,
+          "throughput": null
+        },
+        {
+          "Accuracy": 0.8446601941747572,
+          "Balanced Accuracy": 0.8166666666666668,
+          "Macro-AUPRC": 0.8953626365415301,
+          "Macro-AUROC": 0.9584379728903055,
+          "Macro-F1": 0.8039747064137308,
+          "Top-3 Accuracy": null,
+          "Top-5 Accuracy": null,
+          "Weighted-F1": 0.8486857684110821,
+          "feature_dim": 512,
+          "latency_ms": null,
+          "model_id": "eyeclip",
+          "peak_vram_gb": null,
+          "throughput": null
+        }
+      ],
+      "radar": [
+        {
+          "Accuracy": 1.0,
+          "Balanced Accuracy": 1.0,
+          "Efficiency": null,
+          "Macro-AUROC": 0.765977513960208,
+          "Macro-F1": 1.0,
+          "Stability": 0.991813501608417,
+          "model_id": "retfound-green"
+        },
+        {
+          "Accuracy": 0.8571428571428574,
+          "Balanced Accuracy": 0.7738095238095235,
+          "Efficiency": null,
+          "Macro-AUROC": 1.0,
+          "Macro-F1": 0.8756555612561988,
+          "Stability": 0.991191365256519,
+          "model_id": "retfound"
+        },
+        {
+          "Accuracy": 0.0,
+          "Balanced Accuracy": 0.0,
+          "Efficiency": null,
+          "Macro-AUROC": 0.0,
+          "Macro-F1": 0.0,
+          "Stability": 0.9803596168739954,
+          "model_id": "eyeclip"
+        }
+      ],
+      "stable_class_winners": {
+        "AUROC": {
+          "retfound": 1,
+          "retfound-green": 2
+        },
+        "F1": {
+          "retfound-green": 3
+        },
+        "Recall": {
+          "retfound": 1,
+          "retfound-green": 2
+        }
+      }
+    }
+  },
+  "cost_ranking": [],
+  "default_task_id": "private-fundus-59class",
+  "home_metrics": [
+    "Macro-F1",
+    "Balanced Accuracy",
+    "Accuracy",
+    "Top-3 Accuracy",
+    "Macro-AUROC"
+  ],
+  "limitations": [
+    "Dashboard results are exploratory frozen-feature comparisons.",
+    "Patient identifiers are unavailable; patient-level generalization is not established."
+  ],
+  "metric_comparison": [
+    {
+      "Accuracy": 0.5981055480378891,
+      "Balanced Accuracy": 0.4646482041996581,
+      "Macro-AUROC": 0.9646557926243973,
+      "Macro-F1": 0.47433071799106014,
+      "Top-3 Accuracy": 0.8322056833558863,
+      "Top-5 Accuracy": 0.8944519621109608,
+      "Weighted-F1": 0.588720822993637,
+      "feature_dim": 384,
+      "latency_ms": null,
+      "macro_auprc": 0.5256881697522426,
+      "model_id": "retfound-green",
+      "peak_vram_gb": null,
+      "throughput": null
+    },
+    {
+      "Accuracy": 0.4810554803788904,
+      "Balanced Accuracy": 0.40272455747193536,
+      "Macro-AUROC": 0.9134474382276235,
+      "Macro-F1": 0.3876605476767622,
+      "Top-3 Accuracy": 0.7090663058186739,
+      "Top-5 Accuracy": 0.793640054127199,
+      "Weighted-F1": 0.4858176114879809,
+      "feature_dim": 1024,
+      "latency_ms": null,
+      "macro_auprc": 0.39561884074654957,
+      "model_id": "retfound",
+      "peak_vram_gb": null,
+      "throughput": null
+    },
+    {
+      "Accuracy": 0.36400541271989173,
+      "Balanced Accuracy": 0.2703381843696283,
+      "Macro-AUROC": 0.8662390517689497,
+      "Macro-F1": 0.2596798875696022,
+      "Top-3 Accuracy": 0.5805142083897158,
+      "Top-5 Accuracy": 0.6860622462787551,
+      "Weighted-F1": 0.3590473088228287,
+      "feature_dim": 512,
+      "latency_ms": null,
+      "macro_auprc": 0.2505146925425843,
+      "model_id": "eyeclip",
+      "peak_vram_gb": null,
+      "throughput": null
+    }
+  ],
+  "radar": [
+    {
+      "Accuracy": 1.0,
+      "Balanced Accuracy": 1.0,
+      "Efficiency": null,
+      "Macro-AUROC": 1.0,
+      "Macro-F1": 1.0,
+      "Stability": 0.9938907884313477,
+      "model_id": "retfound-green"
+    },
+    {
+      "Accuracy": 0.5,
+      "Balanced Accuracy": 0.6813152158499616,
+      "Efficiency": null,
+      "Macro-AUROC": 0.47967841698814767,
+      "Macro-F1": 0.596227183728455,
+      "Stability": 0.9909778315226921,
+      "model_id": "retfound"
+    },
+    {
+      "Accuracy": 0.0,
+      "Balanced Accuracy": 0.0,
+      "Efficiency": null,
+      "Macro-AUROC": 0.0,
+      "Macro-F1": 0.0,
+      "Stability": 0.9914516022975474,
+      "model_id": "eyeclip"
+    }
+  ],
+  "stable_class_winners": {
+    "AUROC": {
+      "retfound": 4,
+      "retfound-green": 46
+    },
+    "F1": {
+      "eyeclip": 1,
+      "retfound": 10,
+      "retfound-green": 39
+    },
+    "Recall": {
+      "eyeclip": 1,
+      "retfound": 10,
+      "retfound-green": 39
+    }
+  }
+}

@@ -37,21 +37,31 @@ class RETFoundGreenAdapter(ImageEncoderAdapter):
         if not available:
             raise AdapterEnvironmentError(message)
         if self.checkpoint_path is None or not self.checkpoint_path.is_file():
-            raise CheckpointResolutionError("RETFound-Green requires an explicit local checkpoint_path")
-        import torch
+            raise CheckpointResolutionError(
+                "RETFound-Green requires an explicit local checkpoint_path"
+            )
         import timm
+        import torch
 
         checkpoint = torch.load(self.checkpoint_path, map_location="cpu", weights_only=True)
-        state = checkpoint.get("state_dict", checkpoint.get("model", checkpoint)) if isinstance(checkpoint, dict) else None
+        state = (
+            checkpoint.get("state_dict", checkpoint.get("model", checkpoint))
+            if isinstance(checkpoint, dict)
+            else None
+        )
         if not isinstance(state, dict):
             raise InvalidCheckpointError("RETFound-Green checkpoint does not contain a state dict")
         state = {key.removeprefix("module."): value for key, value in state.items()}
-        model = timm.create_model("vit_small_patch14_reg4_dinov2", img_size=(392, 392), num_classes=0)
+        model = timm.create_model(
+            "vit_small_patch14_reg4_dinov2", img_size=(392, 392), num_classes=0
+        )
         mismatch = model.load_state_dict(state, strict=False)
         required = {"cls_token", "pos_embed", "patch_embed.proj.weight", "norm.weight"}
         missing_required = required & set(mismatch.missing_keys)
         if missing_required:
-            raise InvalidCheckpointError(f"RETFound-Green encoder parameters missing: {sorted(missing_required)}")
+            raise InvalidCheckpointError(
+                f"RETFound-Green encoder parameters missing: {sorted(missing_required)}"
+            )
         self.model = model.to(self.device).eval()
         return self
 
@@ -60,11 +70,16 @@ class RETFoundGreenAdapter(ImageEncoderAdapter):
 
         if image.mode != "RGB":
             image = image.convert("RGB")
-        return transforms.Compose([
-            transforms.Resize((self.input_size, self.input_size), interpolation=transforms.InterpolationMode.BICUBIC),
-            transforms.ToTensor(),
-            transforms.Normalize(**self.normalization),
-        ])(image)
+        return transforms.Compose(
+            [
+                transforms.Resize(
+                    (self.input_size, self.input_size),
+                    interpolation=transforms.InterpolationMode.BICUBIC,
+                ),
+                transforms.ToTensor(),
+                transforms.Normalize(**self.normalization),
+            ]
+        )(image)
 
     def encode_image(self, image):
         import torch
@@ -79,5 +94,7 @@ class RETFoundGreenAdapter(ImageEncoderAdapter):
             if features.ndim == 3:
                 features = features[:, self.model.num_prefix_tokens :].mean(dim=1)
         if features.ndim != 2 or features.shape[-1] != self.embedding_dim:
-            raise RuntimeError(f"Unexpected RETFound-Green embedding shape: {tuple(features.shape)}")
+            raise RuntimeError(
+                f"Unexpected RETFound-Green embedding shape: {tuple(features.shape)}"
+            )
         return features

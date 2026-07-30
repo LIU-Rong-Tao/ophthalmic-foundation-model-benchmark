@@ -1,0 +1,13 @@
+task_id: private-fundus-59class
+display_name: 59类眼底疾病
+task_type: single_label_multiclass_classification
+class_count: 59
+sample_count: 9853
+label_space: observed_single_directory_label_59class
+split_level: image
+protocol_id: frozen-feature-single-observed-v1
+label_semantics: single_observed_label_probe
+limitations:
+  - 观测目录标签并非完整多标签真值，隐藏共病不能排除。
+  - 缺少patient_id，患者级泄漏无法完全评估。
+  - 结果仅用于探索性冻结特征迁移能力比较。

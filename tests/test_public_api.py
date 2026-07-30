@@ -1,5 +1,5 @@
-from pathlib import Path
 import re
+from pathlib import Path
 
 import ophbench
 from ophbench import get_registry_info, list_checkpoints, list_models, load_registry

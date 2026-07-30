@@ -2,10 +2,11 @@ from __future__ import annotations
 
 import hashlib
 import json
-from pathlib import Path
 import platform
 import subprocess
-from typing import Any, Callable
+from collections.abc import Callable
+from pathlib import Path
+from typing import Any
 
 import numpy as np
 import pandas as pd
@@ -219,8 +220,8 @@ def run_frozen_feature_transfer(
     batch_size: int = 32,
     adapter_factory: Callable[..., Any] = load_adapter,
 ) -> Path:
-    from sklearn.linear_model import LogisticRegression
     import torch
+    from sklearn.linear_model import LogisticRegression
 
     protocol_path, data_root, checkpoint_path, output_dir = map(
         Path, (protocol_path, data_root, checkpoint_path, output_dir)

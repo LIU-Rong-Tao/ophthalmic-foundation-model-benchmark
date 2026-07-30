@@ -37,10 +37,12 @@ class AdapterFactory:
 def load_adapter(model_id, checkpoint_id, **kwargs):
     """Create a supported adapter without importing its internal module."""
 
+    from .adapters.eyeclip import EyeCLIPAdapter
     from .adapters.retfound_cfp import RETFoundCFPAdapter
     from .adapters.retfound_green import RETFoundGreenAdapter
 
     factory = AdapterFactory()
+    factory.register(EyeCLIPAdapter)
     factory.register(RETFoundCFPAdapter)
     factory.register(RETFoundGreenAdapter)
     return factory.create(model_id, checkpoint_id=checkpoint_id, **kwargs)

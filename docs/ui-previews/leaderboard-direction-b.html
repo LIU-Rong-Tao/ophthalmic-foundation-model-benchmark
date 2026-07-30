@@ -1,0 +1,371 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OphBench leaderboard directions</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f4f7fa; color: #142033; font-family: Inter, "Noto Sans SC", Arial, sans-serif; }
+    .variant { display: none; min-height: 100vh; }
+    body[data-variant="b"] .a, body[data-variant="b"] .b, body[data-variant="c"] .c { display: flex; }
+    .sidebar { width: 248px; flex: 0 0 248px; min-height: 100vh; padding: 28px 20px; background: #102033; color: #dbe6f1; }
+    .brand { display: flex; align-items: center; gap: 11px; padding-bottom: 23px; border-bottom: 1px solid #294057; }
+    .mark { display: grid; width: 39px; height: 39px; place-items: center; border-radius: 10px; background: linear-gradient(135deg, #245f9e, #0f766e); color: white; font-weight: 800; }
+    .brand b { display: block; color: white; font-size: 17px; }
+    .brand small, .side-label { color: #8ca2b8; font-size: 11px; }
+    .side-label { margin: 29px 0 10px; letter-spacing: .08em; font-weight: 800; text-transform: uppercase; }
+    .side-item { margin: 5px 0; padding: 10px 11px; border-radius: 5px; font-size: 14px; }
+    .side-item.active { background: #e8f5f2; color: #0b655f; border-left: 3px solid #22a699; font-weight: 750; }
+    .side-note { margin-top: 36px; padding: 13px; border: 1px solid #294057; color: #9fb0c1; border-radius: 5px; font-size: 11px; line-height: 1.55; }
+    .main { flex: 1; padding: 30px 42px 48px; min-width: 0; }
+    .head { display: flex; align-items: end; justify-content: space-between; gap: 20px; padding-bottom: 21px; border-bottom: 1px solid #dce3eb; }
+    .eyebrow { color: #0f766e; font-size: 11px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
+    h1 { margin: 7px 0 0; font-size: 30px; letter-spacing: -.02em; }
+    .copy { margin-top: 8px; color: #657286; font-size: 13px; }
+    .release { padding: 8px 11px; background: white; border: 1px solid #dce3eb; border-radius: 5px; color: #526174; font-size: 12px; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 21px 0; }
+    .card { min-height: 91px; padding: 15px 16px; background: white; border: 1px solid #dce3eb; border-top: 3px solid var(--accent, #0f766e); border-radius: 5px; }
+    .card span, .metric-label { color: #657286; font-size: 11px; font-weight: 700; }
+    .card b { display: block; margin-top: 7px; font-size: 24px; font-variant-numeric: tabular-nums; }
+    .card small { display:block; color:#7c8797; margin-top: 4px; font-size: 11px; }
+    .controls { display: flex; justify-content: space-between; align-items: center; margin: 26px 0 10px; }
+    .controls h2 { margin: 0; font-size: 17px; }
+    .filters { display: flex; gap: 8px; }
+    .filter { padding: 8px 11px; min-width: 124px; color: #607085; background: white; border: 1px solid #dce3eb; border-radius: 4px; font-size: 12px; }
+    table { width: 100%; border-collapse: separate; border-spacing: 0; overflow: hidden; background: white; border: 1px solid #dce3eb; border-radius: 5px; font-size: 13px; }
+    th { padding: 12px 13px; color: #657286; background: #f7f9fc; text-align: left; border-bottom: 1px solid #dce3eb; font-size: 11px; }
+    td { padding: 14px 13px; border-bottom: 1px solid #edf1f5; }
+    tr:last-child td { border: 0; }
+    .rank { color: #0f766e; font-weight: 800; } .model { font-weight: 750; } .score { font-variant-numeric: tabular-nums; font-weight: 750; }
+    .badge { display: inline-block; padding: 3px 7px; color: #0f766e; background: #e8f5f2; border: 1px solid #b7dcd5; border-radius: 4px; font-size: 10px; font-weight: 800; }
+    .b { display: block; background: #fff; }
+    .b .topbar { display:flex; justify-content:space-between; align-items:center; height:68px; padding:0 57px; border-bottom:1px solid #e6ebf0; }
+    .b .top-brand { color:#142033; font-size:20px; font-weight:800; } .b .nav { display:flex; gap:28px; color:#637083; font-size:13px; } .b .nav .selected { color:#0f766e; font-weight:800; border-bottom:2px solid #0f766e; padding:25px 0 22px; }
+    .b .main { max-width: 1460px; margin: 0 auto; padding: 42px 60px; }
+    .b .hero { display:flex; justify-content:space-between; align-items:end; margin-bottom:30px; } .b h1 { font-size:34px; }
+    .b .rank-table th:first-child, .b .rank-table td:first-child { width:58px; text-align:center; }
+    .b .winner { background:#f0faf8; }
+    .b .table-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:13px; }
+    .b .table-top b { font-size:18px; } .b .muted { color:#708094; font-size:12px; }
+    .c .sidebar { width: 92px; flex-basis: 92px; padding: 24px 13px; text-align: center; }
+    .c .brand { justify-content:center; padding-bottom:18px; } .c .brand > div:last-child { display:none; } .c .side-item { padding:11px 3px; font-size:10px; } .c .side-note { display:none; }
+    .c .main { padding:30px 35px; } .c .split { display:grid; grid-template-columns:minmax(0,1.55fr) minmax(310px,.75fr); gap:17px; }
+    .panel { padding:17px; background:#fff; border:1px solid #dce3eb; border-radius:5px; }
+    .panel h2 { margin:0 0 5px; font-size:16px; } .panel p { margin:0 0 16px; color:#657286; font-size:12px; }
+    .bar-row { display:grid; grid-template-columns:110px 1fr 40px; align-items:center; gap:9px; margin:16px 0; font-size:12px; }
+    .bar { height:8px; background:#e7edf2; border-radius:99px; overflow:hidden; } .bar i { display:block; height:100%; background:#0f766e; border-radius:99px; }
+    .callout { margin-top:17px; padding:13px; background:#fdf8ec; border-left:4px solid #b7791f; color:#624d1d; font-size:12px; line-height:1.5; }
+    body[data-variant="b"] .a, body[data-variant="b"] .c { display: none !important; }
+  </style>
+</head>
+<body data-variant="b">
+  <section class="variant a">
+    <aside class="sidebar">
+<div class="brand">
+<div class="mark">OB</div>
+<div>
+<b>OphBench</b>
+<small>Foundation Model Benchmark</small>
+</div>
+</div>
+<div class="side-label">Benchmark release</div>
+<div class="side-item active">2026.07 · Fundus 59</div>
+<div class="side-label">Views</div>
+<div class="side-item active">Leaderboard</div>
+<div class="side-item">Insights</div>
+<div class="side-item">Model details</div>
+<div class="side-note">
+<b>Research only</b>
+<br>Aggregated, sanitized benchmark results. No image or patient data.</div>
+</aside>
+    <main class="main">
+<div class="head">
+<div>
+<div class="eyebrow">OphBench · Foundation Model Benchmark</div>
+<h1>Fundus Model Leaderboard</h1>
+<div class="copy">Frozen feature comparison under one canonical evaluation protocol.</div>
+</div>
+<div class="release">Release · 2026.07</div>
+</div>
+<div class="cards">
+<div class="card">
+<span>BEST MACRO-F1</span>
+<b>0.474</b>
+<small>RETFound-Green</small>
+</div>
+<div class="card" style="--accent:#245f9e">
+<span>MODELS</span>
+<b>3</b>
+<small>Same protocol</small>
+</div>
+<div class="card" style="--accent:#b7791f">
+<span>OBSERVED CLASSES</span>
+<b>59</b>
+<small>Exploratory label view</small>
+</div>
+</div>
+<div class="controls">
+<h2>Ranked models</h2>
+<div class="filters">
+<div class="filter">All checkpoints ▾</div>
+<div class="filter">Macro-F1 ↓</div>
+</div>
+</div>
+<table>
+<thead>
+<tr>
+<th>RANK</th>
+<th>MODEL</th>
+<th>CHECKPOINT</th>
+<th>MACRO-F1</th>
+<th>BAL. ACC.</th>
+<th>ACCURACY</th>
+<th>TOP-3</th>
+<th>AUROC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="rank">01</td>
+<td class="model">RETFound-Green</td>
+<td>
+<span class="badge">green-v0.1</span>
+</td>
+<td class="score">0.474</td>
+<td>0.465</td>
+<td>0.598</td>
+<td>0.832</td>
+<td>0.965</td>
+</tr>
+<tr>
+<td class="rank">02</td>
+<td class="model">RETFound CFP</td>
+<td>
+<span class="badge">nature-cfp</span>
+</td>
+<td class="score">0.388</td>
+<td>0.403</td>
+<td>0.481</td>
+<td>0.709</td>
+<td>0.913</td>
+</tr>
+<tr>
+<td class="rank">03</td>
+<td class="model">EyeCLIP</td>
+<td>
+<span class="badge">imported result</span>
+</td>
+<td class="score">0.260</td>
+<td>0.270</td>
+<td>0.364</td>
+<td>0.581</td>
+<td>0.866</td>
+</tr>
+</tbody>
+</table>
+</main>
+  </section>
+  <section class="variant b">
+<main class="main">
+<div class="topbar">
+<div class="top-brand">OphBench</div>
+<nav class="nav">
+<span class="selected">Leaderboard</span>
+<span>Models</span>
+<span>Insights</span>
+<span>Methodology</span>
+</nav>
+<div class="release">Fundus 59 · 2026.07 ▾</div>
+</div>
+<div class="hero">
+<div>
+<div class="eyebrow">Benchmark release · frozen results</div>
+<h1>Model ranking</h1>
+<div class="copy">Compare foundation models on the same evaluation contract.</div>
+</div>
+<div class="filters">
+<div class="filter">All tasks ▾</div>
+<div class="filter">Macro-F1 ↓</div>
+</div>
+</div>
+<div class="cards">
+<div class="card">
+<span>MODELS COMPARED</span>
+<b>3</b>
+<small>Current release</small>
+</div>
+<div class="card">
+<span>BEST MODEL</span>
+<b>RETFound-Green</b>
+<small>Macro-F1 0.474</small>
+</div>
+<div class="card">
+<span>STABLE CLASS WINS</span>
+<b>39</b>
+<small>Support ≥ 5</small>
+</div>
+</div>
+<div class="table-top">
+<b>Overall leaderboard</b>
+<span class="muted">Primary metric: Macro-F1 · click columns to sort</span>
+</div>
+<table class="rank-table">
+<thead>
+<tr>
+<th>#</th>
+<th>MODEL</th>
+<th>MACRO-F1</th>
+<th>BALANCED ACCURACY</th>
+<th>ACCURACY</th>
+<th>TOP-3 ACCURACY</th>
+<th>MACRO-AUROC</th>
+<th>DETAIL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="winner">
+<td class="rank">1</td>
+<td class="model">RETFound-Green <span class="badge">leader</span>
+</td>
+<td class="score">0.474</td>
+<td>0.465</td>
+<td>0.598</td>
+<td>0.832</td>
+<td>0.965</td>
+<td>View →</td>
+</tr>
+<tr>
+<td class="rank">2</td>
+<td class="model">RETFound CFP</td>
+<td class="score">0.388</td>
+<td>0.403</td>
+<td>0.481</td>
+<td>0.709</td>
+<td>0.913</td>
+<td>View →</td>
+</tr>
+<tr>
+<td class="rank">3</td>
+<td class="model">EyeCLIP</td>
+<td class="score">0.260</td>
+<td>0.270</td>
+<td>0.364</td>
+<td>0.581</td>
+<td>0.866</td>
+<td>View →</td>
+</tr>
+</tbody>
+</table>
+</main>
+</section>
+  <section class="variant c">
+<aside class="sidebar">
+<div class="brand">
+<div class="mark">OB</div>
+<div>
+<b>OphBench</b>
+<small>Foundation Model Benchmark</small>
+</div>
+</div>
+<div class="side-label">Views</div>
+<div class="side-item active">Rank</div>
+<div class="side-item">Insight</div>
+<div class="side-item">Model</div>
+</aside>
+<main class="main">
+<div class="head">
+<div>
+<div class="eyebrow">OphBench · benchmark release</div>
+<h1>Model ranking</h1>
+<div class="copy">A ranking-first page with concise evidence at hand.</div>
+</div>
+<div class="release">Fundus 59 · 2026.07</div>
+</div>
+<div class="split">
+<section class="panel">
+<h2>Overall leaderboard</h2>
+<p>Primary order: Macro-F1</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>MODEL</th>
+<th>MACRO-F1</th>
+<th>AUROC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="rank">1</td>
+<td class="model">RETFound-Green</td>
+<td class="score">0.474</td>
+<td>0.965</td>
+</tr>
+<tr>
+<td class="rank">2</td>
+<td class="model">RETFound CFP</td>
+<td class="score">0.388</td>
+<td>0.913</td>
+</tr>
+<tr>
+<td class="rank">3</td>
+<td class="model">EyeCLIP</td>
+<td class="score">0.260</td>
+<td>0.866</td>
+</tr>
+</tbody>
+</table>
+<div class="callout">
+<b>Research limitation</b>
+<br>Observed directory labels are incomplete; results are exploratory and do not establish patient-level generalization.</div>
+</section>
+<aside class="panel">
+<h2>At a glance</h2>
+<p>Quality signals across this Release</p>
+<div class="bar-row">
+<span>Macro-F1</span>
+<div class="bar">
+<i style="width:82%">
+</i>
+</div>
+<b>0.474</b>
+</div>
+<div class="bar-row">
+<span>Top-3</span>
+<div class="bar">
+<i style="width:94%;background:#245f9e">
+</i>
+</div>
+<b>0.832</b>
+</div>
+<div class="bar-row">
+<span>Macro-AUROC</span>
+<div class="bar">
+<i style="width:96%;background:#7c3aed">
+</i>
+</div>
+<b>0.965</b>
+</div>
+<h2 style="margin-top:35px">Class wins</h2>
+<p>Only support ≥ 5</p>
+<div class="cards" style="grid-template-columns:1fr 1fr 1fr;margin:0">
+<div class="card">
+<span>GREEN</span>
+<b>39</b>
+</div>
+<div class="card" style="--accent:#245f9e">
+<span>CFP</span>
+<b>10</b>
+</div>
+<div class="card" style="--accent:#b7791f">
+<span>EyeCLIP</span>
+<b>1</b>
+</div>
+</div>
+</aside>
+</div>
+</main>
+</section>
+</body>
+</html>

@@ -10,7 +10,9 @@ VerificationStatus = Literal["seed_unverified", "partially_verified", "verified"
 RuntimePhase = Literal[
     "phase1_image_encoder", "phase1_specialized", "phase2_vision_language", "catalog_only"
 ]
-AdapterStatus = Literal["not_started", "scaffolded", "implemented", "requires_external_runtime", "failed"]
+AdapterStatus = Literal[
+    "not_started", "scaffolded", "implemented", "requires_external_runtime", "failed"
+]
 RunStatus = Literal["not_run", "passed", "failed", "blocked"]
 AccessType = Literal[
     "open", "auth_required", "gated", "application_required", "api_only", "unavailable", "unknown"
