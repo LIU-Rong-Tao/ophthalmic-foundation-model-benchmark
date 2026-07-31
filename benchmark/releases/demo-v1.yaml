@@ -13,10 +13,14 @@ tasks:
     class_count: 59
     sample_count: 9853
   - task_id: private-fundus-dr-stage-3class
-    display_name: DR三阶段（Normal / NPDR / PDR）
+    display_name: 探索性DR目录三分类（Normal / NPDR / PDR）
     task_type: single_label_multiclass_classification
     class_count: 3
     sample_count: 673
+    label_semantics: observed_directory_subclass
+    limitations:
+      - 标签来自canonical数据中的Normal及DR/NPDR、DR/PDR目录，不是正式病例标注表。
+      - 不具备ICDR五级标签；缺少patient_id，患者级泛化未建立。
 protocol_ids:
   - frozen-feature-single-observed-v1
   - precomputed-frozen-feature-logreg-v1

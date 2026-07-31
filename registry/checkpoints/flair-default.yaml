@@ -11,18 +11,18 @@ access_type: open
 requires_auth: false
 redistribution_allowed: unknown
 license: null
-framework: null
-input_size: null
-normalization: null
-embedding_dim: null
-sha256: null
-source_commit: null
-verification_status: seed_unverified
-last_verified: null
+framework: pytorch_safetensors
+input_size: '512'
+normalization: 逐图RGB映射至[0,1]，最长边等比缩放至512并在右侧/底部补零；不使用mean/std归一化
+embedding_dim: 2048
+sha256: 050334cd934fa3126435c202c41f493ca222fc3fe3ea9c50cf21f67c792a1440
+source_commit: d6652d53389ff49e5f73efaccf4246e9de88d1a3
+verification_status: partially_verified
+last_verified: '2026-07-31'
 provenance:
   source_file: ophthalmic_models_seed_v0.xlsx
   source_sheet: 眼科大模型
   source_row: 5
   imported_at: '2026-07-11T09:30:27Z'
 notes:
-- Seed metadata only; URL and redistribution terms have not been verified.
+- A6000本地GPU smoke：官方ResNet-50视觉主干318/318键严格匹配，12张有效图像成功、1张坏图隔离；权重未重新分发。

@@ -22,10 +22,10 @@ benchmark_tracks: []
 runtime_phase: phase1_image_encoder
 license: null
 license_verified: false
-verification_status: seed_unverified
+verification_status: partially_verified
 implementation:
-  adapter_status: not_started
-  smoke_test_status: not_run
+  adapter_status: requires_external_runtime
+  smoke_test_status: blocked
   benchmark_status: not_run
 reported_tasks_text: CFP眼科疾病分类；冠状动脉钙化及eGFR等全身生物标志物预测；特征提取；低标注下游微调与迁移
 provenance:
@@ -35,3 +35,4 @@ provenance:
   imported_at: '2026-07-11T09:30:27Z'
 notes:
 - 'Original modality text: CFP'
+- 官方PRETI运行契约依赖患者级图像对、ROI mask、年龄和性别元数据；当前私有数据不具备这些字段，不能把无元数据的普通ViT前向伪装成官方PRETI特征提取。

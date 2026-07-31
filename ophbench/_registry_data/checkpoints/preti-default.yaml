@@ -10,18 +10,18 @@ access_type: open
 requires_auth: false
 redistribution_allowed: unknown
 license: null
-framework: null
-input_size: null
-normalization: null
+framework: pytorch
+input_size: '512 recommended by official dataset contract'
+normalization: 官方训练代码包含配对图像、ROI mask和随机增强；未找到可独立复现的单图分类评测预处理契约
 embedding_dim: null
-sha256: null
-source_commit: null
-verification_status: seed_unverified
-last_verified: null
+sha256: c6f7ca533c6d609a691a7f0ac3234bee78fe1116da714d9929308eaeaf409395
+source_commit: 2ac2b0f123d69151877ebd44a33edfb026cdac45
+verification_status: partially_verified
+last_verified: '2026-07-31'
 provenance:
   source_file: ophthalmic_models_seed_v0.xlsx
   source_sheet: 眼科大模型
   source_row: 14
   imported_at: '2026-07-11T09:30:27Z'
 notes:
-- Seed metadata only; URL and redistribution terms have not been verified.
+- 本地checkpoint容器已只读核验；因缺少官方要求的患者级配对、ROI mask、年龄及性别元数据，未运行单图Adapter smoke，也未重新分发权重。

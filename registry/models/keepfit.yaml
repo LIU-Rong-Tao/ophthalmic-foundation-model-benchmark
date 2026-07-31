@@ -17,6 +17,7 @@ paper_url: https://link.springer.com/chapter/10.1007/978-3-031-72378-0_67
 code_url: https://github.com/lxirich/MM-Retinal
 code_available: true
 capabilities:
+- feature_extraction
 - classification
 - zero_shot_classification
 - few_shot_classification
@@ -25,11 +26,11 @@ benchmark_tracks: []
 runtime_phase: phase2_vision_language
 license: null
 license_verified: false
-verification_status: seed_unverified
+verification_status: partially_verified
 implementation:
-  adapter_status: not_started
-  smoke_test_status: not_run
-  benchmark_status: not_run
+  adapter_status: implemented
+  smoke_test_status: passed
+  benchmark_status: passed
 reported_tasks_text: CFP疾病零样本、少样本及全监督分类；跨数据集迁移；FFA图像描述与报告生成
 provenance:
   source_file: ophthalmic_models_seed_v0.xlsx
@@ -38,3 +39,4 @@ provenance:
   imported_at: '2026-07-11T09:30:27Z'
 notes:
 - 'Original modality text: CFP、OCT、眼科专家描述文本'
+- A6000本地GPU smoke已通过两个CFP checkpoint：官方ResNet-50视觉主干严格加载，各12张有效图像生成2048维分类头前特征，1张坏图被隔离；FFA权重未纳入本次CFP验证。

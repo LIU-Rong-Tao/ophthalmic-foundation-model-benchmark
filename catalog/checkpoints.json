@@ -124,14 +124,14 @@
       "requires_auth": false,
       "redistribution_allowed": "unknown",
       "license": null,
-      "framework": null,
-      "input_size": null,
-      "normalization": null,
-      "embedding_dim": null,
-      "sha256": null,
-      "source_commit": null,
-      "verification_status": "seed_unverified",
-      "last_verified": null,
+      "framework": "pytorch_safetensors",
+      "input_size": "512",
+      "normalization": "逐图RGB映射至[0,1]，最长边等比缩放至512并在右侧/底部补零；不使用mean/std归一化",
+      "embedding_dim": 2048,
+      "sha256": "050334cd934fa3126435c202c41f493ca222fc3fe3ea9c50cf21f67c792a1440",
+      "source_commit": "d6652d53389ff49e5f73efaccf4246e9de88d1a3",
+      "verification_status": "partially_verified",
+      "last_verified": "2026-07-31",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
@@ -139,7 +139,7 @@
         "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
-        "Seed metadata only; URL and redistribution terms have not been verified."
+        "A6000本地GPU smoke：官方ResNet-50视觉主干318/318键严格匹配，12张有效图像成功、1张坏图隔离；权重未重新分发。"
       ]
     },
     {
@@ -220,14 +220,14 @@
       "requires_auth": false,
       "redistribution_allowed": "unknown",
       "license": null,
-      "framework": null,
-      "input_size": null,
-      "normalization": null,
-      "embedding_dim": null,
-      "sha256": null,
-      "source_commit": null,
-      "verification_status": "seed_unverified",
-      "last_verified": null,
+      "framework": "pytorch",
+      "input_size": "512",
+      "normalization": "逐图RGB映射至[0,1]，最长边等比缩放至512并在右侧/底部补零；不使用mean/std归一化",
+      "embedding_dim": 2048,
+      "sha256": "500904a3cae65f813c74ad9b87c2305c7b375c899fd064fc548c6b1f0e7104c9",
+      "source_commit": "dbbb1f05b9d27278b01e15e5f837b44b22d32cee",
+      "verification_status": "partially_verified",
+      "last_verified": "2026-07-31",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "有多个权重的模型",
@@ -235,7 +235,7 @@
         "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
-        "Seed metadata only; URL and redistribution terms have not been verified."
+        "A6000本地GPU smoke：官方ResNet-50视觉主干318/318键严格匹配，12张有效图像成功、1张坏图隔离；权重未重新分发。"
       ]
     },
     {
@@ -252,14 +252,14 @@
       "requires_auth": false,
       "redistribution_allowed": "unknown",
       "license": null,
-      "framework": null,
-      "input_size": null,
-      "normalization": null,
-      "embedding_dim": null,
-      "sha256": null,
-      "source_commit": null,
-      "verification_status": "seed_unverified",
-      "last_verified": null,
+      "framework": "pytorch",
+      "input_size": "512",
+      "normalization": "逐图RGB映射至[0,1]，最长边等比缩放至512并在右侧/底部补零；不使用mean/std归一化",
+      "embedding_dim": 2048,
+      "sha256": "12e7fd11f9572f63332c8a3c6e00786d670df02258ee9d5c50a8a311bb70345c",
+      "source_commit": "dbbb1f05b9d27278b01e15e5f837b44b22d32cee",
+      "verification_status": "partially_verified",
+      "last_verified": "2026-07-31",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "有多个权重的模型",
@@ -267,7 +267,7 @@
         "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
-        "Seed metadata only; URL and redistribution terms have not been verified."
+        "A6000本地GPU smoke：官方ResNet-50视觉主干318/318键严格匹配，12张有效图像成功、1张坏图隔离；权重未重新分发。"
       ]
     },
     {
@@ -350,14 +350,14 @@
       "requires_auth": false,
       "redistribution_allowed": "unknown",
       "license": null,
-      "framework": null,
-      "input_size": null,
-      "normalization": null,
+      "framework": "pytorch",
+      "input_size": "512 recommended by official dataset contract",
+      "normalization": "官方训练代码包含配对图像、ROI mask和随机增强；未找到可独立复现的单图分类评测预处理契约",
       "embedding_dim": null,
-      "sha256": null,
-      "source_commit": null,
-      "verification_status": "seed_unverified",
-      "last_verified": null,
+      "sha256": "c6f7ca533c6d609a691a7f0ac3234bee78fe1116da714d9929308eaeaf409395",
+      "source_commit": "2ac2b0f123d69151877ebd44a33edfb026cdac45",
+      "verification_status": "partially_verified",
+      "last_verified": "2026-07-31",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
@@ -365,7 +365,7 @@
         "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
-        "Seed metadata only; URL and redistribution terms have not been verified."
+        "本地checkpoint容器已只读核验；因缺少官方要求的患者级配对、ROI mask、年龄及性别元数据，未运行单图Adapter smoke，也未重新分发权重。"
       ]
     },
     {
@@ -383,14 +383,14 @@
       "requires_auth": false,
       "redistribution_allowed": "unknown",
       "license": null,
-      "framework": null,
-      "input_size": null,
-      "normalization": null,
-      "embedding_dim": null,
-      "sha256": null,
-      "source_commit": null,
-      "verification_status": "seed_unverified",
-      "last_verified": null,
+      "framework": "pytorch",
+      "input_size": "224",
+      "normalization": "RGB直接缩放至224×224（bicubic），CLIP mean/std",
+      "embedding_dim": 512,
+      "sha256": "539819ae5ce4c13ea05aa00c5f270eb8432bf02d9ea7f695a9168b97540d1850",
+      "source_commit": "1ddb9a1d331eba9e0a2675f3273e7cbcea0914bd",
+      "verification_status": "partially_verified",
+      "last_verified": "2026-07-31",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
@@ -398,7 +398,7 @@
         "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
-        "Seed metadata only; URL and redistribution terms have not been verified."
+        "A6000本地GPU smoke：官方ViT-B/16视觉分支152/152键严格匹配，12张有效图像成功、1张坏图隔离；权重未重新分发。"
       ]
     },
     {
@@ -514,14 +514,14 @@
       "requires_auth": false,
       "redistribution_allowed": "unknown",
       "license": null,
-      "framework": null,
-      "input_size": null,
-      "normalization": null,
-      "embedding_dim": null,
-      "sha256": null,
-      "source_commit": null,
-      "verification_status": "seed_unverified",
-      "last_verified": null,
+      "framework": "pytorch",
+      "input_size": "224",
+      "normalization": "RGB直接缩放至224×224，ImageNet mean/std",
+      "embedding_dim": 1024,
+      "sha256": "7d06d29441c981898bbb56abdaae1eb97e205448f0a9bc2a68e2aa9431601ede",
+      "source_commit": "d72aadc692fbe33b182c79711bccb397edffb419",
+      "verification_status": "partially_verified",
+      "last_verified": "2026-07-31",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
@@ -529,7 +529,7 @@
         "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
-        "Seed metadata only; URL and redistribution terms have not been verified."
+        "A6000本地GPU smoke：官方rank-8 LoRA ViT-L/16视觉分支390/390键严格匹配，12张有效图像成功、1张坏图隔离；权重未重新分发。"
       ]
     },
     {
@@ -548,14 +548,14 @@
       "requires_auth": false,
       "redistribution_allowed": "unknown",
       "license": null,
-      "framework": null,
-      "input_size": null,
-      "normalization": null,
-      "embedding_dim": null,
-      "sha256": null,
-      "source_commit": null,
-      "verification_status": "seed_unverified",
-      "last_verified": null,
+      "framework": "pytorch",
+      "input_size": "224",
+      "normalization": "RGB短边缩放至256（bicubic）、中心裁剪224×224，ImageNet mean/std",
+      "embedding_dim": 768,
+      "sha256": "8a26bf1a64d449d30fe6fc5faabea48431aa6c15a743d324b8e16271109942e3",
+      "source_commit": "6678be52afdf6c30114fb1d5f733be1282374ada",
+      "verification_status": "partially_verified",
+      "last_verified": "2026-07-31",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
@@ -563,7 +563,7 @@
         "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
-        "Seed metadata only; URL and redistribution terms have not been verified."
+        "A6000本地GPU smoke：官方ViT-B/16编码器150/150键严格匹配，12张有效图像成功、1张坏图隔离；权重未重新分发。"
       ]
     },
     {
@@ -581,14 +581,14 @@
       "requires_auth": false,
       "redistribution_allowed": "unknown",
       "license": null,
-      "framework": null,
-      "input_size": null,
-      "normalization": null,
-      "embedding_dim": null,
-      "sha256": null,
-      "source_commit": null,
-      "verification_status": "seed_unverified",
-      "last_verified": null,
+      "framework": "pytorch",
+      "input_size": "224",
+      "normalization": "RGB直接缩放至224×224（bicubic），CLIP mean/std",
+      "embedding_dim": 512,
+      "sha256": "7b0c0597532bfa8492c83d63140d70a9358cd27e86966333981aec3967fe6ef9",
+      "source_commit": "3a01b908f72abab04661bba80403989f5271b990",
+      "verification_status": "partially_verified",
+      "last_verified": "2026-07-31",
       "provenance": {
         "source_file": "ophthalmic_models_seed_v0.xlsx",
         "source_sheet": "眼科大模型",
@@ -596,7 +596,7 @@
         "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
-        "Seed metadata only; URL and redistribution terms have not been verified."
+        "A6000本地GPU smoke：官方ViT-B/16视觉分支152/152键严格匹配，12张有效图像成功、1张坏图隔离；权重未重新分发。"
       ]
     },
     {

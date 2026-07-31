@@ -1,0 +1,113 @@
+{
+  "adapter_version": "0.3.0",
+  "artifacts": {
+    "metrics": "metrics.json",
+    "per_class": "per_class.csv"
+  },
+  "checkpoint_id": "urfound-default",
+  "confusion_matrix": [
+    [
+      45,
+      0,
+      0
+    ],
+    [
+      1,
+      37,
+      2
+    ],
+    [
+      0,
+      4,
+      14
+    ]
+  ],
+  "cost": {
+    "feature_dim": 768,
+    "latency_ms": null,
+    "peak_vram_gb": null,
+    "throughput": null
+  },
+  "limitations": [
+    "标签来自canonical数据中的Normal及DR/NPDR、DR/PDR目录，不是正式病例标注表。",
+    "不具备ICDR五级标签；缺少patient_id，患者级泛化未建立。"
+  ],
+  "metrics": {
+    "Accuracy": 0.9320388349514563,
+    "Balanced Accuracy": 0.900925925925926,
+    "Macro-AUPRC": 0.9500259777053438,
+    "Macro-AUROC": 0.9809319896540991,
+    "Macro-F1": 0.9087068825630918,
+    "Top-3 Accuracy": null,
+    "Top-5 Accuracy": null,
+    "Weighted-F1": 0.9307983863475965
+  },
+  "model_id": "urfound",
+  "per_class": [
+    {
+      "AUPRC": 0.9906288863318732,
+      "AUROC": 0.9938697318007662,
+      "F1": 0.989010989010989,
+      "Precision": 0.9782608695652174,
+      "Recall": 1.0,
+      "Specificity": 0.9827586206896551,
+      "Support": 45.0,
+      "class_id": 0.0,
+      "class_name": "Normal",
+      "metric_stability": "standard"
+    },
+    {
+      "AUPRC": 0.9654578981361465,
+      "AUROC": 0.9698412698412698,
+      "F1": 0.9135802469135802,
+      "Precision": 0.9024390243902439,
+      "Recall": 0.925,
+      "Specificity": 0.9365079365079365,
+      "Support": 40.0,
+      "class_id": 1.0,
+      "class_name": "NPDR",
+      "metric_stability": "standard"
+    },
+    {
+      "AUPRC": 0.8939911486480114,
+      "AUROC": 0.9790849673202614,
+      "F1": 0.8235294117647058,
+      "Precision": 0.875,
+      "Recall": 0.7777777777777778,
+      "Specificity": 0.9764705882352941,
+      "Support": 18.0,
+      "class_id": 2.0,
+      "class_name": "PDR",
+      "metric_stability": "standard"
+    }
+  ],
+  "protocol_id": "precomputed-frozen-feature-logreg-v1",
+  "qualification_status": "exploratory",
+  "release_id": "2026.07",
+  "run_id": "2026.07--urfound--private-fundus-dr-stage-3class",
+  "stability": {
+    "accuracy_mean": 0.936575773060188,
+    "accuracy_std": 0.009678506034089415,
+    "balanced_accuracy_mean": 0.907340119188454,
+    "balanced_accuracy_std": 0.009803389676643407,
+    "macro_f1_mean": 0.9145797717574929,
+    "macro_f1_std": 0.009693166468215898,
+    "seed_selected_by_test": false,
+    "seeds": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+    ]
+  },
+  "task_id": "private-fundus-dr-stage-3class",
+  "task_metadata": {
+    "class_count": 3,
+    "display_name": "探索性DR目录三分类（Normal / NPDR / PDR）",
+    "label_semantics": "observed_directory_labels",
+    "label_space": "observed-directory-normal-npdr-pdr",
+    "sample_count": 673,
+    "task_type": "single_label_multiclass_classification"
+  }
+}

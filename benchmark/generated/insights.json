@@ -15,46 +15,136 @@
       ],
       "metric_comparison": [
         {
-          "Accuracy": 0.5981055480378891,
-          "Balanced Accuracy": 0.4646482041996581,
-          "Macro-AUROC": 0.9646557926243973,
-          "Macro-F1": 0.47433071799106014,
-          "Top-3 Accuracy": 0.8322056833558863,
-          "Top-5 Accuracy": 0.8944519621109608,
-          "Weighted-F1": 0.588720822993637,
+          "Accuracy": 0.713125845737483,
+          "Balanced Accuracy": 0.6139236716826725,
+          "Macro-AUPRC": 0.6642962755688486,
+          "Macro-AUROC": 0.9800840705028085,
+          "Macro-F1": 0.6014789058243785,
+          "Top-3 Accuracy": 0.8924221921515562,
+          "Top-5 Accuracy": 0.9384303112313938,
+          "Weighted-F1": 0.7161380870112013,
+          "feature_dim": 512,
+          "latency_ms": null,
+          "model_id": "ret-clip",
+          "peak_vram_gb": null,
+          "throughput": null
+        },
+        {
+          "Accuracy": 0.7138024357239513,
+          "Balanced Accuracy": 0.59684637904637,
+          "Macro-AUPRC": 0.6433717926821133,
+          "Macro-AUROC": 0.9791422575035158,
+          "Macro-F1": 0.581761514512209,
+          "Top-3 Accuracy": 0.9059539918809202,
+          "Top-5 Accuracy": 0.9438430311231394,
+          "Weighted-F1": 0.7163578219601435,
+          "feature_dim": 512,
+          "latency_ms": null,
+          "model_id": "vilref",
+          "peak_vram_gb": null,
+          "throughput": null
+        },
+        {
+          "Accuracy": 0.6407307171853857,
+          "Balanced Accuracy": 0.5757144810060145,
+          "Macro-AUPRC": 0.614281030206924,
+          "Macro-AUROC": 0.968958024861809,
+          "Macro-F1": 0.5582407416590219,
+          "Top-3 Accuracy": 0.8619756427604871,
+          "Top-5 Accuracy": 0.9194857916102842,
+          "Weighted-F1": 0.6418922996527251,
+          "feature_dim": 1024,
+          "latency_ms": null,
+          "model_id": "retizero",
+          "peak_vram_gb": null,
+          "throughput": null
+        },
+        {
+          "Accuracy": 0.638700947225981,
+          "Balanced Accuracy": 0.5381423568334494,
+          "Macro-AUPRC": 0.5761862948826033,
+          "Macro-AUROC": 0.963209146558598,
+          "Macro-F1": 0.5458324003721673,
+          "Top-3 Accuracy": 0.8497970230040596,
+          "Top-5 Accuracy": 0.9106901217861976,
+          "Weighted-F1": 0.6389357626467365,
+          "feature_dim": 2048,
+          "latency_ms": null,
+          "model_id": "keepfit",
+          "peak_vram_gb": null,
+          "throughput": null
+        },
+        {
+          "Accuracy": 0.6177266576454669,
+          "Balanced Accuracy": 0.5523532817214378,
+          "Macro-AUPRC": 0.5661074649511344,
+          "Macro-AUROC": 0.9663976122395971,
+          "Macro-F1": 0.5283754248137411,
+          "Top-3 Accuracy": 0.8484438430311232,
+          "Top-5 Accuracy": 0.9140730717185386,
+          "Weighted-F1": 0.621535364939091,
+          "feature_dim": 768,
+          "latency_ms": null,
+          "model_id": "urfound",
+          "peak_vram_gb": null,
+          "throughput": null
+        },
+        {
+          "Accuracy": 0.5987821380243572,
+          "Balanced Accuracy": 0.46502485203393307,
+          "Macro-AUPRC": 0.5256786009768327,
+          "Macro-AUROC": 0.9646651216469296,
+          "Macro-F1": 0.47467830436089936,
+          "Top-3 Accuracy": 0.8328822733423545,
+          "Top-5 Accuracy": 0.8930987821380244,
+          "Weighted-F1": 0.589279906296118,
           "feature_dim": 384,
           "latency_ms": null,
-          "macro_auprc": 0.5256881697522426,
           "model_id": "retfound-green",
           "peak_vram_gb": null,
           "throughput": null
         },
         {
+          "Accuracy": 0.5987821380243572,
+          "Balanced Accuracy": 0.484075002332702,
+          "Macro-AUPRC": 0.4872644804263489,
+          "Macro-AUROC": 0.9457446414441338,
+          "Macro-F1": 0.46412638239407894,
+          "Top-3 Accuracy": 0.8159675236806495,
+          "Top-5 Accuracy": 0.8836265223274695,
+          "Weighted-F1": 0.5993982362313828,
+          "feature_dim": 2048,
+          "latency_ms": null,
+          "model_id": "flair",
+          "peak_vram_gb": null,
+          "throughput": null
+        },
+        {
           "Accuracy": 0.4810554803788904,
-          "Balanced Accuracy": 0.40272455747193536,
-          "Macro-AUROC": 0.9134474382276235,
-          "Macro-F1": 0.3876605476767622,
+          "Balanced Accuracy": 0.402685303129969,
+          "Macro-AUPRC": 0.39553684602335354,
+          "Macro-AUROC": 0.9135387601639905,
+          "Macro-F1": 0.38799183168146506,
           "Top-3 Accuracy": 0.7090663058186739,
-          "Top-5 Accuracy": 0.793640054127199,
-          "Weighted-F1": 0.4858176114879809,
+          "Top-5 Accuracy": 0.7929634641407307,
+          "Weighted-F1": 0.48585391554332313,
           "feature_dim": 1024,
           "latency_ms": null,
-          "macro_auprc": 0.39561884074654957,
           "model_id": "retfound",
           "peak_vram_gb": null,
           "throughput": null
         },
         {
-          "Accuracy": 0.36400541271989173,
-          "Balanced Accuracy": 0.2703381843696283,
-          "Macro-AUROC": 0.8662390517689497,
-          "Macro-F1": 0.2596798875696022,
-          "Top-3 Accuracy": 0.5805142083897158,
-          "Top-5 Accuracy": 0.6860622462787551,
-          "Weighted-F1": 0.3590473088228287,
+          "Accuracy": 0.36265223274695535,
+          "Balanced Accuracy": 0.25759702868659223,
+          "Macro-AUPRC": 0.2678359998478445,
+          "Macro-AUROC": 0.8746865910879021,
+          "Macro-F1": 0.25679457026442415,
+          "Top-3 Accuracy": 0.5987821380243572,
+          "Top-5 Accuracy": 0.7002706359945873,
+          "Weighted-F1": 0.34978449029402364,
           "feature_dim": 512,
           "latency_ms": null,
-          "macro_auprc": 0.2505146925425843,
           "model_id": "eyeclip",
           "peak_vram_gb": null,
           "throughput": null
@@ -62,21 +152,75 @@
       ],
       "radar": [
         {
-          "Accuracy": 1.0,
+          "Accuracy": 0.9980732177263968,
           "Balanced Accuracy": 1.0,
           "Efficiency": null,
           "Macro-AUROC": 1.0,
           "Macro-F1": 1.0,
-          "Stability": 0.9938907884313477,
+          "Stability": 0.9943829857243303,
+          "model_id": "ret-clip"
+        },
+        {
+          "Accuracy": 1.0,
+          "Balanced Accuracy": 0.952074050672404,
+          "Efficiency": null,
+          "Macro-AUROC": 0.9910641791006669,
+          "Macro-F1": 0.9427958010330302,
+          "Stability": 0.9944684929141955,
+          "model_id": "vilref"
+        },
+        {
+          "Accuracy": 0.791907514450867,
+          "Balanced Accuracy": 0.8927692008787614,
+          "Efficiency": null,
+          "Macro-AUROC": 0.8944372702007336,
+          "Macro-F1": 0.8745572116147539,
+          "Stability": 0.9898813441768027,
+          "model_id": "retizero"
+        },
+        {
+          "Accuracy": 0.7861271676300577,
+          "Balanced Accuracy": 0.787326273971445,
+          "Efficiency": null,
+          "Macro-AUROC": 0.8398925283802954,
+          "Macro-F1": 0.8385580668706308,
+          "Stability": 0.9944963559995896,
+          "model_id": "keepfit"
+        },
+        {
+          "Accuracy": 0.7263969171483622,
+          "Balanced Accuracy": 0.8272080093603554,
+          "Efficiency": null,
+          "Macro-AUROC": 0.870144349379234,
+          "Macro-F1": 0.7879117979299012,
+          "Stability": 0.9932337924205942,
+          "model_id": "urfound"
+        },
+        {
+          "Accuracy": 0.6724470134874758,
+          "Balanced Accuracy": 0.5821283011655759,
+          "Efficiency": null,
+          "Macro-AUROC": 0.8537066641301652,
+          "Macro-F1": 0.6321254307728079,
+          "Stability": 0.9937457058101098,
           "model_id": "retfound-green"
         },
         {
-          "Accuracy": 0.5,
-          "Balanced Accuracy": 0.6813152158499616,
+          "Accuracy": 0.6724470134874758,
+          "Balanced Accuracy": 0.6355909054170871,
           "Efficiency": null,
-          "Macro-AUROC": 0.47967841698814767,
-          "Macro-F1": 0.596227183728455,
-          "Stability": 0.9909778315226921,
+          "Macro-AUROC": 0.6741911737424522,
+          "Macro-F1": 0.601512139485061,
+          "Stability": 0.9940672364558776,
+          "model_id": "flair"
+        },
+        {
+          "Accuracy": 0.3371868978805395,
+          "Balanced Accuracy": 0.407177732272388,
+          "Efficiency": null,
+          "Macro-AUROC": 0.3686252203730925,
+          "Macro-F1": 0.3806301821169372,
+          "Stability": 0.9878421305658796,
           "model_id": "retfound"
         },
         {
@@ -85,24 +229,39 @@
           "Efficiency": null,
           "Macro-AUROC": 0.0,
           "Macro-F1": 0.0,
-          "Stability": 0.9914516022975474,
+          "Stability": 0.991661667139503,
           "model_id": "eyeclip"
         }
       ],
       "stable_class_winners": {
         "AUROC": {
-          "retfound": 4,
-          "retfound-green": 46
+          "keepfit": 1,
+          "ret-clip": 19,
+          "retfound": 1,
+          "retfound-green": 5,
+          "retizero": 6,
+          "urfound": 2,
+          "vilref": 16
         },
         "F1": {
-          "eyeclip": 1,
-          "retfound": 10,
-          "retfound-green": 39
+          "flair": 2,
+          "keepfit": 6,
+          "ret-clip": 15,
+          "retfound": 1,
+          "retfound-green": 2,
+          "retizero": 8,
+          "urfound": 2,
+          "vilref": 14
         },
         "Recall": {
-          "eyeclip": 1,
-          "retfound": 10,
-          "retfound-green": 39
+          "flair": 2,
+          "keepfit": 4,
+          "ret-clip": 17,
+          "retfound": 2,
+          "retfound-green": 1,
+          "retizero": 7,
+          "urfound": 2,
+          "vilref": 15
         }
       }
     },
@@ -116,10 +275,70 @@
         "Macro-AUROC"
       ],
       "limitations": [
-        "Dashboard results are exploratory frozen-feature comparisons.",
-        "Patient identifiers are unavailable; patient-level generalization is not established."
+        "标签来自canonical数据中的Normal及DR/NPDR、DR/PDR目录，不是正式病例标注表。",
+        "不具备ICDR五级标签；缺少patient_id，患者级泛化未建立。"
       ],
       "metric_comparison": [
+        {
+          "Accuracy": 0.970873786407767,
+          "Balanced Accuracy": 0.9648148148148148,
+          "Macro-AUPRC": 0.9842251768517359,
+          "Macro-AUROC": 0.9949579831932773,
+          "Macro-F1": 0.9651602499703765,
+          "Top-3 Accuracy": null,
+          "Top-5 Accuracy": null,
+          "Weighted-F1": 0.9707427879973045,
+          "feature_dim": 2048,
+          "latency_ms": null,
+          "model_id": "flair",
+          "peak_vram_gb": null,
+          "throughput": null
+        },
+        {
+          "Accuracy": 0.9320388349514563,
+          "Balanced Accuracy": 0.900925925925926,
+          "Macro-AUPRC": 0.9648889800452443,
+          "Macro-AUROC": 0.9858739281153074,
+          "Macro-F1": 0.9087068825630918,
+          "Top-3 Accuracy": null,
+          "Top-5 Accuracy": null,
+          "Weighted-F1": 0.9307983863475965,
+          "feature_dim": 2048,
+          "latency_ms": null,
+          "model_id": "keepfit",
+          "peak_vram_gb": null,
+          "throughput": null
+        },
+        {
+          "Accuracy": 0.9320388349514563,
+          "Balanced Accuracy": 0.900925925925926,
+          "Macro-AUPRC": 0.9500259777053438,
+          "Macro-AUROC": 0.9809319896540991,
+          "Macro-F1": 0.9087068825630918,
+          "Top-3 Accuracy": null,
+          "Top-5 Accuracy": null,
+          "Weighted-F1": 0.9307983863475965,
+          "feature_dim": 768,
+          "latency_ms": null,
+          "model_id": "urfound",
+          "peak_vram_gb": null,
+          "throughput": null
+        },
+        {
+          "Accuracy": 0.9223300970873787,
+          "Balanced Accuracy": 0.8824074074074074,
+          "Macro-AUPRC": 0.9526814766785833,
+          "Macro-AUROC": 0.9848117024587614,
+          "Macro-F1": 0.8890483022477284,
+          "Top-3 Accuracy": null,
+          "Top-5 Accuracy": null,
+          "Weighted-F1": 0.9209928821161427,
+          "feature_dim": 512,
+          "latency_ms": null,
+          "model_id": "ret-clip",
+          "peak_vram_gb": null,
+          "throughput": null
+        },
         {
           "Accuracy": 0.912621359223301,
           "Balanced Accuracy": 0.8944444444444445,
@@ -136,6 +355,21 @@
           "throughput": null
         },
         {
+          "Accuracy": 0.912621359223301,
+          "Balanced Accuracy": 0.8842592592592592,
+          "Macro-AUPRC": 0.9537443029426935,
+          "Macro-AUROC": 0.9827108621226269,
+          "Macro-F1": 0.880944235374615,
+          "Top-3 Accuracy": null,
+          "Top-5 Accuracy": null,
+          "Weighted-F1": 0.9132491222942248,
+          "feature_dim": 512,
+          "latency_ms": null,
+          "model_id": "vilref",
+          "peak_vram_gb": null,
+          "throughput": null
+        },
+        {
           "Accuracy": 0.9029126213592233,
           "Balanced Accuracy": 0.8768518518518519,
           "Macro-AUPRC": 0.9482855298981777,
@@ -147,6 +381,21 @@
           "feature_dim": 1024,
           "latency_ms": null,
           "model_id": "retfound",
+          "peak_vram_gb": null,
+          "throughput": null
+        },
+        {
+          "Accuracy": 0.8932038834951457,
+          "Balanced Accuracy": 0.85,
+          "Macro-AUPRC": 0.9527312763101602,
+          "Macro-AUROC": 0.9835415392210524,
+          "Macro-F1": 0.867434073774452,
+          "Top-3 Accuracy": null,
+          "Top-5 Accuracy": null,
+          "Weighted-F1": 0.8915782336033533,
+          "feature_dim": 1024,
+          "latency_ms": null,
+          "model_id": "retizero",
           "peak_vram_gb": null,
           "throughput": null
         },
@@ -171,19 +420,73 @@
           "Accuracy": 1.0,
           "Balanced Accuracy": 1.0,
           "Efficiency": null,
-          "Macro-AUROC": 0.765977513960208,
+          "Macro-AUROC": 1.0,
           "Macro-F1": 1.0,
+          "Stability": 0.985185593100602,
+          "model_id": "flair"
+        },
+        {
+          "Accuracy": 0.6923076923076926,
+          "Balanced Accuracy": 0.5687500000000004,
+          "Efficiency": null,
+          "Macro-AUROC": 0.7512581458053222,
+          "Macro-F1": 0.6497615967188448,
+          "Stability": 0.9850051771634789,
+          "model_id": "keepfit"
+        },
+        {
+          "Accuracy": 0.6923076923076926,
+          "Balanced Accuracy": 0.5687500000000004,
+          "Efficiency": null,
+          "Macro-AUROC": 0.6159367584286565,
+          "Macro-F1": 0.6497615967188448,
+          "Stability": 0.9903068335317841,
+          "model_id": "urfound"
+        },
+        {
+          "Accuracy": 0.6153846153846158,
+          "Balanced Accuracy": 0.44374999999999976,
+          "Efficiency": null,
+          "Macro-AUROC": 0.7221720188372919,
+          "Macro-F1": 0.5277991683174736,
+          "Stability": 0.9868716962754197,
+          "model_id": "ret-clip"
+        },
+        {
+          "Accuracy": 0.5384615384615389,
+          "Balanced Accuracy": 0.525,
+          "Efficiency": null,
+          "Macro-AUROC": 0.37590090586498204,
+          "Macro-F1": 0.5163354636483709,
           "Stability": 0.991813501608417,
           "model_id": "retfound-green"
         },
         {
-          "Accuracy": 0.8571428571428574,
-          "Balanced Accuracy": 0.7738095238095235,
+          "Accuracy": 0.5384615384615389,
+          "Balanced Accuracy": 0.45624999999999927,
           "Efficiency": null,
-          "Macro-AUROC": 1.0,
-          "Macro-F1": 0.8756555612561988,
+          "Macro-AUROC": 0.6646462865413322,
+          "Macro-F1": 0.4775212916897515,
+          "Stability": 0.977551656247268,
+          "model_id": "vilref"
+        },
+        {
+          "Accuracy": 0.461538461538462,
+          "Balanced Accuracy": 0.4062499999999999,
+          "Efficiency": null,
+          "Macro-AUROC": 0.49074665902595915,
+          "Macro-F1": 0.4521320202174938,
           "Stability": 0.991191365256519,
           "model_id": "retfound"
+        },
+        {
+          "Accuracy": 0.38461538461538514,
+          "Balanced Accuracy": 0.2249999999999994,
+          "Efficiency": null,
+          "Macro-AUROC": 0.6873920933342137,
+          "Macro-F1": 0.393703839441529,
+          "Stability": 0.9875237019005764,
+          "model_id": "retizero"
         },
         {
           "Accuracy": 0.0,
@@ -197,15 +500,14 @@
       ],
       "stable_class_winners": {
         "AUROC": {
-          "retfound": 1,
-          "retfound-green": 2
+          "flair": 3
         },
         "F1": {
-          "retfound-green": 3
+          "flair": 2,
+          "ret-clip": 1
         },
         "Recall": {
-          "retfound": 1,
-          "retfound-green": 2
+          "flair": 3
         }
       }
     }
@@ -225,46 +527,136 @@
   ],
   "metric_comparison": [
     {
-      "Accuracy": 0.5981055480378891,
-      "Balanced Accuracy": 0.4646482041996581,
-      "Macro-AUROC": 0.9646557926243973,
-      "Macro-F1": 0.47433071799106014,
-      "Top-3 Accuracy": 0.8322056833558863,
-      "Top-5 Accuracy": 0.8944519621109608,
-      "Weighted-F1": 0.588720822993637,
+      "Accuracy": 0.713125845737483,
+      "Balanced Accuracy": 0.6139236716826725,
+      "Macro-AUPRC": 0.6642962755688486,
+      "Macro-AUROC": 0.9800840705028085,
+      "Macro-F1": 0.6014789058243785,
+      "Top-3 Accuracy": 0.8924221921515562,
+      "Top-5 Accuracy": 0.9384303112313938,
+      "Weighted-F1": 0.7161380870112013,
+      "feature_dim": 512,
+      "latency_ms": null,
+      "model_id": "ret-clip",
+      "peak_vram_gb": null,
+      "throughput": null
+    },
+    {
+      "Accuracy": 0.7138024357239513,
+      "Balanced Accuracy": 0.59684637904637,
+      "Macro-AUPRC": 0.6433717926821133,
+      "Macro-AUROC": 0.9791422575035158,
+      "Macro-F1": 0.581761514512209,
+      "Top-3 Accuracy": 0.9059539918809202,
+      "Top-5 Accuracy": 0.9438430311231394,
+      "Weighted-F1": 0.7163578219601435,
+      "feature_dim": 512,
+      "latency_ms": null,
+      "model_id": "vilref",
+      "peak_vram_gb": null,
+      "throughput": null
+    },
+    {
+      "Accuracy": 0.6407307171853857,
+      "Balanced Accuracy": 0.5757144810060145,
+      "Macro-AUPRC": 0.614281030206924,
+      "Macro-AUROC": 0.968958024861809,
+      "Macro-F1": 0.5582407416590219,
+      "Top-3 Accuracy": 0.8619756427604871,
+      "Top-5 Accuracy": 0.9194857916102842,
+      "Weighted-F1": 0.6418922996527251,
+      "feature_dim": 1024,
+      "latency_ms": null,
+      "model_id": "retizero",
+      "peak_vram_gb": null,
+      "throughput": null
+    },
+    {
+      "Accuracy": 0.638700947225981,
+      "Balanced Accuracy": 0.5381423568334494,
+      "Macro-AUPRC": 0.5761862948826033,
+      "Macro-AUROC": 0.963209146558598,
+      "Macro-F1": 0.5458324003721673,
+      "Top-3 Accuracy": 0.8497970230040596,
+      "Top-5 Accuracy": 0.9106901217861976,
+      "Weighted-F1": 0.6389357626467365,
+      "feature_dim": 2048,
+      "latency_ms": null,
+      "model_id": "keepfit",
+      "peak_vram_gb": null,
+      "throughput": null
+    },
+    {
+      "Accuracy": 0.6177266576454669,
+      "Balanced Accuracy": 0.5523532817214378,
+      "Macro-AUPRC": 0.5661074649511344,
+      "Macro-AUROC": 0.9663976122395971,
+      "Macro-F1": 0.5283754248137411,
+      "Top-3 Accuracy": 0.8484438430311232,
+      "Top-5 Accuracy": 0.9140730717185386,
+      "Weighted-F1": 0.621535364939091,
+      "feature_dim": 768,
+      "latency_ms": null,
+      "model_id": "urfound",
+      "peak_vram_gb": null,
+      "throughput": null
+    },
+    {
+      "Accuracy": 0.5987821380243572,
+      "Balanced Accuracy": 0.46502485203393307,
+      "Macro-AUPRC": 0.5256786009768327,
+      "Macro-AUROC": 0.9646651216469296,
+      "Macro-F1": 0.47467830436089936,
+      "Top-3 Accuracy": 0.8328822733423545,
+      "Top-5 Accuracy": 0.8930987821380244,
+      "Weighted-F1": 0.589279906296118,
       "feature_dim": 384,
       "latency_ms": null,
-      "macro_auprc": 0.5256881697522426,
       "model_id": "retfound-green",
       "peak_vram_gb": null,
       "throughput": null
     },
     {
+      "Accuracy": 0.5987821380243572,
+      "Balanced Accuracy": 0.484075002332702,
+      "Macro-AUPRC": 0.4872644804263489,
+      "Macro-AUROC": 0.9457446414441338,
+      "Macro-F1": 0.46412638239407894,
+      "Top-3 Accuracy": 0.8159675236806495,
+      "Top-5 Accuracy": 0.8836265223274695,
+      "Weighted-F1": 0.5993982362313828,
+      "feature_dim": 2048,
+      "latency_ms": null,
+      "model_id": "flair",
+      "peak_vram_gb": null,
+      "throughput": null
+    },
+    {
       "Accuracy": 0.4810554803788904,
-      "Balanced Accuracy": 0.40272455747193536,
-      "Macro-AUROC": 0.9134474382276235,
-      "Macro-F1": 0.3876605476767622,
+      "Balanced Accuracy": 0.402685303129969,
+      "Macro-AUPRC": 0.39553684602335354,
+      "Macro-AUROC": 0.9135387601639905,
+      "Macro-F1": 0.38799183168146506,
       "Top-3 Accuracy": 0.7090663058186739,
-      "Top-5 Accuracy": 0.793640054127199,
-      "Weighted-F1": 0.4858176114879809,
+      "Top-5 Accuracy": 0.7929634641407307,
+      "Weighted-F1": 0.48585391554332313,
       "feature_dim": 1024,
       "latency_ms": null,
-      "macro_auprc": 0.39561884074654957,
       "model_id": "retfound",
       "peak_vram_gb": null,
       "throughput": null
     },
     {
-      "Accuracy": 0.36400541271989173,
-      "Balanced Accuracy": 0.2703381843696283,
-      "Macro-AUROC": 0.8662390517689497,
-      "Macro-F1": 0.2596798875696022,
-      "Top-3 Accuracy": 0.5805142083897158,
-      "Top-5 Accuracy": 0.6860622462787551,
-      "Weighted-F1": 0.3590473088228287,
+      "Accuracy": 0.36265223274695535,
+      "Balanced Accuracy": 0.25759702868659223,
+      "Macro-AUPRC": 0.2678359998478445,
+      "Macro-AUROC": 0.8746865910879021,
+      "Macro-F1": 0.25679457026442415,
+      "Top-3 Accuracy": 0.5987821380243572,
+      "Top-5 Accuracy": 0.7002706359945873,
+      "Weighted-F1": 0.34978449029402364,
       "feature_dim": 512,
       "latency_ms": null,
-      "macro_auprc": 0.2505146925425843,
       "model_id": "eyeclip",
       "peak_vram_gb": null,
       "throughput": null
@@ -272,21 +664,75 @@
   ],
   "radar": [
     {
-      "Accuracy": 1.0,
+      "Accuracy": 0.9980732177263968,
       "Balanced Accuracy": 1.0,
       "Efficiency": null,
       "Macro-AUROC": 1.0,
       "Macro-F1": 1.0,
-      "Stability": 0.9938907884313477,
+      "Stability": 0.9943829857243303,
+      "model_id": "ret-clip"
+    },
+    {
+      "Accuracy": 1.0,
+      "Balanced Accuracy": 0.952074050672404,
+      "Efficiency": null,
+      "Macro-AUROC": 0.9910641791006669,
+      "Macro-F1": 0.9427958010330302,
+      "Stability": 0.9944684929141955,
+      "model_id": "vilref"
+    },
+    {
+      "Accuracy": 0.791907514450867,
+      "Balanced Accuracy": 0.8927692008787614,
+      "Efficiency": null,
+      "Macro-AUROC": 0.8944372702007336,
+      "Macro-F1": 0.8745572116147539,
+      "Stability": 0.9898813441768027,
+      "model_id": "retizero"
+    },
+    {
+      "Accuracy": 0.7861271676300577,
+      "Balanced Accuracy": 0.787326273971445,
+      "Efficiency": null,
+      "Macro-AUROC": 0.8398925283802954,
+      "Macro-F1": 0.8385580668706308,
+      "Stability": 0.9944963559995896,
+      "model_id": "keepfit"
+    },
+    {
+      "Accuracy": 0.7263969171483622,
+      "Balanced Accuracy": 0.8272080093603554,
+      "Efficiency": null,
+      "Macro-AUROC": 0.870144349379234,
+      "Macro-F1": 0.7879117979299012,
+      "Stability": 0.9932337924205942,
+      "model_id": "urfound"
+    },
+    {
+      "Accuracy": 0.6724470134874758,
+      "Balanced Accuracy": 0.5821283011655759,
+      "Efficiency": null,
+      "Macro-AUROC": 0.8537066641301652,
+      "Macro-F1": 0.6321254307728079,
+      "Stability": 0.9937457058101098,
       "model_id": "retfound-green"
     },
     {
-      "Accuracy": 0.5,
-      "Balanced Accuracy": 0.6813152158499616,
+      "Accuracy": 0.6724470134874758,
+      "Balanced Accuracy": 0.6355909054170871,
       "Efficiency": null,
-      "Macro-AUROC": 0.47967841698814767,
-      "Macro-F1": 0.596227183728455,
-      "Stability": 0.9909778315226921,
+      "Macro-AUROC": 0.6741911737424522,
+      "Macro-F1": 0.601512139485061,
+      "Stability": 0.9940672364558776,
+      "model_id": "flair"
+    },
+    {
+      "Accuracy": 0.3371868978805395,
+      "Balanced Accuracy": 0.407177732272388,
+      "Efficiency": null,
+      "Macro-AUROC": 0.3686252203730925,
+      "Macro-F1": 0.3806301821169372,
+      "Stability": 0.9878421305658796,
       "model_id": "retfound"
     },
     {
@@ -295,24 +741,39 @@
       "Efficiency": null,
       "Macro-AUROC": 0.0,
       "Macro-F1": 0.0,
-      "Stability": 0.9914516022975474,
+      "Stability": 0.991661667139503,
       "model_id": "eyeclip"
     }
   ],
   "stable_class_winners": {
     "AUROC": {
-      "retfound": 4,
-      "retfound-green": 46
+      "keepfit": 1,
+      "ret-clip": 19,
+      "retfound": 1,
+      "retfound-green": 5,
+      "retizero": 6,
+      "urfound": 2,
+      "vilref": 16
     },
     "F1": {
-      "eyeclip": 1,
-      "retfound": 10,
-      "retfound-green": 39
+      "flair": 2,
+      "keepfit": 6,
+      "ret-clip": 15,
+      "retfound": 1,
+      "retfound-green": 2,
+      "retizero": 8,
+      "urfound": 2,
+      "vilref": 14
     },
     "Recall": {
-      "eyeclip": 1,
-      "retfound": 10,
-      "retfound-green": 39
+      "flair": 2,
+      "keepfit": 4,
+      "ret-clip": 17,
+      "retfound": 2,
+      "retfound-green": 1,
+      "retizero": 7,
+      "urfound": 2,
+      "vilref": 15
     }
   }
 }

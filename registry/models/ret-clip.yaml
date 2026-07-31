@@ -16,16 +16,18 @@ paper_url: https://doi.org/10.1007/978-3-031-72390-2_66
 code_url: https://github.com/sStonemason/RET-CLIP
 code_available: true
 capabilities:
+- image_encoding
+- feature_extraction
 - classification
 benchmark_tracks: []
 runtime_phase: phase2_vision_language
 license: null
 license_verified: false
-verification_status: seed_unverified
+verification_status: partially_verified
 implementation:
-  adapter_status: not_started
-  smoke_test_status: not_run
-  benchmark_status: not_run
+  adapter_status: implemented
+  smoke_test_status: passed
+  benchmark_status: passed
 reported_tasks_text: CFP糖尿病视网膜病变分级；青光眼识别；多病种及多标签分类；线性探测与全量微调；患者双眼级表征迁移
 provenance:
   source_file: ophthalmic_models_seed_v0.xlsx
@@ -34,3 +36,4 @@ provenance:
   imported_at: '2026-07-11T09:30:27Z'
 notes:
 - 'Original modality text: CFP、中文临床自由文本报告'
+- A6000本地GPU smoke已通过：官方ViT-B/16视觉分支严格加载，12张有效图像生成512维encode_image特征，1张坏图被隔离；文本编码器不参与。

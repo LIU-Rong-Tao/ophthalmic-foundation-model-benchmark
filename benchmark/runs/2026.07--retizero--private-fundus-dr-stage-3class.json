@@ -1,0 +1,113 @@
+{
+  "adapter_version": "0.3.0",
+  "artifacts": {
+    "metrics": "metrics.json",
+    "per_class": "per_class.csv"
+  },
+  "checkpoint_id": "retizero-default",
+  "confusion_matrix": [
+    [
+      42,
+      3,
+      0
+    ],
+    [
+      1,
+      38,
+      1
+    ],
+    [
+      0,
+      6,
+      12
+    ]
+  ],
+  "cost": {
+    "feature_dim": 1024,
+    "latency_ms": null,
+    "peak_vram_gb": null,
+    "throughput": null
+  },
+  "limitations": [
+    "标签来自canonical数据中的Normal及DR/NPDR、DR/PDR目录，不是正式病例标注表。",
+    "不具备ICDR五级标签；缺少patient_id，患者级泛化未建立。"
+  ],
+  "metrics": {
+    "Accuracy": 0.8932038834951457,
+    "Balanced Accuracy": 0.85,
+    "Macro-AUPRC": 0.9527312763101602,
+    "Macro-AUROC": 0.9835415392210524,
+    "Macro-F1": 0.867434073774452,
+    "Top-3 Accuracy": null,
+    "Top-5 Accuracy": null,
+    "Weighted-F1": 0.8915782336033533
+  },
+  "model_id": "retizero",
+  "per_class": [
+    {
+      "AUPRC": 0.998518030547016,
+      "AUROC": 0.9988505747126436,
+      "F1": 0.9545454545454546,
+      "Precision": 0.9767441860465116,
+      "Recall": 0.9333333333333333,
+      "Specificity": 0.9827586206896551,
+      "Support": 45.0,
+      "class_id": 0.0,
+      "class_name": "Normal",
+      "metric_stability": "standard"
+    },
+    {
+      "AUPRC": 0.9713023949738295,
+      "AUROC": 0.9785714285714284,
+      "F1": 0.8735632183908046,
+      "Precision": 0.8085106382978723,
+      "Recall": 0.95,
+      "Specificity": 0.8571428571428571,
+      "Support": 40.0,
+      "class_id": 1.0,
+      "class_name": "NPDR",
+      "metric_stability": "standard"
+    },
+    {
+      "AUPRC": 0.8883734034096353,
+      "AUROC": 0.9732026143790851,
+      "F1": 0.7741935483870968,
+      "Precision": 0.9230769230769231,
+      "Recall": 0.6666666666666666,
+      "Specificity": 0.9882352941176471,
+      "Support": 18.0,
+      "class_id": 2.0,
+      "class_name": "PDR",
+      "metric_stability": "standard"
+    }
+  ],
+  "protocol_id": "precomputed-frozen-feature-logreg-v1",
+  "qualification_status": "exploratory",
+  "release_id": "2026.07",
+  "run_id": "2026.07--retizero--private-fundus-dr-stage-3class",
+  "stability": {
+    "accuracy_mean": 0.9127124076740838,
+    "accuracy_std": 0.012954323636192318,
+    "balanced_accuracy_mean": 0.8709329397141825,
+    "balanced_accuracy_std": 0.013727076840322396,
+    "macro_f1_mean": 0.8867245632316975,
+    "macro_f1_std": 0.012476298099423635,
+    "seed_selected_by_test": false,
+    "seeds": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+    ]
+  },
+  "task_id": "private-fundus-dr-stage-3class",
+  "task_metadata": {
+    "class_count": 3,
+    "display_name": "探索性DR目录三分类（Normal / NPDR / PDR）",
+    "label_semantics": "observed_directory_labels",
+    "label_space": "observed-directory-normal-npdr-pdr",
+    "sample_count": 673,
+    "task_type": "single_label_multiclass_classification"
+  }
+}

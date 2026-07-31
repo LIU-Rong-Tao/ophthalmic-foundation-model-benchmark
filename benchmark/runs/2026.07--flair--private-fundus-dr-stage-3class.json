@@ -1,0 +1,113 @@
+{
+  "adapter_version": "0.3.0",
+  "artifacts": {
+    "metrics": "metrics.json",
+    "per_class": "per_class.csv"
+  },
+  "checkpoint_id": "flair-default",
+  "confusion_matrix": [
+    [
+      45,
+      0,
+      0
+    ],
+    [
+      1,
+      38,
+      1
+    ],
+    [
+      0,
+      1,
+      17
+    ]
+  ],
+  "cost": {
+    "feature_dim": 2048,
+    "latency_ms": null,
+    "peak_vram_gb": null,
+    "throughput": null
+  },
+  "limitations": [
+    "标签来自canonical数据中的Normal及DR/NPDR、DR/PDR目录，不是正式病例标注表。",
+    "不具备ICDR五级标签；缺少patient_id，患者级泛化未建立。"
+  ],
+  "metrics": {
+    "Accuracy": 0.970873786407767,
+    "Balanced Accuracy": 0.9648148148148148,
+    "Macro-AUPRC": 0.9842251768517359,
+    "Macro-AUROC": 0.9949579831932773,
+    "Macro-F1": 0.9651602499703765,
+    "Top-3 Accuracy": null,
+    "Top-5 Accuracy": null,
+    "Weighted-F1": 0.9707427879973045
+  },
+  "model_id": "flair",
+  "per_class": [
+    {
+      "AUPRC": 1.0000000000000002,
+      "AUROC": 1.0,
+      "F1": 0.989010989010989,
+      "Precision": 0.9782608695652174,
+      "Recall": 1.0,
+      "Specificity": 0.9827586206896551,
+      "Support": 45.0,
+      "class_id": 0.0,
+      "class_name": "Normal",
+      "metric_stability": "standard"
+    },
+    {
+      "AUPRC": 0.9891782480628267,
+      "AUROC": 0.9920634920634921,
+      "F1": 0.9620253164556962,
+      "Precision": 0.9743589743589743,
+      "Recall": 0.95,
+      "Specificity": 0.9841269841269841,
+      "Support": 40.0,
+      "class_id": 1.0,
+      "class_name": "NPDR",
+      "metric_stability": "standard"
+    },
+    {
+      "AUPRC": 0.9634972824923806,
+      "AUROC": 0.9928104575163398,
+      "F1": 0.9444444444444444,
+      "Precision": 0.9444444444444444,
+      "Recall": 0.9444444444444444,
+      "Specificity": 0.9882352941176471,
+      "Support": 18.0,
+      "class_id": 2.0,
+      "class_name": "PDR",
+      "metric_stability": "standard"
+    }
+  ],
+  "protocol_id": "precomputed-frozen-feature-logreg-v1",
+  "qualification_status": "exploratory",
+  "release_id": "2026.07",
+  "run_id": "2026.07--flair--private-fundus-dr-stage-3class",
+  "stability": {
+    "accuracy_mean": 0.9664278967498181,
+    "accuracy_std": 0.010476591817113672,
+    "balanced_accuracy_mean": 0.9600531108178544,
+    "balanced_accuracy_std": 0.01608123145300231,
+    "macro_f1_mean": 0.9583744193656457,
+    "macro_f1_std": 0.01481440689939796,
+    "seed_selected_by_test": false,
+    "seeds": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+    ]
+  },
+  "task_id": "private-fundus-dr-stage-3class",
+  "task_metadata": {
+    "class_count": 3,
+    "display_name": "探索性DR目录三分类（Normal / NPDR / PDR）",
+    "label_semantics": "observed_directory_labels",
+    "label_space": "observed-directory-normal-npdr-pdr",
+    "sample_count": 673,
+    "task_type": "single_label_multiclass_classification"
+  }
+}

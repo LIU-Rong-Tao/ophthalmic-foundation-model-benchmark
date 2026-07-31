@@ -42,7 +42,7 @@ verification_status: partially_verified
 implementation:
   adapter_status: implemented
   smoke_test_status: passed
-  benchmark_status: not_run
+  benchmark_status: passed
 reported_tasks_text: 眼科疾病零样本、少样本及全监督分类；图像—图像和图像—文本跨模态检索；眼科视觉问答；眼科及全身疾病预测
 provenance:
   source_file: ophthalmic_models_seed_v0.xlsx

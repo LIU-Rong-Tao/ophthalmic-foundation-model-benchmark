@@ -1,8 +1,8 @@
 """Streamlit dashboard for pre-built, sanitized OphBench benchmark results.
 
-The visual tokens and page shell intentionally align with the generic Streamlit
-design language in OphAgent's live Model Hub.  This module remains standalone:
-it reads only OphBench's generated JSON and imports no OphAgent code or data.
+The interface uses an independent, data-dense benchmark design: a scalable
+leaderboard, capability matrices, and an auditable model evidence ledger.  It
+reads only OphBench generated JSON and imports no OphAgent code or data.
 """
 
 from __future__ import annotations
@@ -14,22 +14,22 @@ from pathlib import Path
 from typing import Any
 
 TOKENS = {
-    "ink": "#132238",
-    "muted": "#66758A",
-    "line": "#DDE5ED",
-    "canvas": "#F6F8FB",
+    "ink": "#152238",
+    "muted": "#667085",
+    "line": "#DCE3EC",
+    "canvas": "#F7F9FC",
     "surface": "#FFFFFF",
-    "nav": "#132238",
-    "nav_hover": "#1E3652",
-    "teal": "#087F75",
-    "teal_soft": "#EAF7F5",
-    "amber": "#B86B08",
+    "nav": "#101828",
+    "nav_hover": "#1D2939",
+    "teal": "#2855D9",
+    "teal_soft": "#EDF2FF",
+    "amber": "#D97706",
     "amber_soft": "#FFF7E8",
 }
 
 
 def _inject_css(st: Any) -> None:
-    """Apply the reusable OphAgent-style research dashboard shell."""
+    """Apply OphBench's independent, data-dense benchmark design system."""
 
     st.markdown(
         f"""
@@ -45,38 +45,37 @@ def _inject_css(st: Any) -> None:
           background: var(--ob-canvas); color: var(--ob-ink);
           font-family: Inter, "Noto Sans SC", "Microsoft YaHei", sans-serif;
         }}
-        .main .block-container {{ max-width: 1380px; padding: 1rem 2rem 3rem; }}
+        .main .block-container {{ max-width: 1480px; padding: .8rem 2.1rem 3rem; }}
         header[data-testid="stHeader"] {{ background:transparent; height:0; }}
         #MainMenu, footer, [data-testid="stToolbar"] {{ visibility:hidden; }}
         .ob-brand-mark {{
-          width:2.25rem; height:2.25rem; display:inline-grid; place-items:center;
-          background:linear-gradient(135deg,#163E68,#087F75); border-radius:10px;
-          color:#FFFFFF; font-size:.78rem; font-weight:850; letter-spacing:-.02em;
-          box-shadow:0 7px 18px rgba(8,127,117,.18);
+          width:1.85rem; height:1.85rem; display:inline-grid; place-items:center;
+          background:var(--ob-nav); border-radius:7px;
+          color:#FFFFFF; font-size:.68rem; font-weight:850; letter-spacing:-.02em;
         }}
         .ob-page-head {{
           display:flex; align-items:flex-end; justify-content:space-between; gap:1.2rem;
-          padding:1.4rem 0 1rem; margin-bottom:.15rem;
+          padding:1rem 0 .75rem; margin-bottom:.1rem;
         }}
-        .ob-eyebrow {{ color:var(--ob-teal); font-size:.7rem; font-weight:800;
+        .ob-eyebrow {{ color:var(--ob-teal); font-size:.64rem; font-weight:800;
           letter-spacing:.12em; text-transform:uppercase; margin-bottom:.55rem; }}
-        .ob-page-title {{ color:var(--ob-ink); font-size:1.85rem; font-weight:800;
+        .ob-page-title {{ color:var(--ob-ink); font-size:1.7rem; font-weight:800;
           line-height:1.12; margin:0; letter-spacing:-.035em; }}
         .ob-page-copy {{ color:var(--ob-muted); font-size:.86rem; line-height:1.55;
           margin-top:.65rem; max-width:760px; }}
-        .ob-page-context {{ white-space:nowrap; color:#426174; font-size:.72rem; font-weight:700;
+        .ob-page-context {{ white-space:nowrap; color:#344054; font-size:.7rem; font-weight:700;
           background:var(--ob-teal-soft); border:1px solid #C7E7E2; border-radius:999px;
           padding:.42rem .7rem; }}
         .ob-boundary {{
           display:flex; gap:.6rem; align-items:flex-start; background:var(--ob-amber-soft);
           border:1px solid #EAD7AA; border-left:4px solid var(--ob-amber); padding:.65rem .8rem;
           color:#624D1D; line-height:1.5; font-size:.78rem; margin:0 0 1rem; }}
-        .ob-metric {{ background:linear-gradient(180deg,#FFFFFF 0%,#FBFCFE 100%);
-          border:1px solid var(--ob-line); border-radius:12px;
+        .ob-metric {{ background:#FFFFFF;
+          border:1px solid var(--ob-line); border-radius:7px;
           padding:1rem 1.05rem; min-height:112px; position:relative; overflow:hidden;
-          box-shadow:0 5px 18px rgba(31,50,73,.045); }}
-        .ob-metric:before {{ content:""; position:absolute; left:0; top:0; bottom:0;
-          width:3px; background:var(--accent,var(--ob-teal)); }}
+          box-shadow:none; }}
+        .ob-metric:before {{ content:""; position:absolute; left:0; top:0; right:0;
+          height:2px; background:var(--accent,var(--ob-teal)); }}
         .ob-metric span {{
           display:block; color:var(--ob-muted); font-size:.72rem; font-weight:700;
         }}
@@ -87,7 +86,7 @@ def _inject_css(st: Any) -> None:
         .ob-section h3 {{ font-size:1.05rem; color:var(--ob-ink); margin:0 0 .25rem; }}
         .ob-section p {{ font-size:.76rem; color:var(--ob-muted); margin:0; line-height:1.5; }}
         .ob-panel {{ background:var(--ob-surface); border:1px solid var(--ob-line);
-          border-radius:12px; padding:1.15rem; box-shadow:0 6px 20px rgba(31,50,73,.04); }}
+          border-radius:8px; padding:1.15rem; box-shadow:none; }}
         [data-testid="stDataFrame"] {{ border:1px solid var(--ob-line); border-radius:4px;
           overflow:hidden; background:var(--ob-surface); }}
         [data-testid="stTabs"] [data-baseweb="tab-list"] {{
@@ -124,18 +123,19 @@ def _inject_css(st: Any) -> None:
         .ob-pill {{ display:inline-flex; align-items:center; border:1px solid var(--ob-line);
           border-radius:999px; padding:.3rem .58rem; background:#fff; color:#506176;
           font-weight:650; }}
-        .ob-rank-list {{ display:grid; gap:.55rem; }}
-        .ob-rank-row {{ background:#fff; border:1px solid var(--ob-line); border-radius:12px;
-          box-shadow:0 5px 18px rgba(31,50,73,.035); overflow:hidden;
-          transition:border-color .18s ease, box-shadow .18s ease, transform .18s ease; }}
-        .ob-rank-row:hover {{ border-color:#B9DAD5; box-shadow:0 9px 24px rgba(31,50,73,.07);
-          transform:translateY(-1px); }}
+        .ob-rank-list {{ display:grid; gap:0; border:1px solid var(--ob-line);
+          border-radius:8px; overflow:hidden; background:#fff; }}
+        .ob-rank-row {{ background:#fff; border:0; border-bottom:1px solid #EDF0F4;
+          border-radius:0; box-shadow:none; overflow:hidden;
+          transition:background .15s ease; }}
+        .ob-rank-row:last-child {{ border-bottom:0; }}
+        .ob-rank-row:hover {{ background:#F8FAFC; }}
         .ob-rank-row summary {{ cursor:pointer; list-style:none; display:grid;
           grid-template-columns:54px minmax(190px,1.35fr) repeat(5,minmax(92px,.72fr)) 24px;
           align-items:center; gap:.65rem; padding:.82rem .9rem; }}
         .ob-rank-row summary::-webkit-details-marker {{ display:none; }}
-        .ob-rank-number {{ width:32px; height:32px; border-radius:9px; display:grid;
-          place-items:center; background:var(--ob-teal-soft); color:var(--ob-teal);
+        .ob-rank-number {{ width:32px; height:32px; border-radius:0; display:grid;
+          place-items:center; background:transparent; color:#98A2B3;
           font-size:.76rem; font-weight:850; font-variant-numeric:tabular-nums; }}
         .ob-rank-model b {{ display:block; color:var(--ob-ink); font-size:.86rem; }}
         .ob-rank-model small {{ display:block; color:var(--ob-muted); font-size:.66rem;
@@ -169,13 +169,23 @@ def _inject_css(st: Any) -> None:
         .ob-summary p {{ margin:0; color:var(--ob-muted); font-size:.73rem; line-height:1.5; }}
         .ob-footer {{ margin-top:2.1rem; padding-top:.9rem; border-top:1px solid var(--ob-line);
           color:var(--ob-muted); font-size:.72rem; line-height:1.55; }}
-        .ob-model-hero {{ background:linear-gradient(135deg,#102B49 0%,#0A6E69 100%);
-          border-radius:14px; padding:1.35rem 1.5rem; color:#FFFFFF; margin:.5rem 0 1rem;
-          box-shadow:0 10px 28px rgba(20,49,77,.15); }}
-        .ob-model-hero small {{ color:#BFE2DF; text-transform:uppercase; letter-spacing:.09em;
+        .ob-model-hero {{ background:#FFFFFF; border:1px solid var(--ob-line);
+          border-radius:8px; padding:1.15rem 1.25rem; color:var(--ob-ink); margin:.5rem 0 1rem;
+          box-shadow:none; }}
+        .ob-model-hero small {{ color:#667085; text-transform:uppercase; letter-spacing:.09em;
           font-weight:750; font-size:.66rem; }}
         .ob-model-hero h2 {{ margin:.35rem 0 .25rem; font-size:1.55rem; }}
-        .ob-model-hero p {{ margin:0; color:#D9E7EF; font-size:.78rem; }}
+        .ob-model-hero p {{ margin:0; color:#667085; font-size:.78rem; }}
+        .ob-evidence-table {{ width:100%; border-collapse:collapse; margin:.75rem 0 1rem;
+          background:#fff; border:1px solid var(--ob-line); font-size:.76rem; }}
+        .ob-evidence-table th {{ background:#F8FAFC; color:#667085; font-size:.64rem;
+          text-transform:uppercase; letter-spacing:.04em; padding:.65rem; text-align:left;
+          border-bottom:1px solid var(--ob-line); }}
+        .ob-evidence-table td {{ padding:.7rem .65rem; border-bottom:1px solid #EDF0F4;
+          vertical-align:top; }}
+        .ob-evidence-table tr:last-child td {{ border-bottom:0; }}
+        .ob-status-ok {{ color:#067647; font-weight:750; }}
+        .ob-status-muted {{ color:#98A2B3; }}
         .ob-info-grid {{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.75rem; }}
         .ob-info {{ background:#fff; border:1px solid var(--ob-line);
           border-radius:10px; padding:.85rem; }}
@@ -189,7 +199,7 @@ def _inject_css(st: Any) -> None:
           margin-bottom:.2rem; }}
         .ob-chart-copy {{ font-size:.72rem; color:var(--ob-muted); margin-bottom:.5rem; }}
         div[data-testid="stPlotlyChart"] {{ background:#fff; border:1px solid var(--ob-line);
-          border-radius:12px; overflow:hidden; box-shadow:0 6px 20px rgba(31,50,73,.04); }}
+          border-radius:8px; overflow:hidden; box-shadow:none; }}
         [data-baseweb="input"] > div, [data-baseweb="select"] > div {{
           border-color:var(--ob-line) !important; border-radius:9px !important;
           background:#fff !important;
@@ -352,6 +362,12 @@ def _model_label(model_id: str) -> str:
         "retfound-green": "RETFound-Green",
         "retfound": "RETFound CFP",
         "eyeclip": "EyeCLIP",
+        "flair": "FLAIR",
+        "keepfit": "KeepFIT",
+        "ret-clip": "RET-CLIP",
+        "retizero": "RetiZero",
+        "urfound": "UrFound",
+        "vilref": "ViLReF",
     }.get(model_id, model_id)
 
 
@@ -537,28 +553,20 @@ def _render_leaderboard(
     available = [
         value for run in leaderboard if (value := _metric_value(run, "Macro-F1")) is not None
     ]
-    columns = st.columns(4, gap="small")
     class_count = int(task.get("class_count") or _class_count(leaderboard) or 0)
     f1_winners = insights.get("stable_class_winners", {}).get("F1", {})
     winner_text = "—" if not f1_winners else str(max(f1_winners.values()))
-    cards = [
-        _metric_card("Models", len(leaderboard), "当前 Release", accent="#245F9E"),
-        _metric_card("Classes", class_count or "—", "逐类指标可用类别", accent="#0F766E"),
-        _metric_card(
-            "最高 Macro-F1",
-            f"{max(available):.3f}" if available else "—",
-            "当前 Release 的最高模型表现",
-            accent="#0F766E",
-        ),
-        _metric_card(
-            "最多逐类 F1 赢家",
-            winner_text,
-            "仅统计 support ≥ 5 的类别",
-            accent="#B7791F",
-        ),
-    ]
-    for column, card in zip(columns, cards, strict=True):
-        column.markdown(card, unsafe_allow_html=True)
+    best_score = f"{max(available):.3f}" if available else "—"
+    st.markdown(
+        '<div class="ob-taskbar">'
+        f'<span class="ob-pill"><b>{len(leaderboard)}</b>&nbsp; benchmarked models</span>'
+        f'<span class="ob-pill"><b>{class_count or "—"}</b>&nbsp; classes</span>'
+        f'<span class="ob-pill">Best Macro-F1&nbsp;<b>{best_score}</b></span>'
+        f'<span class="ob-pill">Stable class wins&nbsp;<b>{winner_text}</b></span>'
+        '<span class="ob-pill">support ≥ 5</span>'
+        "</div>",
+        unsafe_allow_html=True,
+    )
     filter_left, filter_right = st.columns((2, 1), gap="small")
     query = filter_left.text_input("搜索模型", placeholder="输入模型 ID 或名称")
     choices = sorted({str(run.get("checkpoint_id", "—")) for run in leaderboard})
@@ -615,7 +623,10 @@ def _render_insights(
     go: Any,
 ) -> None:
     st.markdown(
-        _section("Insights", "聚焦整体迁移表现与逐类优势；所有图表均来自预生成聚合指标。"),
+        _section(
+            "Insights",
+            "以可扩展矩阵、排名点图和稳定性区间展示模型差异；不使用随模型数量膨胀的成组柱状图。",
+        ),
         unsafe_allow_html=True,
     )
     rows = insights.get("metric_comparison", [])
@@ -629,38 +640,134 @@ def _render_insights(
         "Top-3 Accuracy",
         "Macro-AUROC",
     )
-    metric_rows = [
-        {
-            "Model": _model_label(str(row["model_id"])),
-            "Metric": metric_name,
-            "Score": float(row[metric_name]),
-        }
+    model_names = [_model_label(str(row["model_id"])) for row in rows]
+    metric_matrix = [
+        [
+            float(row[metric_name]) if isinstance(row.get(metric_name), (int, float)) else None
+            for metric_name in metric_names
+        ]
         for row in rows
-        for metric_name in metric_names
-        if isinstance(row.get(metric_name), (int, float))
     ]
-    if metric_rows:
+    if any(any(value is not None for value in model_row) for model_row in metric_matrix):
         st.markdown(
-            '<div class="ob-chart-title">核心指标比较</div>'
-            '<div class="ob-chart-copy">仅展示已导入的真实指标；缺失项不会估算或补值。</div>',
+            '<div class="ob-chart-title">核心指标矩阵</div>'
+            '<div class="ob-chart-copy">'
+            "模型纵向扩展、指标横向固定；单元格为真实聚合指标，缺失项保持为空。"
+            "</div>",
             unsafe_allow_html=True,
         )
-        chart = px.bar(
-            metric_rows,
-            x="Model",
-            y="Score",
-            color="Metric",
-            barmode="group",
-            category_orders={"Metric": list(metric_names)},
+        chart = go.Figure(
+            data=go.Heatmap(
+                z=metric_matrix,
+                x=list(metric_names),
+                y=model_names,
+                zmin=0,
+                zmax=1,
+                colorscale=[
+                    [0.0, "#F8FAFC"],
+                    [0.35, "#DBEAFE"],
+                    [0.7, "#93C5FD"],
+                    [1.0, "#2855D9"],
+                ],
+                text=[
+                    ["—" if value is None else f"{value:.3f}" for value in model_row]
+                    for model_row in metric_matrix
+                ],
+                texttemplate="%{text}",
+                hovertemplate="Model: %{y}<br>Metric: %{x}<br>Score: %{text}<extra></extra>",
+                colorbar={"title": "Score", "thickness": 12},
+                xgap=2,
+                ygap=2,
+            )
         )
         chart.update_layout(
-            height=360,
-            margin={"l": 42, "r": 24, "t": 24, "b": 42},
-            legend={"orientation": "h", "y": 1.08, "x": 0},
-            bargap=0.28,
+            height=max(280, 95 + 46 * len(model_names)),
+            margin={"l": 120, "r": 40, "t": 18, "b": 48},
         )
-        chart.update_yaxes(range=[0, 1], tickformat=".1f")
         st.plotly_chart(chart, width="stretch", config={"displayModeBar": False})
+
+    per_class_metrics = ("F1", "Recall", "Specificity", "AUROC", "AUPRC")
+    selected_metric = st.selectbox(
+        "逐类矩阵指标",
+        per_class_metrics,
+        index=0,
+        key="insights_class_metric",
+    )
+    class_ids = sorted(
+        {
+            int(row.get("class_id"))
+            for run in leaderboard
+            for row in run.get("per_class", [])
+            if isinstance(row.get("class_id"), (int, float))
+        }
+    )
+    if class_ids:
+        class_labels = []
+        class_matrix = []
+        hover_text = []
+        for class_id in class_ids:
+            representative = next(
+                (
+                    item
+                    for run in leaderboard
+                    for item in run.get("per_class", [])
+                    if int(item.get("class_id", -1)) == class_id
+                ),
+                {},
+            )
+            class_labels.append(str(representative.get("class_name") or class_id))
+        for run in leaderboard:
+            by_id = {
+                int(item["class_id"]): item
+                for item in run.get("per_class", [])
+                if isinstance(item.get("class_id"), (int, float))
+            }
+            values = []
+            labels = []
+            for class_id, class_name in zip(class_ids, class_labels, strict=True):
+                item = by_id.get(class_id, {})
+                value = item.get(selected_metric)
+                values.append(float(value) if isinstance(value, (int, float)) else None)
+                support = _text_or_dash(item.get("Support"))
+                display = "—" if value is None else f"{float(value):.3f}"
+                labels.append(
+                    f"{class_name}<br>{selected_metric}: {display}<br>Support: {support}"
+                )
+            class_matrix.append(values)
+            hover_text.append(labels)
+        st.markdown(
+            '<div class="ob-chart-title">模型 × 疾病类别能力矩阵</div>'
+            '<div class="ob-chart-copy">适配十几个至数十个模型；横向滚动浏览全部类别，'
+            "support &lt; 5 的类别不计入稳定赢家。</div>",
+            unsafe_allow_html=True,
+        )
+        chart = go.Figure(
+            data=go.Heatmap(
+                z=class_matrix,
+                x=class_labels,
+                y=[_model_label(str(run["model_id"])) for run in leaderboard],
+                zmin=0,
+                zmax=1,
+                colorscale=[
+                    [0.0, "#F8FAFC"],
+                    [0.35, "#DBEAFE"],
+                    [0.7, "#7DB4F2"],
+                    [1.0, "#174EA6"],
+                ],
+                text=hover_text,
+                hovertemplate="%{text}<extra></extra>",
+                colorbar={"title": selected_metric, "thickness": 12},
+                xgap=1,
+                ygap=2,
+            )
+        )
+        chart.update_layout(
+            height=max(330, 110 + 48 * len(leaderboard)),
+            margin={"l": 120, "r": 35, "t": 18, "b": 100},
+            xaxis={"tickangle": -55, "automargin": True},
+        )
+        st.plotly_chart(chart, width="stretch", config={"displayModeBar": True})
+
     cost = [row for row in rows if row.get("throughput") is not None]
     if cost and all(row.get("Macro-F1") is not None for row in cost):
         chart = px.scatter(cost, x="throughput", y="Macro-F1", hover_name="model_id")
@@ -670,21 +777,39 @@ def _render_insights(
     if winners:
         st.markdown(
             '<div class="ob-chart-title">逐类 F1 赢家</div>'
-            '<div class="ob-chart-copy">仅统计 support ≥ 5 且具有F1证据的类别。</div>',
+            '<div class="ob-chart-copy">排名点图仅统计 support ≥ 5 且具有 F1 证据的类别。</div>',
             unsafe_allow_html=True,
         )
         ordered_winners = sorted(winners.items(), key=lambda item: item[1], reverse=True)
-        chart = px.bar(
-            x=[_model_label(str(item[0])) for item in ordered_winners],
-            y=[item[1] for item in ordered_winners],
-            text=[item[1] for item in ordered_winners],
-            labels={"x": "Model", "y": "Class wins"},
+        winner_names = [_model_label(str(item[0])) for item in ordered_winners]
+        winner_values = [item[1] for item in ordered_winners]
+        chart = go.Figure(
+            go.Scatter(
+                x=winner_values,
+                y=winner_names,
+                mode="markers+text",
+                text=winner_values,
+                textposition="middle right",
+                marker={"size": 13, "color": "#2855D9"},
+                hovertemplate="%{y}: %{x} stable class wins<extra></extra>",
+            )
         )
-        chart.update_traces(marker_color="#087F75", textposition="outside")
+        for name, value in zip(winner_names, winner_values, strict=True):
+            chart.add_shape(
+                type="line",
+                x0=0,
+                x1=value,
+                y0=name,
+                y1=name,
+                line={"color": "#C7D7F5", "width": 2},
+                layer="below",
+            )
         chart.update_layout(
-            height=300, margin={"l": 42, "r": 24, "t": 20, "b": 42}, showlegend=False
+            height=max(260, 90 + 52 * len(winner_names)),
+            margin={"l": 120, "r": 50, "t": 20, "b": 42},
+            showlegend=False,
         )
-        chart.update_yaxes(range=[0, max(winners.values()) * 1.18])
+        chart.update_xaxes(range=[0, max(winner_values) * 1.18], title="Stable class wins")
         st.plotly_chart(chart, width="stretch", config={"displayModeBar": False})
     ranking = insights.get("cost_ranking", [])
     if ranking:
@@ -712,21 +837,27 @@ def _render_insights(
             '<div class="ob-chart-copy">误差线为五个预注册随机种子的样本标准差。</div>',
             unsafe_allow_html=True,
         )
-        chart = px.bar(
-            stability_rows,
-            x="Model",
-            y="Mean Macro-F1",
-            error_y="Std",
-            text="Mean Macro-F1",
-        )
-        chart.update_traces(
-            marker_color="#245F9E",
-            texttemplate="%{text:.3f}",
-            textposition="outside",
+        chart = go.Figure(
+            go.Scatter(
+                x=[row["Mean Macro-F1"] for row in stability_rows],
+                y=[row["Model"] for row in stability_rows],
+                mode="markers+text",
+                text=[f'{row["Mean Macro-F1"]:.3f}' for row in stability_rows],
+                textposition="middle right",
+                marker={"size": 12, "color": "#2855D9"},
+                error_x={
+                    "type": "data",
+                    "array": [row["Std"] for row in stability_rows],
+                    "visible": True,
+                    "color": "#7DA2E8",
+                    "thickness": 2,
+                },
+                hovertemplate="%{y}<br>Macro-F1: %{x:.3f}<extra></extra>",
+            )
         )
         chart.update_layout(
-            height=320,
-            margin={"l": 42, "r": 24, "t": 20, "b": 42},
+            height=max(260, 95 + 48 * len(stability_rows)),
+            margin={"l": 120, "r": 50, "t": 20, "b": 42},
             showlegend=False,
         )
         st.plotly_chart(chart, width="stretch", config={"displayModeBar": False})
@@ -747,11 +878,23 @@ def _render_insights(
     if len(radar_axes) >= 3 and radar_rows:
         st.markdown(
             '<div class="ob-chart-title">归一化能力雷达</div>'
-            '<div class="ob-chart-copy">仅使用已导入指标；精确数值仍以排行榜与明细表为准。</div>',
+            '<div class="ob-chart-copy">最多对比三个模型；仅使用已导入指标，'
+            "精确数值仍以排行榜与明细表为准。</div>",
             unsafe_allow_html=True,
         )
+        radar_choices = {
+            _model_label(str(row["model_id"])): row for row in radar_rows
+        }
+        selected_radar = st.multiselect(
+            "雷达图模型（最多3个）",
+            list(radar_choices),
+            default=list(radar_choices)[:3],
+            max_selections=3,
+            key="insights_radar_models",
+        )
         radar = go.Figure()
-        for row in radar_rows:
+        for label in selected_radar:
+            row = radar_choices[label]
             values = [row.get(axis) for axis in radar_axes]
             if all(isinstance(value, (int, float)) for value in values):
                 radar.add_trace(
@@ -759,7 +902,7 @@ def _render_insights(
                         r=[*values, values[0]],
                         theta=[*radar_axes, radar_axes[0]],
                         fill="toself",
-                        name=_model_label(str(row["model_id"])),
+                        name=label,
                     )
                 )
         radar.update_layout(
@@ -811,16 +954,27 @@ def _render_details(st: Any, leaderboard: list[dict[str, Any]], px: Any) -> None
         f"{_metric_display(run, 'Accuracy')}</p></div>",
         unsafe_allow_html=True,
     )
-    meta = (
-        '<div class="ob-info-grid">'
-        '<div class="ob-info"><span>Checkpoint</span><b>'
-        f'{escape(_text_or_dash(run.get("checkpoint_id")))}</b></div>'
-        '<div class="ob-info"><span>Adapter</span><b>'
-        f'{escape(_text_or_dash(run.get("adapter_version")))}</b></div>'
-        f'<div class="ob-info"><span>逐类记录</span><b>{len(run.get("per_class", []))}</b></div>'
-        "</div>"
+    cost = run.get("cost") or {}
+    evidence_rows = (
+        ("Checkpoint", _text_or_dash(run.get("checkpoint_id"))),
+        ("Adapter version", _text_or_dash(run.get("adapter_version"))),
+        ("Feature dimension", _text_or_dash(cost.get("feature_dim"))),
+        ("Qualification", _text_or_dash(run.get("qualification_status"))),
+        ("Per-class records", str(len(run.get("per_class", [])))),
     )
-    st.markdown(meta, unsafe_allow_html=True)
+    st.markdown(
+        '<table class="ob-evidence-table"><thead><tr><th>Evidence item</th>'
+        "<th>Imported value</th><th>Status</th></tr></thead><tbody>"
+        + "".join(
+            "<tr>"
+            f"<td>{escape(label)}</td><td>{escape(value)}</td>"
+            f'<td class="{"ob-status-ok" if value != "—" else "ob-status-muted"}">'
+            f'{"Available" if value != "—" else "Not provided"}</td></tr>'
+            for label, value in evidence_rows
+        )
+        + "</tbody></table>",
+        unsafe_allow_html=True,
+    )
     limitations = run.get("limitations") or ["当前 Release 未提供额外限制说明。"]
     st.markdown(
         '<div class="ob-note"><b>实验限制</b><br>'
@@ -893,6 +1047,14 @@ def run_dashboard(results: Path) -> None:
     _render_header(st, task)
     selected_task_id = _render_task_switcher(st, tasks, default_task_id)
     task = _task_for_id(tasks, selected_task_id)
+    task_limitations = task.get("limitations") or []
+    if task_limitations:
+        st.markdown(
+            '<div class="ob-boundary"><strong>任务证据边界</strong><span>'
+            + "；".join(escape(str(item)) for item in task_limitations)
+            + "</span></div>",
+            unsafe_allow_html=True,
+        )
     leaderboard = _dashboard_rows(data, selected_release, selected_task_id)
     insights = _task_insights(data["insights.json"], selected_task_id)
     view = st.radio(

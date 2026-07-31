@@ -90,7 +90,7 @@
       "implementation": {
         "adapter_status": "implemented",
         "smoke_test_status": "passed",
-        "benchmark_status": "not_run"
+        "benchmark_status": "passed"
       },
       "reported_tasks_text": "眼科疾病零样本、少样本及全监督分类；图像—图像和图像—文本跨模态检索；眼科视觉问答；眼科及全身疾病预测",
       "provenance": {
@@ -133,11 +133,11 @@
       "runtime_phase": "phase2_vision_language",
       "license": null,
       "license_verified": false,
-      "verification_status": "seed_unverified",
+      "verification_status": "partially_verified",
       "implementation": {
-        "adapter_status": "not_started",
-        "smoke_test_status": "not_run",
-        "benchmark_status": "not_run"
+        "adapter_status": "implemented",
+        "smoke_test_status": "passed",
+        "benchmark_status": "passed"
       },
       "reported_tasks_text": "CFP眼底疾病零样本与少样本分类；线性探测与全量微调；跨数据集迁移；图像特征提取",
       "provenance": {
@@ -147,7 +147,8 @@
         "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
-        "Original modality text: CFP、专家文本描述"
+        "Original modality text: CFP、专家文本描述",
+        "A6000本地GPU smoke已通过：官方ResNet-50视觉主干严格加载，12张有效图像生成2048维分类头前特征，1张坏图被隔离；文本编码器和投影头不参与。"
       ]
     },
     {
@@ -215,6 +216,7 @@
       "code_url": "https://github.com/lxirich/MM-Retinal",
       "code_available": true,
       "capabilities": [
+        "feature_extraction",
         "classification",
         "zero_shot_classification",
         "few_shot_classification",
@@ -224,11 +226,11 @@
       "runtime_phase": "phase2_vision_language",
       "license": null,
       "license_verified": false,
-      "verification_status": "seed_unverified",
+      "verification_status": "partially_verified",
       "implementation": {
-        "adapter_status": "not_started",
-        "smoke_test_status": "not_run",
-        "benchmark_status": "not_run"
+        "adapter_status": "implemented",
+        "smoke_test_status": "passed",
+        "benchmark_status": "passed"
       },
       "reported_tasks_text": "CFP疾病零样本、少样本及全监督分类；跨数据集迁移；FFA图像描述与报告生成",
       "provenance": {
@@ -238,7 +240,8 @@
         "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
-        "Original modality text: CFP、OCT、眼科专家描述文本"
+        "Original modality text: CFP、OCT、眼科专家描述文本",
+        "A6000本地GPU smoke已通过两个CFP checkpoint：官方ResNet-50视觉主干严格加载，各12张有效图像生成2048维分类头前特征，1张坏图被隔离；FFA权重未纳入本次CFP验证。"
       ]
     },
     {
@@ -313,10 +316,10 @@
       "runtime_phase": "phase1_image_encoder",
       "license": null,
       "license_verified": false,
-      "verification_status": "seed_unverified",
+      "verification_status": "partially_verified",
       "implementation": {
-        "adapter_status": "not_started",
-        "smoke_test_status": "not_run",
+        "adapter_status": "requires_external_runtime",
+        "smoke_test_status": "blocked",
         "benchmark_status": "not_run"
       },
       "reported_tasks_text": "CFP眼科疾病分类；冠状动脉钙化及eGFR等全身生物标志物预测；特征提取；低标注下游微调与迁移",
@@ -327,7 +330,8 @@
         "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
-        "Original modality text: CFP"
+        "Original modality text: CFP",
+        "官方PRETI运行契约依赖患者级图像对、ROI mask、年龄和性别元数据；当前私有数据不具备这些字段，不能把无元数据的普通ViT前向伪装成官方PRETI特征提取。"
       ]
     },
     {
@@ -350,17 +354,19 @@
       "code_url": "https://github.com/sStonemason/RET-CLIP",
       "code_available": true,
       "capabilities": [
+        "image_encoding",
+        "feature_extraction",
         "classification"
       ],
       "benchmark_tracks": [],
       "runtime_phase": "phase2_vision_language",
       "license": null,
       "license_verified": false,
-      "verification_status": "seed_unverified",
+      "verification_status": "partially_verified",
       "implementation": {
-        "adapter_status": "not_started",
-        "smoke_test_status": "not_run",
-        "benchmark_status": "not_run"
+        "adapter_status": "implemented",
+        "smoke_test_status": "passed",
+        "benchmark_status": "passed"
       },
       "reported_tasks_text": "CFP糖尿病视网膜病变分级；青光眼识别；多病种及多标签分类；线性探测与全量微调；患者双眼级表征迁移",
       "provenance": {
@@ -370,7 +376,8 @@
         "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
-        "Original modality text: CFP、中文临床自由文本报告"
+        "Original modality text: CFP、中文临床自由文本报告",
+        "A6000本地GPU smoke已通过：官方ViT-B/16视觉分支严格加载，12张有效图像生成512维encode_image特征，1张坏图被隔离；文本编码器不参与。"
       ]
     },
     {
@@ -406,7 +413,7 @@
       "implementation": {
         "adapter_status": "implemented",
         "smoke_test_status": "passed",
-        "benchmark_status": "not_run"
+        "benchmark_status": "passed"
       },
       "reported_tasks_text": "CFP，OCT眼科疾病分类；湿性AMD进展与预后预测；全身疾病风险预测；特征提取；下游迁移",
       "provenance": {
@@ -450,7 +457,7 @@
       "implementation": {
         "adapter_status": "implemented",
         "smoke_test_status": "passed",
-        "benchmark_status": "not_run"
+        "benchmark_status": "passed"
       },
       "reported_tasks_text": "CFP眼科疾病分类；线性探测；图像特征提取；低算力、低资源场景下的下游迁移与部署",
       "provenance": {
@@ -484,6 +491,8 @@
       "code_url": "https://github.com/LooKing9218/RetiZero",
       "code_available": true,
       "capabilities": [
+        "image_encoding",
+        "feature_extraction",
         "classification",
         "zero_shot_classification",
         "few_shot_classification",
@@ -493,11 +502,11 @@
       "runtime_phase": "phase2_vision_language",
       "license": null,
       "license_verified": false,
-      "verification_status": "seed_unverified",
+      "verification_status": "partially_verified",
       "implementation": {
-        "adapter_status": "not_started",
-        "smoke_test_status": "not_run",
-        "benchmark_status": "not_run"
+        "adapter_status": "implemented",
+        "smoke_test_status": "passed",
+        "benchmark_status": "passed"
       },
       "reported_tasks_text": "常见及罕见眼底疾病零样本识别；多病种分类；相似病例图像检索；少样本微调与临床辅助诊断",
       "provenance": {
@@ -507,7 +516,8 @@
         "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
-        "Original modality text: CFP 、模板化疾病文本描述"
+        "Original modality text: CFP 、模板化疾病文本描述",
+        "A6000本地GPU smoke已通过：官方rank-8 LoRA ViT-L/16视觉编码器严格加载，12张有效图像生成1024维分类头前特征，1张坏图被隔离；文本编码器和分类头不参与。"
       ]
     },
     {
@@ -538,11 +548,11 @@
       "runtime_phase": "phase2_vision_language",
       "license": null,
       "license_verified": false,
-      "verification_status": "seed_unverified",
+      "verification_status": "partially_verified",
       "implementation": {
-        "adapter_status": "not_started",
-        "smoke_test_status": "not_run",
-        "benchmark_status": "not_run"
+        "adapter_status": "implemented",
+        "smoke_test_status": "passed",
+        "benchmark_status": "passed"
       },
       "reported_tasks_text": "CFP，OCT眼科疾病分类；线性探测与下游微调；低数据量迁移；跨模态及跨数据集泛化；通用特征提取",
       "provenance": {
@@ -552,7 +562,8 @@
         "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
-        "Original modality text: CFP、OCT、由专家标签扩展的医学描述文本"
+        "Original modality text: CFP、OCT、由专家标签扩展的医学描述文本",
+        "A6000本地GPU smoke已通过：官方ViT-B/16编码器严格加载，12张有效图像生成768维编码器norm后CLS特征，1张坏图被隔离；解码器、文本分支和分类头不参与。"
       ]
     },
     {
@@ -575,6 +586,8 @@
       "code_url": "https://github.com/T6Yang/ViLReF",
       "code_available": true,
       "capabilities": [
+        "image_encoding",
+        "feature_extraction",
         "classification",
         "segmentation",
         "zero_shot_classification"
@@ -583,11 +596,11 @@
       "runtime_phase": "phase2_vision_language",
       "license": null,
       "license_verified": false,
-      "verification_status": "seed_unverified",
+      "verification_status": "partially_verified",
       "implementation": {
-        "adapter_status": "not_started",
-        "smoke_test_status": "not_run",
-        "benchmark_status": "not_run"
+        "adapter_status": "implemented",
+        "smoke_test_status": "passed",
+        "benchmark_status": "passed"
       },
       "reported_tasks_text": "CFP眼底疾病零样本分类；线性探测与全量微调；病灶分割迁移；跨数据集分类泛化",
       "provenance": {
@@ -597,7 +610,8 @@
         "imported_at": "2026-07-11T09:30:27Z"
       },
       "notes": [
-        "Original modality text: CFP、中文视网膜诊断报告"
+        "Original modality text: CFP、中文视网膜诊断报告",
+        "A6000本地GPU smoke已通过：官方ViT-B/16视觉分支严格加载，12张有效图像生成512维encode_image特征，1张坏图被隔离；文本编码器不参与。"
       ]
     },
     {

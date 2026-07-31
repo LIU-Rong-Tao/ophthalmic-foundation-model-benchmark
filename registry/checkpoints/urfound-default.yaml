@@ -12,18 +12,18 @@ access_type: open
 requires_auth: false
 redistribution_allowed: unknown
 license: null
-framework: null
-input_size: null
-normalization: null
-embedding_dim: null
-sha256: null
-source_commit: null
-verification_status: seed_unverified
-last_verified: null
+framework: pytorch
+input_size: '224'
+normalization: RGB短边缩放至256（bicubic）、中心裁剪224×224，ImageNet mean/std
+embedding_dim: 768
+sha256: 8a26bf1a64d449d30fe6fc5faabea48431aa6c15a743d324b8e16271109942e3
+source_commit: 6678be52afdf6c30114fb1d5f733be1282374ada
+verification_status: partially_verified
+last_verified: '2026-07-31'
 provenance:
   source_file: ophthalmic_models_seed_v0.xlsx
   source_sheet: 眼科大模型
   source_row: 15
   imported_at: '2026-07-11T09:30:27Z'
 notes:
-- Seed metadata only; URL and redistribution terms have not been verified.
+- A6000本地GPU smoke：官方ViT-B/16编码器150/150键严格匹配，12张有效图像成功、1张坏图隔离；权重未重新分发。

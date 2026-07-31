@@ -11,18 +11,18 @@ access_type: open
 requires_auth: false
 redistribution_allowed: unknown
 license: null
-framework: null
-input_size: null
-normalization: null
-embedding_dim: null
-sha256: null
-source_commit: null
-verification_status: seed_unverified
-last_verified: null
+framework: pytorch
+input_size: '224'
+normalization: RGB直接缩放至224×224，ImageNet mean/std
+embedding_dim: 1024
+sha256: 7d06d29441c981898bbb56abdaae1eb97e205448f0a9bc2a68e2aa9431601ede
+source_commit: d72aadc692fbe33b182c79711bccb397edffb419
+verification_status: partially_verified
+last_verified: '2026-07-31'
 provenance:
   source_file: ophthalmic_models_seed_v0.xlsx
   source_sheet: 眼科大模型
   source_row: 6
   imported_at: '2026-07-11T09:30:27Z'
 notes:
-- Seed metadata only; URL and redistribution terms have not been verified.
+- A6000本地GPU smoke：官方rank-8 LoRA ViT-L/16视觉分支390/390键严格匹配，12张有效图像成功、1张坏图隔离；权重未重新分发。

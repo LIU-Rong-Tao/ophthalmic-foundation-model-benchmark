@@ -25,7 +25,7 @@ verification_status: partially_verified
 implementation:
   adapter_status: implemented
   smoke_test_status: passed
-  benchmark_status: not_run
+  benchmark_status: passed
 reported_tasks_text: CFP眼科疾病分类；线性探测；图像特征提取；低算力、低资源场景下的下游迁移与部署
 provenance:
   source_file: ophthalmic_models_seed_v0.xlsx
