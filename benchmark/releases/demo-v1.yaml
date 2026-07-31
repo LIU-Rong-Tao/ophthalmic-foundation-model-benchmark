@@ -18,9 +18,13 @@ tasks:
     class_count: 3
     sample_count: 673
     label_semantics: observed_directory_subclass
+    evidence_status: diagnostic_only
+    shortcut_risk: high
     limitations:
       - 标签来自canonical数据中的Normal及DR/NPDR、DR/PDR目录，不是正式病例标注表。
       - 不具备ICDR五级标签；缺少patient_id，患者级泛化未建立。
+      - Normal与NPDR/PDR的文件格式和分辨率分布明显不同；元数据基线Macro-F1为0.789，存在高采集捷径风险。
+      - 当前结果仅用于数据诊断，不作为正式模型能力排名。
 protocol_ids:
   - frozen-feature-single-observed-v1
   - precomputed-frozen-feature-logreg-v1

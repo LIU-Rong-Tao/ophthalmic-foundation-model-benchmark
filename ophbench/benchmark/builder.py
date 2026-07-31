@@ -15,17 +15,22 @@ def _write_json(path: Path, payload) -> None:
     )
 
 
-def _stable_winners(runs: list[dict]) -> dict[str, dict[str, int]]:
-    winners = {metric: {} for metric in ("F1", "Recall", "AUROC")}
+def _stable_groups(runs: list[dict]) -> dict[str, list[tuple[dict, dict]]]:
     grouped: dict[str, list[tuple[dict, dict]]] = {}
     for run in runs:
         for row in run.get("per_class", []):
-            if (row.get("Support") or 0) >= 5:
-                class_id = row.get("class_id")
-                key = str(class_id if class_id is not None else row.get("class_name") or "")
-                if key:
-                    grouped.setdefault(key, []).append((run, row))
-    for candidates in grouped.values():
+            if (row.get("Support") or 0) < 5:
+                continue
+            class_id = row.get("class_id")
+            key = str(class_id if class_id is not None else row.get("class_name") or "")
+            if key:
+                grouped.setdefault(key, []).append((run, row))
+    return grouped
+
+
+def _stable_winners(runs: list[dict]) -> dict[str, dict[str, int]]:
+    winners = {metric: {} for metric in ("F1", "Recall", "AUROC")}
+    for candidates in _stable_groups(runs).values():
         for metric in winners:
             available = [
                 (run, row.get(metric))
@@ -33,8 +38,14 @@ def _stable_winners(runs: list[dict]) -> dict[str, dict[str, int]]:
                 if isinstance(row.get(metric), (int, float))
             ]
             if available:
-                winner = max(available, key=lambda item: item[1])[0]["model_id"]
-                winners[metric][winner] = winners[metric].get(winner, 0) + 1
+                best = max(float(item[1]) for item in available)
+                tied = [
+                    run["model_id"]
+                    for run, value in available
+                    if abs(float(value) - best) <= 1e-12
+                ]
+                for model_id in tied:
+                    winners[metric][model_id] = winners[metric].get(model_id, 0) + 1
     return winners
 
 
@@ -70,6 +81,8 @@ def _task_insights(runs: list[dict], limitations: list[str]) -> dict:
             for run in runs
         ],
         "stable_class_winners": _stable_winners(runs),
+        "stable_class_count": len(_stable_groups(runs)),
+        "stable_class_tie_policy": "co_winners_counted",
         "cost_ranking": sorted(
             [run for run in runs if run.get("cost", {}).get("latency_ms") is not None],
             key=lambda run: run["cost"]["latency_ms"],

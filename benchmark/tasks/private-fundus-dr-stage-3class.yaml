@@ -7,8 +7,12 @@ label_space: normal_npdr_pdr
 split_level: image
 protocol_id: precomputed-frozen-feature-logreg-v1
 label_semantics: observed_directory_subclass
+evidence_status: diagnostic_only
+shortcut_risk: high
 limitations:
   - 标签来自canonical数据中的Normal及DR/NPDR、DR/PDR目录，不是数据组正式病例标注表。
   - 当前数据仅提供Normal、NPDR和PDR目录语义，不具备ICDR五级标签。
+  - Normal全部为PNG且绝大多数为1924×1556，NPDR/PDR绝大多数为TIF且尺寸分布不同；存在高采集捷径风险。
+  - 仅使用图像宽高、长宽比和文件大小的基线已达到Macro-F1 0.789，当前模型高分不能直接解释为疾病识别能力。
   - 缺少patient_id，患者级泄漏无法完全评估。
-  - 结果仅用于探索性冻结特征迁移能力比较。
+  - 结果仅用于数据诊断，不作为正式模型能力排名。

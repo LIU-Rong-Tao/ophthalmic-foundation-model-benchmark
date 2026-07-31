@@ -4,7 +4,7 @@ from pathlib import Path
 import yaml
 
 from ophbench.benchmark import build_benchmark
-from ophbench.benchmark.builder import _leaderboard_sort_key
+from ophbench.benchmark.builder import _leaderboard_sort_key, _stable_winners
 from ophbench.benchmark.metrics import normalize_metrics
 
 
@@ -64,6 +64,20 @@ def test_benchmark_builder_groups_leaderboards_and_winners_by_task(tmp_path: Pat
     assert insights["by_task"]["task-a"]["metric_comparison"][0]["model_id"] == "model-1"
     assert insights["by_task"]["task-b"]["metric_comparison"][0]["model_id"] == "model-2"
     assert insights["by_task"]["task-a"]["stable_class_winners"]["F1"] == {"model-1": 1}
+    assert insights["by_task"]["task-a"]["stable_class_count"] == 1
+    assert insights["by_task"]["task-a"]["stable_class_tie_policy"] == "co_winners_counted"
+
+
+def test_stable_winners_count_exact_ties_for_every_co_winner():
+    runs = [
+        {
+            "model_id": model_id,
+            "per_class": [{"class_id": 0, "F1": 0.8, "Recall": 0.7, "Support": 8}],
+        }
+        for model_id in ("model-1", "model-2")
+    ]
+
+    assert _stable_winners(runs)["F1"] == {"model-1": 1, "model-2": 1}
 
 
 def test_metric_aliases_and_zero_score_sorting_are_canonical():

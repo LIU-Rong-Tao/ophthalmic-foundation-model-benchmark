@@ -12,14 +12,18 @@
   {
     "class_count": 3,
     "display_name": "探索性DR目录三分类（Normal / NPDR / PDR）",
+    "evidence_status": "diagnostic_only",
     "label_semantics": "observed_directory_subclass",
     "label_space": "observed-directory-normal-npdr-pdr",
     "limitations": [
       "标签来自canonical数据中的Normal及DR/NPDR、DR/PDR目录，不是正式病例标注表。",
-      "不具备ICDR五级标签；缺少patient_id，患者级泛化未建立。"
+      "不具备ICDR五级标签；缺少patient_id，患者级泛化未建立。",
+      "Normal与NPDR/PDR的文件格式和分辨率分布明显不同；元数据基线Macro-F1为0.789，存在高采集捷径风险。",
+      "当前结果仅用于数据诊断，不作为正式模型能力排名。"
     ],
     "model_count": 9,
     "sample_count": 673,
+    "shortcut_risk": "high",
     "task_id": "private-fundus-dr-stage-3class",
     "task_type": "single_label_multiclass_classification"
   }

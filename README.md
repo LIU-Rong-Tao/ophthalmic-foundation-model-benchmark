@@ -74,7 +74,10 @@ ROI mask、年龄及性别元数据，明确保持 `requires_external_runtime`�
 多任务 Dashboard 从同一 Release 的静态聚合结果中切换任务。仓库内当前定义
 59 类眼底疾病与探索性 DR 目录三分类（Normal / NPDR / PDR）任务。后者由
 canonical 数据中的 `Normal`、`DR/NPDR`、`DR/PDR` 目录语义派生，不是数据组正式
-病例标注表，也不冒充不存在的 ICDR 五级标注。
+病例标注表，也不冒充不存在的 ICDR 五级标注。进一步审计发现该子集的 Normal 与
+NPDR/PDR 在文件格式和分辨率上存在明显差异，仅使用宽高、长宽比和文件大小的元数据
+基线即可达到 Macro-F1 0.789；因此该任务只作为高采集捷径风险的数据诊断，不作为正式
+模型能力排名。
 
 ## 快速开始
 

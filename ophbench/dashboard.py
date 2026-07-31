@@ -117,6 +117,9 @@ def _inject_css(st: Any) -> None:
         .ob-rank-table .rank {{ color:var(--ob-teal); font-weight:800; width:52px; }}
         .ob-rank-table .model {{ font-weight:780; }}
         .ob-rank-table .score {{ font-variant-numeric:tabular-nums; font-weight:750; }}
+        .ob-rank-table .best {{ background:var(--ob-teal-soft); color:#173E9A; }}
+        .ob-rank-table .rank-note {{ display:block; color:#7A8798; font-size:.62rem;
+          font-weight:600; margin-top:.12rem; }}
         .ob-rank-table .muted {{ color:#8a97a8; }}
         .ob-taskbar {{ display:flex; align-items:center; gap:.45rem; flex-wrap:wrap;
           margin:.35rem 0 .9rem; color:var(--ob-muted); font-size:.7rem; }}
@@ -133,6 +136,12 @@ def _inject_css(st: Any) -> None:
         .ob-rank-row summary {{ cursor:pointer; list-style:none; display:grid;
           grid-template-columns:54px minmax(190px,1.35fr) repeat(5,minmax(92px,.72fr)) 24px;
           align-items:center; gap:.65rem; padding:.82rem .9rem; }}
+        .ob-rank-list[data-metrics="4"] .ob-rank-row summary {{
+          grid-template-columns:54px minmax(190px,1.35fr) repeat(4,minmax(92px,.72fr)) 24px;
+        }}
+        .ob-rank-list[data-metrics="3"] .ob-rank-row summary {{
+          grid-template-columns:54px minmax(190px,1.35fr) repeat(3,minmax(92px,.72fr)) 24px;
+        }}
         .ob-rank-row summary::-webkit-details-marker {{ display:none; }}
         .ob-rank-number {{ width:32px; height:32px; border-radius:0; display:grid;
           place-items:center; background:transparent; color:#98A2B3;
@@ -198,6 +207,25 @@ def _inject_css(st: Any) -> None:
         .ob-chart-title {{ font-size:.92rem; font-weight:800; color:var(--ob-ink);
           margin-bottom:.2rem; }}
         .ob-chart-copy {{ font-size:.72rem; color:var(--ob-muted); margin-bottom:.5rem; }}
+        .ob-class-panel {{ background:#fff; border:1px solid var(--ob-line);
+          border-radius:8px; padding:.85rem; min-height:390px; }}
+        .ob-class-panel h4 {{ margin:0; color:var(--ob-ink); font-size:.92rem; }}
+        .ob-class-panel > small {{ display:block; color:var(--ob-muted); font-size:.65rem;
+          margin:.18rem 0 .7rem; }}
+        .ob-class-row {{ display:grid; grid-template-columns:24px minmax(92px,1fr) 70px 42px;
+          align-items:center; gap:.45rem; min-height:34px; border-top:1px solid #EEF2F6;
+          font-size:.68rem; }}
+        .ob-class-row .rank {{ color:#98A2B3; font-weight:800; }}
+        .ob-class-row b {{ color:#344054; overflow:hidden; text-overflow:ellipsis;
+          white-space:nowrap; }}
+        .ob-class-row strong {{ color:var(--ob-ink); text-align:right;
+          font-variant-numeric:tabular-nums; }}
+        .ob-class-bar {{ height:5px; background:#E9EFF8; border-radius:999px; overflow:hidden; }}
+        .ob-class-bar i {{ display:block; height:100%; background:var(--ob-teal);
+          border-radius:999px; }}
+        .ob-class-row.winner {{ background:#FFFBEB; }}
+        .ob-class-row.winner .ob-class-bar i {{ background:var(--ob-amber); }}
+        .ob-class-row.winner strong {{ color:#9A5A04; }}
         div[data-testid="stPlotlyChart"] {{ background:#fff; border:1px solid var(--ob-line);
           border-radius:8px; overflow:hidden; box-shadow:none; }}
         [data-baseweb="input"] > div, [data-baseweb="select"] > div {{
@@ -213,6 +241,7 @@ def _inject_css(st: Any) -> None:
           .ob-page-context {{ white-space:normal; }}
           .ob-page-title {{ font-size:1.55rem; }}
           .ob-info-grid {{ grid-template-columns:1fr; }}
+          .ob-class-row {{ grid-template-columns:22px minmax(80px,1fr) 54px 38px; }}
           .ob-rank-table {{ display:block; overflow-x:auto; }}
           .ob-rank-row summary {{ grid-template-columns:42px 1fr 72px 20px; }}
           .ob-rank-row .ob-rank-score:nth-of-type(n+3) {{ display:none; }}
@@ -298,12 +327,20 @@ def _render_task_switcher(
         key="benchmark_task",
     )
     task = _task_for_id(tasks, selected)
+    evidence_status = str(task.get("evidence_status") or "")
+    evidence_pills = ""
+    if evidence_status == "diagnostic_only":
+        evidence_pills = (
+            '<span class="ob-pill"><b>仅数据诊断</b></span>'
+            '<span class="ob-pill"><b>高采集捷径风险</b></span>'
+        )
     metadata.markdown(
         '<div class="ob-taskbar">'
         f'<span class="ob-pill">{escape(_task_type_label(task.get("task_type")))}</span>'
         f'<span class="ob-pill">{escape(_text_or_dash(task.get("class_count")))} classes</span>'
         f'<span class="ob-pill">{escape(_text_or_dash(task.get("sample_count")))} samples</span>'
         '<span class="ob-pill">Frozen features</span>'
+        f"{evidence_pills}"
         "</div>",
         unsafe_allow_html=True,
     )
@@ -347,6 +384,23 @@ def _metric_display(run: dict[str, Any], name: str) -> str:
     return "—" if value is None else f"{value:.3f}"
 
 
+METRIC_SPECS = (
+    ("Macro-F1", "Macro-F1"),
+    ("Balanced Accuracy", "BAcc"),
+    ("Accuracy", "Accuracy"),
+    ("Top-3 Accuracy", "Top-3"),
+    ("Macro-AUROC", "AUROC"),
+)
+
+
+def _available_metric_specs(runs: list[dict[str, Any]]) -> list[tuple[str, str]]:
+    return [
+        spec
+        for spec in METRIC_SPECS
+        if any(_metric_value(run, spec[0]) is not None for run in runs)
+    ]
+
+
 def _class_count(leaderboard: list[dict[str, Any]]) -> int:
     return len(
         {
@@ -372,7 +426,9 @@ def _model_label(model_id: str) -> str:
 
 
 def _text_or_dash(value: Any) -> str:
-    text = str(value or "").strip()
+    if value is None:
+        return "—"
+    text = str(value).strip()
     return "—" if not text or text.lower() in {"unknown", "none", "null", "nan"} else text
 
 
@@ -383,20 +439,20 @@ def _task_type_label(value: Any) -> str:
     }.get(str(value), _text_or_dash(value))
 
 
-def _leaderboard_rows(runs: list[dict[str, Any]]) -> str:
-    metrics = (
-        ("Macro-F1", "Macro-F1"),
-        ("Balanced Accuracy", "BAcc"),
-        ("Accuracy", "Accuracy"),
-        ("Top-3 Accuracy", "Top-3"),
-        ("Macro-AUROC", "AUROC"),
-    )
+def _leaderboard_rows(
+    runs: list[dict[str, Any]],
+    *,
+    leader_badge: str = "LEADER",
+) -> str:
+    metrics = _available_metric_specs(runs)
     rows = []
     for rank, run in enumerate(runs, start=1):
         model_id = str(run.get("model_id") or "unknown")
         model_name = escape(_model_label(model_id))
         checkpoint = escape(_text_or_dash(run.get("checkpoint_id")))
-        winner = '<span class="ob-winner">LEADER</span>' if rank == 1 else ""
+        winner = (
+            f'<span class="ob-winner">{escape(leader_badge)}</span>' if rank == 1 else ""
+        )
         score_cells = "".join(
             '<div class="ob-rank-score">'
             f"<span>{escape(short)}</span><b>{escape(_metric_display(run, metric))}</b>"
@@ -424,7 +480,11 @@ def _leaderboard_rows(runs: list[dict[str, Any]]) -> str:
             f"<div><b>Limitations</b>{limitation_text}</div>"
             "</div></details>"
         )
-    return '<div class="ob-rank-list">' + "".join(rows) + "</div>"
+    return (
+        f'<div class="ob-rank-list" data-metrics="{len(metrics)}">'
+        + "".join(rows)
+        + "</div>"
+    )
 
 
 def _release_table(leaderboard: list[dict[str, Any]]) -> str:
@@ -444,6 +504,64 @@ def _release_table(leaderboard: list[dict[str, Any]]) -> str:
     return (
         "<table class='ob-rank-table'><thead><tr><th>Model</th><th>Macro-F1</th>"
         f"<th>Balanced Accuracy</th><th>Accuracy</th></tr></thead><tbody>{body}</tbody></table>"
+    )
+
+
+def _metric_rank_table(rows: list[dict[str, Any]]) -> str:
+    metric_specs = [
+        spec
+        for spec in METRIC_SPECS
+        if any(isinstance(row.get(spec[0]), (int, float)) for row in rows)
+    ]
+    rankings: dict[str, dict[str, int]] = {}
+    best_values: dict[str, float] = {}
+    for metric, _ in metric_specs:
+        available = sorted(
+            {
+                float(row[metric])
+                for row in rows
+                if isinstance(row.get(metric), (int, float))
+            },
+            reverse=True,
+        )
+        rankings[metric] = {str(value): rank for rank, value in enumerate(available, start=1)}
+        if available:
+            best_values[metric] = available[0]
+
+    body = []
+    for row in sorted(
+        rows,
+        key=lambda item: float(item.get("Macro-F1") or float("-inf")),
+        reverse=True,
+    ):
+        cells = []
+        for metric, _ in metric_specs:
+            value = row.get(metric)
+            if not isinstance(value, (int, float)):
+                cells.append("<td class='muted'>—</td>")
+                continue
+            numeric = float(value)
+            rank = rankings[metric][str(numeric)]
+            delta = numeric - best_values[metric]
+            note = f"#{rank}" if rank == 1 else f"#{rank} · {delta:+.3f}"
+            css_class = "score best" if rank == 1 else "score"
+            cells.append(
+                f"<td class='{css_class}'>{numeric:.3f}"
+                f"<span class='rank-note'>{escape(note)}</span></td>"
+            )
+        body.append(
+            "<tr>"
+            f"<td class='model'>{escape(_model_label(str(row.get('model_id') or '—')))}</td>"
+            + "".join(cells)
+            + "</tr>"
+        )
+    headers = "".join(f"<th>{escape(label)}</th>" for _, label in metric_specs)
+    return (
+        "<table class='ob-rank-table'><thead><tr><th>Model</th>"
+        + headers
+        + "</tr></thead><tbody>"
+        + "".join(body)
+        + "</tbody></table>"
     )
 
 
@@ -555,14 +673,19 @@ def _render_leaderboard(
     ]
     class_count = int(task.get("class_count") or _class_count(leaderboard) or 0)
     f1_winners = insights.get("stable_class_winners", {}).get("F1", {})
-    winner_text = "—" if not f1_winners else str(max(f1_winners.values()))
+    stable_class_count = int(insights.get("stable_class_count") or 0)
+    winner_text = (
+        "—"
+        if not f1_winners
+        else f"{max(f1_winners.values())}/{stable_class_count or class_count}"
+    )
     best_score = f"{max(available):.3f}" if available else "—"
     st.markdown(
         '<div class="ob-taskbar">'
         f'<span class="ob-pill"><b>{len(leaderboard)}</b>&nbsp; benchmarked models</span>'
         f'<span class="ob-pill"><b>{class_count or "—"}</b>&nbsp; classes</span>'
         f'<span class="ob-pill">Best Macro-F1&nbsp;<b>{best_score}</b></span>'
-        f'<span class="ob-pill">Stable class wins&nbsp;<b>{winner_text}</b></span>'
+        f'<span class="ob-pill">最多稳定类别冠军&nbsp;<b>{winner_text}</b></span>'
         '<span class="ob-pill">support ≥ 5</span>'
         "</div>",
         unsafe_allow_html=True,
@@ -578,7 +701,14 @@ def _render_leaderboard(
         and (checkpoint == "全部" or run.get("checkpoint_id") == checkpoint)
     ]
     shown.sort(key=lambda run: _metric_value(run, "Macro-F1") or float("-inf"), reverse=True)
-    st.markdown(_leaderboard_rows(shown), unsafe_allow_html=True)
+    diagnostic_only = str(task.get("evidence_status") or "") == "diagnostic_only"
+    st.markdown(
+        _leaderboard_rows(
+            shown,
+            leader_badge="本任务最高" if diagnostic_only else "LEADER",
+        ),
+        unsafe_allow_html=True,
+    )
     st.markdown(
         _section("摘要", "仅展示已导入的证据；缺失指标不会估算或补写。"), unsafe_allow_html=True
     )
@@ -586,12 +716,16 @@ def _render_leaderboard(
     winner_lines = (
         "<br>".join(
             f"{escape(_model_label(str(model)))}：{count}"
-            for model, count in sorted(f1_winners.items())
+            for model, count in sorted(
+                f1_winners.items(), key=lambda item: (-item[1], str(item[0]))
+            )
         )
         or "—"
     )
     summary_columns[0].markdown(
-        f'<div class="ob-summary"><b>逐类赢家</b><p>{winner_lines}<br>F1，support ≥ 5。</p></div>',
+        '<div class="ob-summary"><b>'
+        f"{stable_class_count or class_count}个稳定疾病类别中的 F1 冠军数"
+        f"</b><p>{winner_lines}<br>support ≥ 5；完全同分时并列模型均计为冠军。</p></div>",
         unsafe_allow_html=True,
     )
     stability_lines = []
@@ -625,7 +759,7 @@ def _render_insights(
     st.markdown(
         _section(
             "Insights",
-            "以可扩展矩阵、排名点图和稳定性区间展示模型差异；不使用随模型数量膨胀的成组柱状图。",
+            "整体指标按列排名；逐类别图根据任务类别数自动切换为小面板或热图。",
         ),
         unsafe_allow_html=True,
     )
@@ -633,58 +767,14 @@ def _render_insights(
     if not rows:
         st.info("当前 Release 没有可视化的聚合指标。")
         return
-    metric_names = (
-        "Macro-F1",
-        "Balanced Accuracy",
-        "Accuracy",
-        "Top-3 Accuracy",
-        "Macro-AUROC",
+    st.markdown(
+        '<div class="ob-chart-title">整体指标对照</div>'
+        '<div class="ob-chart-copy">'
+        "每列独立排名；#1 为该指标最高值，后续单元格同时显示名次及与最高值的差距。"
+        "</div>",
+        unsafe_allow_html=True,
     )
-    model_names = [_model_label(str(row["model_id"])) for row in rows]
-    metric_matrix = [
-        [
-            float(row[metric_name]) if isinstance(row.get(metric_name), (int, float)) else None
-            for metric_name in metric_names
-        ]
-        for row in rows
-    ]
-    if any(any(value is not None for value in model_row) for model_row in metric_matrix):
-        st.markdown(
-            '<div class="ob-chart-title">核心指标矩阵</div>'
-            '<div class="ob-chart-copy">'
-            "模型纵向扩展、指标横向固定；单元格为真实聚合指标，缺失项保持为空。"
-            "</div>",
-            unsafe_allow_html=True,
-        )
-        chart = go.Figure(
-            data=go.Heatmap(
-                z=metric_matrix,
-                x=list(metric_names),
-                y=model_names,
-                zmin=0,
-                zmax=1,
-                colorscale=[
-                    [0.0, "#F8FAFC"],
-                    [0.35, "#DBEAFE"],
-                    [0.7, "#93C5FD"],
-                    [1.0, "#2855D9"],
-                ],
-                text=[
-                    ["—" if value is None else f"{value:.3f}" for value in model_row]
-                    for model_row in metric_matrix
-                ],
-                texttemplate="%{text}",
-                hovertemplate="Model: %{y}<br>Metric: %{x}<br>Score: %{text}<extra></extra>",
-                colorbar={"title": "Score", "thickness": 12},
-                xgap=2,
-                ygap=2,
-            )
-        )
-        chart.update_layout(
-            height=max(280, 95 + 46 * len(model_names)),
-            margin={"l": 120, "r": 40, "t": 18, "b": 48},
-        )
-        st.plotly_chart(chart, width="stretch", config={"displayModeBar": False})
+    st.markdown(_metric_rank_table(rows), unsafe_allow_html=True)
 
     per_class_metrics = ("F1", "Recall", "Specificity", "AUROC", "AUPRC")
     selected_metric = st.selectbox(
@@ -735,38 +825,98 @@ def _render_insights(
                 )
             class_matrix.append(values)
             hover_text.append(labels)
-        st.markdown(
-            '<div class="ob-chart-title">模型 × 疾病类别能力矩阵</div>'
-            '<div class="ob-chart-copy">适配十几个至数十个模型；横向滚动浏览全部类别，'
-            "support &lt; 5 的类别不计入稳定赢家。</div>",
-            unsafe_allow_html=True,
-        )
-        chart = go.Figure(
-            data=go.Heatmap(
-                z=class_matrix,
-                x=class_labels,
-                y=[_model_label(str(run["model_id"])) for run in leaderboard],
-                zmin=0,
-                zmax=1,
-                colorscale=[
-                    [0.0, "#F8FAFC"],
-                    [0.35, "#DBEAFE"],
-                    [0.7, "#7DB4F2"],
-                    [1.0, "#174EA6"],
-                ],
-                text=hover_text,
-                hovertemplate="%{text}<extra></extra>",
-                colorbar={"title": selected_metric, "thickness": 12},
-                xgap=1,
-                ygap=2,
+        if len(class_ids) <= 5:
+            st.markdown(
+                '<div class="ob-chart-title">逐类别模型对比</div>'
+                '<div class="ob-chart-copy">类别较少时不使用大块热图；每个面板对应一个类别，'
+                f"模型按 {escape(selected_metric)} 从高到低排列，金色行表示该类别最高值。</div>",
+                unsafe_allow_html=True,
             )
-        )
-        chart.update_layout(
-            height=max(330, 110 + 48 * len(leaderboard)),
-            margin={"l": 120, "r": 35, "t": 18, "b": 100},
-            xaxis={"tickangle": -55, "automargin": True},
-        )
-        st.plotly_chart(chart, width="stretch", config={"displayModeBar": True})
+            panels = st.columns(len(class_ids), gap="small")
+            for class_index, (column, class_name) in enumerate(
+                zip(panels, class_labels, strict=True)
+            ):
+                ranked = sorted(
+                    (
+                        (
+                            _model_label(str(run["model_id"])),
+                            model_values[class_index],
+                        )
+                        for run, model_values in zip(
+                            leaderboard, class_matrix, strict=True
+                        )
+                        if isinstance(model_values[class_index], (int, float))
+                    ),
+                    key=lambda item: item[1],
+                    reverse=True,
+                )
+                best = ranked[0][1] if ranked else None
+                representative = next(
+                    (
+                        item
+                        for item in leaderboard[0].get("per_class", [])
+                        if int(item.get("class_id", -1)) == class_ids[class_index]
+                    ),
+                    {},
+                )
+                support = _text_or_dash(representative.get("Support"))
+                rendered = []
+                displayed_rank = 0
+                previous_value: float | None = None
+                for position, (model_name, value) in enumerate(ranked, start=1):
+                    if previous_value is None or abs(value - previous_value) > 1e-12:
+                        displayed_rank = position
+                    previous_value = value
+                    winner = best is not None and abs(value - best) <= 1e-12
+                    rendered.append(
+                        f'<div class="ob-class-row{" winner" if winner else ""}">'
+                        f'<span class="rank">{displayed_rank:02d}</span>'
+                        f"<b>{escape(model_name)}</b>"
+                        '<span class="ob-class-bar">'
+                        f'<i style="width:{value * 100:.1f}%"></i></span>'
+                        f"<strong>{value:.3f}</strong></div>"
+                    )
+                column.markdown(
+                    f'<div class="ob-class-panel"><h4>{escape(class_name)}</h4>'
+                    f"<small>{escape(selected_metric)} · Test support {escape(support)}</small>"
+                    + "".join(rendered)
+                    + "</div>",
+                    unsafe_allow_html=True,
+                )
+        else:
+            st.markdown(
+                '<div class="ob-chart-title">模型 × 疾病类别表现热图</div>'
+                '<div class="ob-chart-copy">每行是一个模型、每列是一种疾病；颜色越深表示当前'
+                f"选择的 {escape(selected_metric)} 越高。support &lt; 5 的类别仍展示，"
+                "但不计入稳定类别冠军。</div>",
+                unsafe_allow_html=True,
+            )
+            chart = go.Figure(
+                data=go.Heatmap(
+                    z=class_matrix,
+                    x=class_labels,
+                    y=[_model_label(str(run["model_id"])) for run in leaderboard],
+                    zmin=0,
+                    zmax=1,
+                    colorscale=[
+                        [0.0, "#F8FAFC"],
+                        [0.35, "#DBEAFE"],
+                        [0.7, "#7DB4F2"],
+                        [1.0, "#174EA6"],
+                    ],
+                    text=hover_text,
+                    hovertemplate="%{text}<extra></extra>",
+                    colorbar={"title": selected_metric, "thickness": 12},
+                    xgap=1,
+                    ygap=2,
+                )
+            )
+            chart.update_layout(
+                height=max(330, 110 + 48 * len(leaderboard)),
+                margin={"l": 120, "r": 35, "t": 18, "b": 100},
+                xaxis={"tickangle": -55, "automargin": True},
+            )
+            st.plotly_chart(chart, width="stretch", config={"displayModeBar": True})
 
     cost = [row for row in rows if row.get("throughput") is not None]
     if cost and all(row.get("Macro-F1") is not None for row in cost):
@@ -774,10 +924,13 @@ def _render_insights(
         chart.update_layout(height=320, margin={"l": 42, "r": 24, "t": 24, "b": 42})
         st.plotly_chart(chart, width="stretch", config={"displayModeBar": False})
     winners = insights.get("stable_class_winners", {}).get("F1", {})
-    if winners:
+    stable_class_count = int(insights.get("stable_class_count") or 0)
+    if winners and stable_class_count > 5:
         st.markdown(
-            '<div class="ob-chart-title">逐类 F1 赢家</div>'
-            '<div class="ob-chart-copy">排名点图仅统计 support ≥ 5 且具有 F1 证据的类别。</div>',
+            f'<div class="ob-chart-title">{stable_class_count}个稳定疾病类别中的 '
+            "F1 冠军数</div>"
+            '<div class="ob-chart-copy">每个疾病类别比较所有模型的 F1；最高者计1次。'
+            "仅统计 support ≥ 5 的类别，完全同分时并列模型均计为冠军。</div>",
             unsafe_allow_html=True,
         )
         ordered_winners = sorted(winners.items(), key=lambda item: item[1], reverse=True)
@@ -791,7 +944,7 @@ def _render_insights(
                 text=winner_values,
                 textposition="middle right",
                 marker={"size": 13, "color": "#2855D9"},
-                hovertemplate="%{y}: %{x} stable class wins<extra></extra>",
+                hovertemplate="%{y}: %{x} 个稳定疾病类别冠军<extra></extra>",
             )
         )
         for name, value in zip(winner_names, winner_values, strict=True):
@@ -809,7 +962,10 @@ def _render_insights(
             margin={"l": 120, "r": 50, "t": 20, "b": 42},
             showlegend=False,
         )
-        chart.update_xaxes(range=[0, max(winner_values) * 1.18], title="Stable class wins")
+        chart.update_xaxes(
+            range=[0, max(winner_values) * 1.18],
+            title="稳定疾病类别 F1 冠军数",
+        )
         st.plotly_chart(chart, width="stretch", config={"displayModeBar": False})
     ranking = insights.get("cost_ranking", [])
     if ranking:
