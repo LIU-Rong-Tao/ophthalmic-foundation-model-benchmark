@@ -26,7 +26,11 @@ class PrecomputedProbeConfig:
     seed: int = 2026
     c_candidates: tuple[float, ...] = (0.01, 0.1, 1.0, 10.0)
     task_display_name: str | None = None
+    task_type: str = "single_label_multiclass_classification"
     label_space: str | None = None
+    label_semantics: str = "observed_directory_labels"
+    qualification_status: str = "exploratory"
+    patient_id_available: bool = False
     limitations: tuple[str, ...] = (
         "Image-level split; patient identifiers are unavailable.",
         "Observed directory labels are exploratory and may not capture hidden comorbidity.",
@@ -76,6 +80,7 @@ def _metrics(
         accuracy_score,
         average_precision_score,
         balanced_accuracy_score,
+        cohen_kappa_score,
         confusion_matrix,
         f1_score,
         precision_recall_fscore_support,
@@ -142,6 +147,9 @@ def _metrics(
                 average="weighted",
                 zero_division=0,
             )
+        ),
+        "quadratic_weighted_kappa": float(
+            cohen_kappa_score(labels, predictions, labels=class_ids, weights="quadratic")
         ),
         "top3_accuracy": _top_k_accuracy(labels, probabilities, 3),
         "top5_accuracy": _top_k_accuracy(labels, probabilities, 5),
@@ -338,11 +346,11 @@ def run_precomputed_probe(config: PrecomputedProbeConfig) -> Path:
     _write_json(output / "confusion_matrix.json", matrix.tolist())
     task_metadata = {
         "display_name": config.task_display_name or config.task_id,
-        "task_type": "single_label_multiclass_classification",
+        "task_type": config.task_type,
         "class_count": len(class_ids),
         "sample_count": len(label_map),
         "label_space": config.label_space or config.task_id,
-        "label_semantics": "observed_directory_labels",
+        "label_semantics": config.label_semantics,
     }
     run_manifest = {
         "release_id": config.release_id,
@@ -352,14 +360,14 @@ def run_precomputed_probe(config: PrecomputedProbeConfig) -> Path:
         "protocol_id": "precomputed-frozen-feature-logreg-v1",
         "task_id": config.task_id,
         "task_metadata": task_metadata,
-        "qualification_status": "exploratory",
+        "qualification_status": config.qualification_status,
         "seed": config.seed,
         "development_size": len(development),
         "test_size": len(test),
         "feature_dim": int(features.shape[1]),
         "test_used_for_selection": False,
-        "patient_id_available": False,
-        "patient_level_generalization_not_established": True,
+        "patient_id_available": config.patient_id_available,
+        "patient_level_generalization_not_established": not config.patient_id_available,
         "limitations": list(config.limitations),
         "confusion_matrix": matrix.tolist(),
     }

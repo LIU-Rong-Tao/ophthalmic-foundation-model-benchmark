@@ -6,6 +6,7 @@ default_task_id: private-fundus-59class
 task_ids:
   - private-fundus-59class
   - private-fundus-dr-stage-3class
+  - aptos2019-dr-5class
 tasks:
   - task_id: private-fundus-59class
     display_name: 59类眼底疾病
@@ -25,6 +26,18 @@ tasks:
       - 不具备ICDR五级标签；缺少patient_id，患者级泛化未建立。
       - Normal与NPDR/PDR的文件格式和分辨率分布明显不同；元数据基线Macro-F1为0.789，存在高采集捷径风险。
       - 当前结果仅用于数据诊断，不作为正式模型能力排名。
+  - task_id: aptos2019-dr-5class
+    display_name: APTOS 2019 DR 五级分级（去重）
+    task_type: ordinal_classification
+    class_count: 5
+    sample_count: 3485
+    label_semantics: public_aptos2019_icdr_grade
+    evidence_status: public_dataset_decontaminated_holdout
+    primary_metric: Quadratic Weighted Kappa
+    limitations:
+      - 使用APTOS 2019公开训练集的本地处理副本，不是Kaggle隐藏测试集。
+      - 排除77条标签冲突重复记录并合并100条同标签副本，保留3485张唯一图像，再按seed 2026固定分层85/15划分。
+      - 数据不提供patient_id，患者级泄漏无法完全评估。
 protocol_ids:
   - frozen-feature-single-observed-v1
   - precomputed-frozen-feature-logreg-v1

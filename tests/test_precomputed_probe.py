@@ -69,14 +69,21 @@ def test_precomputed_probe_uses_aligned_features_and_frozen_test(tmp_path: Path)
             checkpoint_id="fake-v1",
             task_id="dr-stage-3class",
             task_display_name="DR stage",
+            task_type="ordinal_classification",
+            label_semantics="verified_dr_grade",
+            qualification_status="public_dataset_holdout",
         )
     )
     metrics = json.loads((output / "metrics.json").read_text(encoding="utf-8"))
     manifest = json.loads((output / "run_manifest.json").read_text(encoding="utf-8"))
     summary = json.loads((output / "summary.json").read_text(encoding="utf-8"))
     assert metrics["macro_f1"] > 0.95
+    assert metrics["quadratic_weighted_kappa"] > 0.95
     assert metrics["top3_accuracy"] is None
     assert manifest["task_metadata"]["class_count"] == 3
+    assert manifest["task_metadata"]["task_type"] == "ordinal_classification"
+    assert manifest["task_metadata"]["label_semantics"] == "verified_dr_grade"
+    assert manifest["qualification_status"] == "public_dataset_holdout"
     assert manifest["test_used_for_selection"] is False
     assert summary["development_test_disjoint"] is True
     assert (output / "artifact_manifest.json").is_file()

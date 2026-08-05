@@ -1,0 +1,17 @@
+task_id: aptos2019-dr-5class
+display_name: APTOS 2019 DR 五级分级（去重）
+task_type: ordinal_classification
+class_count: 5
+sample_count: 3485
+label_space: icdr_dr_grade_0_4
+split_level: image
+protocol_id: precomputed-frozen-feature-logreg-v1
+label_semantics: public_aptos2019_icdr_grade
+primary_metric: Quadratic Weighted Kappa
+evidence_status: public_dataset_decontaminated_holdout
+limitations:
+  - 使用APTOS 2019公开训练集的本地处理副本，不是Kaggle隐藏测试集。
+  - 原3662条记录中有完全重复和标签冲突；排除62条exact-conflict及15条高置信近重复冲突记录，合并96条exact和4条高置信近重复副本，保留3485张唯一图像。
+  - 去重后按seed 2026进行确定性图像级分层85/15划分，五个稳健性种子均在测试前固定。
+  - 数据不提供patient_id，患者级泄漏无法完全评估，患者级泛化尚未建立。
+  - 特征标准化与探针参数仅在Development五折内部拟合和选择，冻结Test仅作最终评估。

@@ -151,7 +151,17 @@ def benchmark_probe_command(
     checkpoint_id: str = typer.Option(..., "--checkpoint-id"),
     task: str = typer.Option(..., "--task"),
     task_name: str | None = typer.Option(None, "--task-name"),
+    task_type: str = typer.Option(
+        "single_label_multiclass_classification",
+        "--task-type",
+    ),
     label_space: str | None = typer.Option(None, "--label-space"),
+    label_semantics: str = typer.Option(
+        "observed_directory_labels",
+        "--label-semantics",
+    ),
+    qualification_status: str = typer.Option("exploratory", "--qualification-status"),
+    patient_id_available: bool = typer.Option(False, "--patient-id-available"),
     adapter_version: str | None = typer.Option(None, "--adapter-version"),
     seed: int = typer.Option(2026, "--seed"),
 ):
@@ -170,7 +180,11 @@ def benchmark_probe_command(
             checkpoint_id=checkpoint_id,
             task_id=task,
             task_display_name=task_name,
+            task_type=task_type,
             label_space=label_space,
+            label_semantics=label_semantics,
+            qualification_status=qualification_status,
+            patient_id_available=patient_id_available,
             adapter_version=adapter_version,
             seed=seed,
         )

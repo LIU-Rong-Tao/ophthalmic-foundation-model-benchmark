@@ -435,6 +435,7 @@ def _text_or_dash(value: Any) -> str:
 def _task_type_label(value: Any) -> str:
     return {
         "single_label_multiclass_classification": "单标签多分类",
+        "ordinal_classification": "有序多分类",
         "observed_directory_multilabel_probe": "观测多标签探针",
     }.get(str(value), _text_or_dash(value))
 
